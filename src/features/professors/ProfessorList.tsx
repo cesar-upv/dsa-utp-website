@@ -1,4 +1,5 @@
 import { Clock3, Sparkles, Trash } from 'lucide-react'
+import { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -8,13 +9,17 @@ import {
   CardDescription,
   CardTitle,
 } from '@/components/ui/card'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { showUndoToast } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
+import type { Profesor } from '@/types/models'
 
 export function ProfessorList() {
   const profesores = useTimetableStore((state) => state.profesores)
   const materias = useTimetableStore((state) => state.materias)
   const setCompetencias = useTimetableStore((state) => state.setCompetencias)
   const removeProfesor = useTimetableStore((state) => state.removeProfesor)
+  const [pendingDelete, setPendingDelete] = useState<Profesor | null>(null)
 
   const toggleCompetencia = (profId: string, materiaId: string) => {
     const prof = profesores.find((p) => p.id === profId)
@@ -84,7 +89,7 @@ export function ProfessorList() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => removeProfesor(prof.id)}
+                onClick={() => setPendingDelete(prof)}
               >
                 <Trash className="h-4 w-4 text-destructive" />
                 Eliminar
@@ -92,6 +97,23 @@ export function ProfessorList() {
             </div>
           </div>
         ))}
+        <ConfirmDialog
+          open={Boolean(pendingDelete)}
+          title="Eliminar profesor"
+          description={`¿Seguro que deseas eliminar ${pendingDelete?.nombre}?`}
+          confirmLabel="Eliminar"
+          onCancel={() => setPendingDelete(null)}
+          onConfirm={() => {
+            if (!pendingDelete) return
+            const deleted = pendingDelete
+            removeProfesor(deleted.id)
+            setPendingDelete(null)
+            showUndoToast({
+              title: 'Profesor eliminado',
+              description: `${deleted.nombre} se eliminó.`,
+            })
+          }}
+        />
       </CardContent>
     </Card>
   )

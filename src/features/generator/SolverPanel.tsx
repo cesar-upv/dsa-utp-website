@@ -83,8 +83,8 @@ export function SolverPanel() {
         Generar horarios
       </CardTitle>
       <CardDescription>
-        Módulo 3 — ejecuta el solver (mock en TS) con contrato JSON in/out. Usa
-        TanStack Query para orquestar el proceso.
+        Módulo 3 — ejecuta el solver (mock) con contrato JSON in/out y muestra
+        alertas en caso de advertencias.
       </CardDescription>
       <CardContent className="mt-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-2">

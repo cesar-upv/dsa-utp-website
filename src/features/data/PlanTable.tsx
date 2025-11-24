@@ -5,6 +5,7 @@ import {
   type ColumnDef,
 } from '@tanstack/react-table'
 import { Trash2 } from 'lucide-react'
+import { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -14,6 +15,7 @@ import {
   CardDescription,
   CardTitle,
 } from '@/components/ui/card'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import {
   Table,
   TableBody,
@@ -22,6 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { showUndoToast } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Materia } from '@/types/models'
 
@@ -66,6 +69,7 @@ const columns: ColumnDef<Materia>[] = [
 export function PlanTable() {
   const materias = useTimetableStore((state) => state.materias)
   const removeMateria = useTimetableStore((state) => state.removeMateria)
+  const [pendingDelete, setPendingDelete] = useState<Materia | null>(null)
 
   const table = useReactTable({
     data: materias,
@@ -79,7 +83,7 @@ export function PlanTable() {
             variant="ghost"
             size="icon"
             title="Eliminar materia"
-            onClick={() => removeMateria(row.original.id)}
+            onClick={() => setPendingDelete(row.original)}
           >
             <Trash2 className="h-4 w-4 text-destructive" />
           </Button>
@@ -140,6 +144,23 @@ export function PlanTable() {
           </TableBody>
         </Table>
       </CardContent>
+      <ConfirmDialog
+        open={Boolean(pendingDelete)}
+        title="Eliminar materia"
+        description={`¿Seguro que deseas eliminar ${pendingDelete?.nombre}?`}
+        confirmLabel="Eliminar"
+        onCancel={() => setPendingDelete(null)}
+        onConfirm={() => {
+          if (!pendingDelete) return
+          const deleted = pendingDelete
+          removeMateria(deleted.id)
+          setPendingDelete(null)
+          showUndoToast({
+            title: 'Materia eliminada',
+            description: `${deleted.nombre} se eliminó del plan.`,
+          })
+        }}
+      />
     </Card>
   )
 }

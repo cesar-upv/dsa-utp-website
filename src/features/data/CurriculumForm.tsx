@@ -66,8 +66,8 @@ export function CurriculumForm() {
         Nueva materia
       </CardTitle>
       <CardDescription>
-        Define materias con su carga semanal. Las validaciones se ejecutan con
-        <strong> zod</strong> y <strong>react-hook-form</strong>.
+        Define materias con su carga semanal. Las validaciones se ejecutan en la
+        UI antes de guardar.
       </CardDescription>
       <CardContent className="mt-4">
         <form

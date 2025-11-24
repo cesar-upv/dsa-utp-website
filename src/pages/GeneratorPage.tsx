@@ -43,9 +43,9 @@ export default function GeneratorPage() {
             grupo. Incluye métricas de compacidad e información de advertencias.
           </p>
           <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary">TanStack Query</Badge>
-            <Badge variant="outline">Recharts</Badge>
-            <Badge variant="default">JSON contracts</Badge>
+            <Badge variant="secondary">JSON in/out</Badge>
+            <Badge variant="outline">Métricas visuales</Badge>
+            <Badge variant="default">Local</Badge>
           </div>
         </div>
         <div className="flex items-center gap-3 rounded-2xl border border-border/70 bg-white/80 px-4 py-3 text-sm text-muted-foreground">

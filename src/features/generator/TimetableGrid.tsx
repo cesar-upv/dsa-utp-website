@@ -81,8 +81,8 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
                       >
                         {block && materia && profesor ? (
                           <div className="flex h-full flex-col justify-between rounded-lg bg-white/60 p-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-semibold leading-tight">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-semibold leading-tight line-clamp-2">
                                 {materia.nombre}
                               </span>
                               <span
@@ -90,7 +90,7 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
                                 style={{ backgroundColor: color }}
                               />
                             </div>
-                            <div className="text-[11px] text-muted-foreground">
+                            <div className="text-[11px] text-muted-foreground leading-tight line-clamp-1">
                               {profesor.nombre}
                             </div>
                           </div>

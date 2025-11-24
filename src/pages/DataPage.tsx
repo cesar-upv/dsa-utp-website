@@ -11,6 +11,7 @@ import {
 import { CsvDropzone } from '@/features/data/CsvDropzone'
 import { CurriculumForm } from '@/features/data/CurriculumForm'
 import { GroupForm } from '@/features/data/GroupForm'
+import { GroupsTable } from '@/features/data/GroupsTable'
 import { PlanSummary } from '@/features/data/PlanSummary'
 import { PlanTable } from '@/features/data/PlanTable'
 import { downloadJson } from '@/lib/utils'
@@ -41,7 +42,7 @@ export default function DataPage() {
           </h1>
           <p className="max-w-2xl text-muted-foreground">
             Carga plan de estudios, grupos y turnos. Toda la información se
-            valida con esquemas <strong>zod</strong> y se persiste en localStorage.
+            valida en la UI y se persiste en localStorage.
           </p>
           <div className="flex flex-wrap gap-2">
             <Badge variant="secondary">Cuatrimestres + horas/semana</Badge>
@@ -64,6 +65,7 @@ export default function DataPage() {
         </div>
         <div className="space-y-6">
           <GroupForm />
+          <GroupsTable />
           <CsvDropzone />
           <Card>
             <CardTitle className="flex items-center gap-3">

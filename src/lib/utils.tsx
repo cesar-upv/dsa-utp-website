@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { toast } from 'sonner'
 
 import { DAYS, TIME_SLOTS } from '@/constants/time'
 import {
@@ -69,4 +70,14 @@ export function downloadJson(name: string, data: unknown) {
   link.download = name
   link.click()
   URL.revokeObjectURL(url)
+}
+
+export function showUndoToast({
+  title,
+  description,
+}: {
+  title: string
+  description?: string
+}) {
+  toast.success(title, { description, duration: 3500 })
 }
