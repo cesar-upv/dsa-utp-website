@@ -1,0 +1,145 @@
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  type ColumnDef,
+} from '@tanstack/react-table'
+import { Trash2 } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from '@/components/ui/card'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { useTimetableStore } from '@/store/useTimetableStore'
+import type { Materia } from '@/types/models'
+
+const columns: ColumnDef<Materia>[] = [
+  {
+    header: 'Materia',
+    accessorKey: 'nombre',
+    cell: ({ row }) => (
+      <div className="flex flex-col">
+        <span className="font-semibold">{row.original.nombre}</span>
+        <span className="text-xs text-muted-foreground">{row.original.id}</span>
+      </div>
+    ),
+  },
+  {
+    header: 'Cuatrimestre',
+    accessorKey: 'cuatrimestre',
+    cell: ({ row }) => (
+      <Badge variant="outline">Q{row.original.cuatrimestre}</Badge>
+    ),
+  },
+  {
+    header: 'Horas/sem',
+    accessorKey: 'horasSemana',
+  },
+  {
+    header: 'Color',
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">
+        <span
+          className="h-5 w-5 rounded-full border"
+          style={{ backgroundColor: row.original.color }}
+        />
+        <code className="text-xs text-muted-foreground">
+          {row.original.color}
+        </code>
+      </div>
+    ),
+  },
+]
+
+export function PlanTable() {
+  const materias = useTimetableStore((state) => state.materias)
+  const removeMateria = useTimetableStore((state) => state.removeMateria)
+
+  const table = useReactTable({
+    data: materias,
+    columns: [
+      ...columns,
+      {
+        id: 'actions',
+        header: '',
+        cell: ({ row }) => (
+          <Button
+            variant="ghost"
+            size="icon"
+            title="Eliminar materia"
+            onClick={() => removeMateria(row.original.id)}
+          >
+            <Trash2 className="h-4 w-4 text-destructive" />
+          </Button>
+        ),
+      },
+    ],
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return (
+    <Card>
+      <CardTitle>Plan de estudios</CardTitle>
+      <CardDescription>
+        Vista rápida de materias y sus restricciones duras.
+      </CardDescription>
+      <CardContent className="mt-4 overflow-x-auto">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length + 1}
+                  className="h-20 text-center text-muted-foreground"
+                >
+                  Agrega materias para construir el horario.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+  )
+}

@@ -1,0 +1,131 @@
+import { CalendarRange } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
+import { DAYS, TIME_SLOTS } from '@/constants/time'
+import { cn, colorForMateria } from '@/lib/utils'
+import { useTimetableStore } from '@/store/useTimetableStore'
+
+export function TimetableGrid({ groupId }: { groupId: string }) {
+  const horarios = useTimetableStore((state) => state.horarios)
+  const materias = useTimetableStore((state) => state.materias)
+  const profesores = useTimetableStore((state) => state.profesores)
+
+  const horario = horarios.find((h) => h.grupoId === groupId)
+  const blockIndex =
+    horario?.bloques.reduce<Record<string, typeof horario.bloques[0]>>(
+      (acc, bloque) => {
+        acc[`${bloque.dia}-${bloque.slotId}`] = bloque
+        return acc
+      },
+      {}
+    ) ?? {}
+
+  return (
+    <Card>
+      <CardTitle className="flex items-center gap-3">
+        <CalendarRange className="h-5 w-5 text-primary" />
+        Horario semanal
+      </CardTitle>
+      <CardDescription>
+        Visualización tipo “tetris” con bloques coloreados por materia.
+      </CardDescription>
+      <CardContent className="mt-4 space-y-4">
+        <div className="overflow-x-auto">
+          <div className="min-w-[720px]">
+            <div className="grid grid-cols-6 gap-[1px] rounded-xl border border-border/70 bg-border/60 p-[1px]">
+              <div className="rounded-lg bg-muted/60 p-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                Hora
+              </div>
+              {DAYS.map((day) => (
+                <div
+                  key={day.id}
+                  className="rounded-lg bg-muted/60 p-3 text-sm font-semibold"
+                >
+                  {day.label}
+                </div>
+              ))}
+              {TIME_SLOTS.map((slot) => (
+                <div key={slot.id} className="contents">
+                  <div className="flex items-center rounded-lg bg-muted/40 px-3 text-sm font-medium">
+                    {slot.label}
+                  </div>
+                  {DAYS.map((day) => {
+                    const block = blockIndex[`${day.id}-${slot.id}`]
+                    const materia = materias.find(
+                      (m) => m.id === block?.materiaId
+                    )
+                    const profesor = profesores.find(
+                      (p) => p.id === block?.profesorId
+                    )
+                    const color = materia
+                      ? colorForMateria(
+                          materia,
+                          materias.findIndex((m) => m.id === materia.id)
+                        )
+                      : undefined
+                    return (
+                      <div
+                        key={`${day.id}-${slot.id}`}
+                        className={cn(
+                          'relative h-16 rounded-lg border border-border/60 bg-white/80 p-2 text-xs',
+                          block
+                            ? 'shadow-ambient'
+                            : 'text-muted-foreground/70'
+                        )}
+                        style={
+                          block && color
+                            ? { backgroundColor: `${color}22` }
+                            : undefined
+                        }
+                      >
+                        {block && materia && profesor ? (
+                          <div className="flex h-full flex-col justify-between rounded-lg bg-white/60 p-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-semibold leading-tight">
+                                {materia.nombre}
+                              </span>
+                              <span
+                                className="h-3 w-3 rounded-full border"
+                                style={{ backgroundColor: color }}
+                              />
+                            </div>
+                            <div className="text-[11px] text-muted-foreground">
+                              {profesor.nombre}
+                            </div>
+                          </div>
+                        ) : (
+                          <span>Libre</span>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+          {materias.map((materia, idx) => (
+            <Badge
+              key={materia.id}
+              variant="outline"
+              className="flex items-center gap-2"
+              style={{
+                borderColor: colorForMateria(materia, idx),
+                color: colorForMateria(materia, idx),
+              }}
+            >
+              <span
+                className="h-3 w-3 rounded-full"
+                style={{ backgroundColor: colorForMateria(materia, idx) }}
+              />
+              {materia.nombre}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}

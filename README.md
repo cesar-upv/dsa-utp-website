@@ -1,24 +1,36 @@
-<div align="center">
+# UTP Timetabling — ITI
 
-# UTTP — University Timetabling Problem
+Aplicación web local para generar horarios de la carrera **ITI**. Todo corre en el navegador, sin backend, siguiendo `AGENTS.md`.
 
-**Universidad Politécnica de Victoria**
+## Dependencias clave
+- React 18 + TypeScript + Vite + Tailwind + shadcn/ui  
+- Estado: Zustand; Formularios: react-hook-form + zod  
+- Tablas: @tanstack/react-table; Datos/async: @tanstack/react-query  
+- Iconos: lucide-react; Gráficas: recharts  
+- Tests: Vitest + React Testing Library  
+- Solver stub: Python 3 (JSON in/out) en `solver/solve.py`
 
-<!-- Badges -->
-<p>
-  <img alt="Materia" src="https://img.shields.io/badge/Materia-Estructura%20de%20Datos-0ea5e9?style=flat-square">
-  <img alt="Carrera" src="https://img.shields.io/badge/Carrera-ITI-22c55e?style=flat-square">
-</p>
+## Quick start
+```bash
+npm install
+npm start        # Vite + BrowserSync en http://localhost:3000 (proxy a 5173)
+# Alternativa: npm run dev (solo Vite en 5173)
+# Comandos de soporte:
+npm run lint     # ESLint
+npm run test     # Vitest (jsdom)
+npm run build    # tsc -b + vite build
+```
 
-</div>
+## Qué incluye la UI
+- Módulo 1: materias/grupos/turnos con import CSV y export JSON.  
+- Módulo 2: profesores, competencias y matriz de disponibilidad 3 estados.  
+- Módulo 3: generador con solver mock (TanStack Query), tablero “tetris” por grupo y métricas de compacidad/advertencias.
 
----
+## Contrato JSON
+- **Entrada**: `planDeEstudios[]`, `grupos[]`, `profesores[]` (disponibilidad, competencias, maxHoras).  
+- **Salida**: `horarios[]` con bloques por grupo y métricas (`huecos`, `violacionesDuras`, `softScore`, `resumen`).  
+- Ejemplos: `data/sample-input.json`, `data/sample-output.json`.
 
-Especificación y diseño del **problema de horario de la carrera de ITI**.  
-Enfoque **minimalista** en *modelado de entidades* y *reglas básicas* para generar horarios **válidos y sin solapes**.
-
-## Autores
-- Euresti César  
-- Vázquez Leonel Junior Arturo  
-- Zapata Aguilar Diego Eduardo  
-- Zúñiga de León Elías de Jesús
+## Solver (stub)
+`python solver/solve.py --input data/sample-input.json --output data/sample-output.json`  
+Diseñado para evolucionar a Python + Cython manteniendo el contrato JSON.

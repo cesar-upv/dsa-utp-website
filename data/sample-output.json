@@ -1,0 +1,21 @@
+{
+  "status": "ok",
+  "resumen": {
+    "mensaje": "Horario generado con éxito (mock)",
+    "tiempoMs": 180,
+    "violacionesDuras": 0,
+    "huecosPromedio": 1.0
+  },
+  "horarios": [
+    {
+      "grupoId": "ITI-1A",
+      "metricas": { "huecos": 1, "violacionesDuras": 0, "softScore": 9 },
+      "bloques": [
+        { "id": "ITI-1A-ALG1-mon-s1", "grupoId": "ITI-1A", "materiaId": "ALG1", "profesorId": "PZ-01", "dia": "mon", "slotId": "s1", "duracion": 1, "huecoPrevio": false, "esContinuo": true },
+        { "id": "ITI-1A-ALG1-mon-s2", "grupoId": "ITI-1A", "materiaId": "ALG1", "profesorId": "PZ-01", "dia": "mon", "slotId": "s2", "duracion": 1, "huecoPrevio": false, "esContinuo": true },
+        { "id": "ITI-1A-ALG1-tue-s1", "grupoId": "ITI-1A", "materiaId": "ALG1", "profesorId": "PZ-01", "dia": "tue", "slotId": "s1", "duracion": 1, "huecoPrevio": true, "esContinuo": true },
+        { "id": "ITI-1A-MATD-wed-s1", "grupoId": "ITI-1A", "materiaId": "MATD", "profesorId": "PZ-01", "dia": "wed", "slotId": "s1", "duracion": 1, "huecoPrevio": false, "esContinuo": true }
+      ]
+    }
+  ]
+}
