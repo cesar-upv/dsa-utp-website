@@ -1,6 +1,6 @@
 # UTP Timetabling — ITI
 
-Aplicación web local para generar horarios de la carrera **ITI**. Todo corre en el navegador, sin backend, siguiendo `AGENTS.md`.
+Aplicación web local para generar horarios de la carrera **ITI**. Todo corre en el navegador, sin backend.
 
 ## Dependencias clave
 - React 18 + TypeScript + Vite + Tailwind + shadcn/ui  
