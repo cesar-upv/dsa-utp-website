@@ -30,6 +30,8 @@ export function ProfessorList() {
     [page, profesores]
   )
   const totalPages = Math.max(1, Math.ceil(profesores.length / pageSize))
+  const start = profesores.length ? (page - 1) * pageSize + 1 : 0
+  const end = Math.min(page * pageSize, profesores.length)
 
   useEffect(() => {
     if (page > totalPages) {
@@ -177,10 +179,10 @@ export function ProfessorList() {
             </div>
           ))}
         </div>
-        {profesores.length > pageSize ? (
+        {profesores.length ? (
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>
-              Página {page} de {totalPages}
+              {start}-{end} de {profesores.length} · Página {page} de {totalPages}
             </span>
             <div className="flex items-center gap-2">
               <Button

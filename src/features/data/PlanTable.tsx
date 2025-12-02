@@ -73,6 +73,8 @@ export function PlanTable() {
   const [page, setPage] = useState(1)
   const pageSize = 8
   const totalPages = Math.max(1, Math.ceil(materias.length / pageSize))
+  const start = materias.length ? (page - 1) * pageSize + 1 : 0
+  const end = Math.min(page * pageSize, materias.length)
 
   useEffect(() => {
     if (page > totalPages) {
@@ -160,10 +162,10 @@ export function PlanTable() {
             )}
           </TableBody>
         </Table>
-        {materias.length > pageSize ? (
+        {materias.length ? (
           <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
             <span>
-              Página {page} de {totalPages}
+              {start}-{end} de {materias.length} · Página {page} de {totalPages}
             </span>
             <div className="flex items-center gap-2">
               <Button

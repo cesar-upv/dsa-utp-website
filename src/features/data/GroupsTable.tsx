@@ -25,6 +25,8 @@ export function GroupsTable() {
   const [page, setPage] = React.useState(1)
   const pageSize = 10
   const totalPages = Math.max(1, Math.ceil(grupos.length / pageSize))
+  const start = grupos.length ? (page - 1) * pageSize + 1 : 0
+  const end = Math.min(page * pageSize, grupos.length)
 
   React.useEffect(() => {
     if (page > totalPages) {
@@ -91,10 +93,10 @@ export function GroupsTable() {
             </TableBody>
           </Table>
         </div>
-        {grupos.length > pageSize ? (
+        {grupos.length ? (
           <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
             <span>
-              Página {page} de {totalPages}
+              {start}-{end} de {grupos.length} · Página {page} de {totalPages}
             </span>
             <div className="flex items-center gap-2">
               <Button

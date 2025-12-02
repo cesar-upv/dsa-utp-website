@@ -1,14 +1,7 @@
-import { ArrowDownToLine, Database } from 'lucide-react'
+import { ArrowDownToLine } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from '@/components/ui/card'
-import { CsvDropzone } from '@/features/data/CsvDropzone'
 import { CurriculumForm } from '@/features/data/CurriculumForm'
 import { GroupForm } from '@/features/data/GroupForm'
 import { GroupsTable } from '@/features/data/GroupsTable'
@@ -66,20 +59,6 @@ export default function DataPage() {
         <div className="space-y-6">
           <GroupForm />
           <GroupsTable />
-          <CsvDropzone />
-          <Card>
-            <CardTitle className="flex items-center gap-3">
-              <Database className="h-5 w-5 text-primary" />
-              Notas rápidas
-            </CardTitle>
-            <CardDescription>Restricciones duras modeladas</CardDescription>
-            <CardContent className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <p>• Unicidad de grupo/profesor por franja.</p>
-              <p>• Carga máxima profesor (≤ 15 h/sem) editable.</p>
-              <p>• Contigüidad de bloques por materia cuando es posible.</p>
-              <p>• Competencias por materia obligatorias.</p>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>
