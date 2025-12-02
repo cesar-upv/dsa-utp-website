@@ -74,11 +74,31 @@ export const useTimetableStore = create<TimetableStore>()(
           materias: [...state.materias, materia],
         })),
       updateMateria: (id, data) =>
-        set((state) => ({
-          materias: state.materias.map((m) =>
+        set((state) => {
+          const nextId = data.id ?? id
+          const materias = state.materias.map((m) =>
             m.id === id ? { ...m, ...data } : m
-          ),
-        })),
+          )
+          const profesores =
+            nextId === id
+              ? state.profesores
+              : state.profesores.map((prof) => ({
+                  ...prof,
+                  competencias: prof.competencias.map((c) =>
+                    c === id ? nextId : c
+                  ),
+                }))
+          const horarios =
+            nextId === id
+              ? state.horarios
+              : state.horarios.map((h) => ({
+                  ...h,
+                  bloques: h.bloques.map((b) =>
+                    b.materiaId === id ? { ...b, materiaId: nextId } : b
+                  ),
+                }))
+          return { materias, profesores, horarios }
+        }),
       removeMateria: (id) =>
         set((state) => ({
           materias: state.materias.filter((m) => m.id !== id),
@@ -92,11 +112,26 @@ export const useTimetableStore = create<TimetableStore>()(
           grupos: [...state.grupos, grupo],
         })),
       updateGrupo: (id, data) =>
-        set((state) => ({
-          grupos: state.grupos.map((g) =>
+        set((state) => {
+          const nextId = data.id ?? id
+          const grupos = state.grupos.map((g) =>
             g.id === id ? { ...g, ...data } : g
-          ),
-        })),
+          )
+          const horarios =
+            nextId === id
+              ? state.horarios
+              : state.horarios.map((h) => {
+                  const sameGroup = h.grupoId === id
+                  return {
+                    ...h,
+                    grupoId: sameGroup ? nextId : h.grupoId,
+                    bloques: h.bloques.map((b) =>
+                      b.grupoId === id ? { ...b, grupoId: nextId } : b
+                    ),
+                  }
+                })
+          return { grupos, horarios }
+        }),
       removeGrupo: (id) =>
         set((state) => ({
           grupos: state.grupos.filter((g) => g.id !== id),

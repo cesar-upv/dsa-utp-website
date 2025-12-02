@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { PaintBucket, Plus } from 'lucide-react'
+import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -15,7 +16,7 @@ const materiaSchema = z.object({
   id: z.string().min(2, 'ID requerido'),
   nombre: z.string().min(3, 'Nombre requerido'),
   cuatrimestre: z.number().min(1).max(12),
-  horasSemana: z.number().min(1).max(12),
+  horasSemana: z.number().min(1).max(15),
   color: z.string().optional(),
 })
 
@@ -29,7 +30,7 @@ export function CurriculumForm() {
   const {
     register,
     handleSubmit,
-    reset,
+    watch,
     formState: { errors },
   } = useForm<MateriaForm>({
     resolver: zodResolver(materiaSchema),
@@ -40,23 +41,41 @@ export function CurriculumForm() {
     },
   })
 
+  const nombreValue = watch('nombre')
+  const suggestedId = useMemo(() => {
+    const normalized = (nombreValue ?? '')
+      .toUpperCase()
+      .replace(/[^A-Z0-9]+/g, ' ')
+      .trim()
+      .replace(/\s+/g, '-')
+    return normalized.slice(0, 8) || 'ID-SUG'
+  }, [nombreValue])
+
   const onSubmit = (values: MateriaForm) => {
-    const exists = materias.some((m) => m.id === values.id)
-    if (exists) {
+    const normalizedId = values.id.trim()
+    const normalizedName = values.nombre.trim()
+    const idExists = materias.some(
+      (m) => m.id.toLowerCase() === normalizedId.toLowerCase()
+    )
+    const nameExists = materias.some(
+      (m) => m.nombre.toLowerCase() === normalizedName.toLowerCase()
+    )
+    if (idExists) {
       toast.error('Ya existe una materia con ese ID')
+      return
+    }
+    if (nameExists) {
+      toast.error('Ya existe una materia con ese nombre')
       return
     }
     const nueva: Materia = {
       ...values,
+      id: normalizedId,
+      nombre: normalizedName,
       color: values.color || colorCandidates[0],
     }
     addMateria(nueva)
     toast.success('Materia agregada al plan de estudios')
-    reset({
-      cuatrimestre: 1,
-      horasSemana: 4,
-      color: colorCandidates[Math.floor(Math.random() * colorCandidates.length)],
-    })
   }
 
   return (
@@ -74,13 +93,6 @@ export function CurriculumForm() {
           className="grid grid-cols-1 gap-4 md:grid-cols-2"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="space-y-2">
-            <Label htmlFor="id">ID</Label>
-            <Input id="id" placeholder="ALG1" {...register('id')} />
-            {errors.id && (
-              <p className="text-sm text-destructive">{errors.id.message}</p>
-            )}
-          </div>
           <div className="space-y-2 md:col-span-1">
             <Label htmlFor="nombre">Nombre</Label>
             <Input
@@ -92,6 +104,16 @@ export function CurriculumForm() {
               <p className="text-sm text-destructive">
                 {errors.nombre.message}
               </p>
+            )}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="id">ID</Label>
+            <Input id="id" placeholder="ALG1" {...register('id')} />
+            <p className="text-xs text-muted-foreground">
+              Sugerencia: <code className="font-mono">{suggestedId}</code>
+            </p>
+            {errors.id && (
+              <p className="text-sm text-destructive">{errors.id.message}</p>
             )}
           </div>
           <div className="space-y-2">
@@ -115,7 +137,7 @@ export function CurriculumForm() {
               id="horasSemana"
               type="number"
               min={1}
-              max={12}
+              max={15}
               {...register('horasSemana', { valueAsNumber: true })}
             />
             {errors.horasSemana && (

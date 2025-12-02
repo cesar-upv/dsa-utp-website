@@ -1,4 +1,4 @@
-import { BookOpen, CalendarCheck2, Users2 } from 'lucide-react'
+import { BookOpen, CalendarCheck2, Files, Users2 } from 'lucide-react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +12,7 @@ const navItems = [
   { label: 'Datos base', href: '/', icon: BookOpen },
   { label: 'Profesores', href: '/profesores', icon: Users2 },
   { label: 'Generador', href: '/generador', icon: CalendarCheck2 },
-  { label: 'Gestor', href: '/gestor', icon: BookOpen },
+  { label: 'Gestor', href: '/gestor', icon: Files },
 ]
 
 export default function App() {

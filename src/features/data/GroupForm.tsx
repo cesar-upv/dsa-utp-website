@@ -44,12 +44,27 @@ export function GroupForm() {
   })
 
   const onSubmit = (values: GrupoForm) => {
-    const exists = grupos.some((g) => g.id === values.id)
+    const normalizedId = values.id.trim()
+    const normalizedName = values.nombre.trim()
+    const exists = grupos.some(
+      (g) => g.id.toLowerCase() === normalizedId.toLowerCase()
+    )
     if (exists) {
       toast.error('Ya existe un grupo con ese ID')
       return
     }
-    addGrupo(values as Grupo)
+    const nameExists = grupos.some(
+      (g) => g.nombre.toLowerCase() === normalizedName.toLowerCase()
+    )
+    if (nameExists) {
+      toast.error('Ya existe un grupo con ese nombre')
+      return
+    }
+    addGrupo({
+      ...values,
+      id: normalizedId,
+      nombre: normalizedName,
+    } as Grupo)
     toast.success('Grupo agregado')
     reset({ turno: 'matutino', cuatrimestre: 1, nombre: '', id: '' })
   }
@@ -58,7 +73,7 @@ export function GroupForm() {
     <Card>
       <CardTitle className="flex items-center gap-3">
         <Building2 className="h-5 w-5 text-primary" />
-        Grupo y turno
+        Nuevo grupo
       </CardTitle>
       <CardDescription>
         Crea grupos con cuatrimestre y turno (matutino/vespertino).

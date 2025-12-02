@@ -1,28 +1,11 @@
-import { ArrowDownToLine } from 'lucide-react'
-
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { CurriculumForm } from '@/features/data/CurriculumForm'
 import { GroupForm } from '@/features/data/GroupForm'
 import { GroupsTable } from '@/features/data/GroupsTable'
 import { PlanSummary } from '@/features/data/PlanSummary'
 import { PlanTable } from '@/features/data/PlanTable'
-import { downloadJson } from '@/lib/utils'
-import { useTimetableStore } from '@/store/useTimetableStore'
 
 export default function DataPage() {
-  const materias = useTimetableStore((state) => state.materias)
-  const grupos = useTimetableStore((state) => state.grupos)
-  const profesores = useTimetableStore((state) => state.profesores)
-
-  const handleExport = () => {
-    downloadJson('plan-de-estudios.json', {
-      planDeEstudios: materias,
-      grupos,
-      profesores,
-    })
-  }
-
   return (
     <div className="space-y-8">
       <header className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-white/70 p-6 shadow-ambient md:flex-row md:items-center md:justify-between">
@@ -43,20 +26,16 @@ export default function DataPage() {
             <Badge variant="default">Validaciones en vivo</Badge>
           </div>
         </div>
-        <Button variant="secondary" onClick={handleExport}>
-          <ArrowDownToLine className="h-4 w-4" />
-          Exportar JSON
-        </Button>
       </header>
 
       <PlanSummary />
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid gap-6 lg:grid-cols-5">
+        <div className="lg:col-span-3 space-y-6">
           <CurriculumForm />
           <PlanTable />
         </div>
-        <div className="space-y-6">
+        <div className="lg:col-span-2 space-y-6">
           <GroupForm />
           <GroupsTable />
         </div>

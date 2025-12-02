@@ -24,20 +24,35 @@ export function ProfessorList() {
   const [page, setPage] = useState(1)
   const pageSize = 6
   const [searchByProf, setSearchByProf] = useState<Record<string, string>>({})
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const filteredProfesores = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase()
+    if (!term) return profesores
+    return profesores.filter(
+      (p) =>
+        p.nombre.toLowerCase().includes(term) ||
+        p.id.toLowerCase().includes(term)
+    )
+  }, [profesores, searchTerm])
 
   const pageData = useMemo(
-    () => profesores.slice((page - 1) * pageSize, page * pageSize),
-    [page, profesores]
+    () => filteredProfesores.slice((page - 1) * pageSize, page * pageSize),
+    [page, filteredProfesores]
   )
-  const totalPages = Math.max(1, Math.ceil(profesores.length / pageSize))
-  const start = profesores.length ? (page - 1) * pageSize + 1 : 0
-  const end = Math.min(page * pageSize, profesores.length)
+  const totalPages = Math.max(1, Math.ceil(filteredProfesores.length / pageSize))
+  const start = filteredProfesores.length ? (page - 1) * pageSize + 1 : 0
+  const end = Math.min(page * pageSize, filteredProfesores.length)
 
   useEffect(() => {
     if (page > totalPages) {
       setPage(totalPages)
     }
   }, [page, totalPages])
+
+  useEffect(() => {
+    setPage(1)
+  }, [searchTerm])
 
   const toggleCompetencia = (profId: string, materiaId: string) => {
     const prof = profesores.find((p) => p.id === profId)
@@ -60,6 +75,20 @@ export function ProfessorList() {
         la tabla inferior.
       </CardDescription>
       <CardContent className="mt-4 space-y-3">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="md:w-80">
+            <Input
+              placeholder="Buscar profesor por nombre o ID..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          {profesores.length ? (
+            <p className="text-xs text-muted-foreground">
+              {filteredProfesores.length} resultados
+            </p>
+          ) : null}
+        </div>
         {profesores.length === 0 && (
           <p className="text-sm text-muted-foreground">
             Aún no tienes profesores registrados.
@@ -179,10 +208,10 @@ export function ProfessorList() {
             </div>
           ))}
         </div>
-        {profesores.length ? (
+        {filteredProfesores.length ? (
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>
-              {start}-{end} de {profesores.length} · Página {page} de {totalPages}
+              {start}-{end} de {filteredProfesores.length} · Página {page} de {totalPages}
             </span>
             <div className="flex items-center gap-2">
               <Button

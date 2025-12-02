@@ -1,5 +1,5 @@
 import { useRef, useState, type ChangeEvent } from 'react'
-import { Download, Files, UploadCloud, Layers } from 'lucide-react'
+import { Download, Files, UploadCloud, Layers, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Badge } from '@/components/ui/badge'
@@ -10,12 +10,12 @@ import {
   CardDescription,
   CardTitle,
 } from '@/components/ui/card'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { downloadJson, generateDisponibilidad } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import {
   solverInputSchema,
   solverOutputSchema,
-  type Profesor,
 } from '@/types/models'
 
 type CsvEntity = 'materias' | 'grupos' | 'profesores'
@@ -42,8 +42,8 @@ const parseLines = (text: string) =>
 
 export default function DataManagerPage() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
-  const [importCsvTarget, setImportCsvTarget] = useState<CsvEntity>('materias')
   const [exportPlanTarget, setExportPlanTarget] = useState<PlanTarget>('plan')
+  const [importTarget, setImportTarget] = useState<PlanTarget>('plan')
 
   const materias = useTimetableStore((state) => state.materias)
   const grupos = useTimetableStore((state) => state.grupos)
@@ -51,14 +51,13 @@ export default function DataManagerPage() {
   const horarios = useTimetableStore((state) => state.horarios)
   const importMaterias = useTimetableStore((state) => state.importMaterias)
   const importGrupos = useTimetableStore((state) => state.importGrupos)
-  const importProfesores = useTimetableStore(
-    (state) => state.importProfesores
-  )
+  const importProfesores = useTimetableStore((state) => state.importProfesores)
   const setAllData = useTimetableStore((state) => state.setAllData)
   const setHorarios = useTimetableStore((state) => state.setHorarios)
   const [importScope, setImportScope] = useState<'plan' | 'horarios'>('plan')
   const [exportScope, setExportScope] = useState<'plan' | 'horarios'>('plan')
   const [exportFormat, setExportFormat] = useState<'json' | 'csv'>('json')
+  const [confirmClearOpen, setConfirmClearOpen] = useState(false)
 
   const handleExportCsv = (kind: CsvEntity, options?: { quiet?: boolean }) => {
     let rows: string[][] = []
@@ -94,7 +93,9 @@ export default function DataManagerPage() {
     link.click()
     URL.revokeObjectURL(url)
     if (!options?.quiet) {
-      toast.success(`Exportado ${kind} a CSV`)
+      toast.success(`Exportado ${kind} a CSV`, {
+        description: `${rows.length} registros`,
+      })
     }
   }
 
@@ -105,6 +106,9 @@ export default function DataManagerPage() {
         grupos,
         profesores,
       })
+      toast.success('Exportado plan completo (JSON)', {
+        description: `${materias.length} materias · ${grupos.length} grupos · ${profesores.length} profesores`,
+      })
       return
     }
     const map: Record<CsvEntity, unknown> = {
@@ -113,28 +117,46 @@ export default function DataManagerPage() {
       profesores,
     }
     downloadJson(`${target}.json`, map[target])
+    const counts: Record<CsvEntity, number> = {
+      materias: materias.length,
+      grupos: grupos.length,
+      profesores: profesores.length,
+    }
+    toast.success(`Exportado ${target} (JSON)`, {
+      description: `${counts[target]} registros`,
+    })
   }
 
   const handleExportPlanCsv = () => {
     handleExportCsv('materias', { quiet: true })
     handleExportCsv('grupos', { quiet: true })
     handleExportCsv('profesores', { quiet: true })
-    toast.success('Plan exportado en CSV (materias, grupos y profesores)')
+    toast.success('Plan exportado en CSV', {
+      description: `${materias.length} materias · ${grupos.length} grupos · ${profesores.length} profesores`,
+    })
   }
 
-  const handleCsvImport = async (file: File) => {
-    if (importScope === 'horarios') {
-      toast.error('Importa horarios en formato JSON')
-      return
-    }
+  const handleCsvImport = async (file: File, target: PlanTarget) => {
     const text = await file.text()
+    const rawLines = text
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+    const detectedHeader = rawLines[0]?.toLowerCase() ?? ''
     const lines = parseLines(text).map((line) => line.split(','))
     if (!lines.length) {
       toast.error('No se encontraron filas válidas')
       return
     }
-
-    if (importCsvTarget === 'materias') {
+    const resolvedTarget: PlanTarget =
+      target === 'plan'
+        ? detectedHeader.includes('competencias')
+          ? 'profesores'
+          : detectedHeader.includes('turno')
+            ? 'grupos'
+            : 'materias'
+        : target
+    if (resolvedTarget === 'materias') {
       const parsed = lines
         .map(([id, nombre, cuatrimestre, horasSemana, color]) => ({
           id: id?.trim(),
@@ -151,8 +173,12 @@ export default function DataManagerPage() {
             Number.isFinite(m.horasSemana)
         )
       importMaterias(parsed as typeof materias)
-      toast.success(`Importadas ${parsed.length} materias`)
-    } else if (importCsvTarget === 'grupos') {
+      toast.success(
+        `Importadas ${parsed.length} materias (CSV${
+          target === 'plan' ? ' detectado como plan' : ''
+        })`
+      )
+    } else if (resolvedTarget === 'grupos') {
       const parsed = lines
         .map(([id, nombre, cuatrimestre, turno]) => ({
           id: id?.trim(),
@@ -168,7 +194,11 @@ export default function DataManagerPage() {
             (g.turno === 'matutino' || g.turno === 'vespertino')
         )
       importGrupos(parsed as typeof grupos)
-      toast.success(`Importados ${parsed.length} grupos`)
+      toast.success(
+        `Importados ${parsed.length} grupos (CSV${
+          target === 'plan' ? ' detectado como plan' : ''
+        })`
+      )
     } else {
       const parsed = lines
         .map(([id, nombre, maxHoras, competencias]) => {
@@ -176,13 +206,10 @@ export default function DataManagerPage() {
             .split(';')
             .map((c) => c.trim())
             .filter(Boolean)
-          const profesor: Profesor = {
+          const profesor = {
             id: id?.trim() ?? '',
             nombre: nombre?.trim() ?? '',
-            maxHoras: Math.min(
-              Number.parseInt(maxHoras ?? '15', 10) || 15,
-              15
-            ),
+            maxHoras: Math.min(Number.parseInt(maxHoras ?? '15', 10) || 15, 15),
             competencias: lista,
             disponibilidad: generateDisponibilidad(),
           }
@@ -190,16 +217,20 @@ export default function DataManagerPage() {
         })
         .filter((p) => p.id && p.nombre)
       importProfesores(parsed)
-      toast.success(`Importados ${parsed.length} profesores`)
+      toast.success(
+        `Importados ${parsed.length} profesores (CSV${
+          target === 'plan' ? ' detectado como plan' : ''
+        })`
+      )
     }
   }
 
-  const handleJsonImport = async (file: File) => {
+  const handleJsonImport = async (file: File, target: PlanTarget | 'horarios') => {
     try {
       const text = await file.text()
       const parsed = JSON.parse(text)
       let loaded = false
-      if (parsed.planDeEstudios && parsed.grupos && parsed.profesores) {
+      if (target === 'plan' && parsed.planDeEstudios && parsed.grupos && parsed.profesores) {
         const data = solverInputSchema.parse(parsed)
         setAllData({
           materias: data.planDeEstudios,
@@ -207,8 +238,32 @@ export default function DataManagerPage() {
           profesores: data.profesores,
         })
         loaded = true
+        toast.success('Importado plan completo (JSON)', {
+          description: `${data.planDeEstudios.length} materias · ${data.grupos.length} grupos · ${data.profesores.length} profesores`,
+        })
       }
-      if (parsed.horarios) {
+      if (target === 'materias' && Array.isArray(parsed)) {
+        importMaterias(parsed as typeof materias)
+        loaded = true
+        toast.success(`Importadas ${parsed.length} materias (JSON)`)
+      }
+      if (target === 'grupos' && Array.isArray(parsed)) {
+        importGrupos(parsed as typeof grupos)
+        loaded = true
+        toast.success(`Importados ${parsed.length} grupos (JSON)`)
+      }
+      if (target === 'profesores' && Array.isArray(parsed)) {
+        importProfesores(
+          parsed.map((p) => ({
+            ...p,
+            maxHoras: Math.min(p.maxHoras ?? 15, 15),
+            disponibilidad: p.disponibilidad ?? generateDisponibilidad(),
+          }))
+        )
+        loaded = true
+        toast.success(`Importados ${parsed.length} profesores (JSON)`)
+      }
+      if (target === 'horarios' && parsed.horarios) {
         const output = solverOutputSchema.parse(parsed)
         setHorarios(output.horarios, {
           mensaje: output.resumen.mensaje,
@@ -217,12 +272,14 @@ export default function DataManagerPage() {
           status: output.status,
         })
         loaded = true
+        toast.success('Importados horarios (JSON)', {
+          description: `${output.horarios.length} grupos`,
+        })
       }
       if (!loaded) {
         toast.error('JSON no contiene plan ni horarios válidos')
         return
       }
-      toast.success('Datos cargados desde JSON')
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Archivo JSON inválido'
@@ -237,10 +294,39 @@ export default function DataManagerPage() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (!file) return
-    if (file.type.includes('json') || file.name.endsWith('.json')) {
-      void handleJsonImport(file)
-    } else {
-      void handleCsvImport(file)
+    const isJson =
+      file.type.includes('json') || file.name.toLowerCase().endsWith('.json')
+    const isCsv =
+      file.type.includes('csv') || file.name.toLowerCase().endsWith('.csv')
+    if (importScope === 'horarios') {
+      if (!isJson) {
+        toast.error('Importa horarios en formato JSON')
+      } else {
+        void handleJsonImport(file, 'horarios')
+      }
+      event.target.value = ''
+      return
+    }
+
+    if (importTarget === 'plan') {
+      if (!isJson) {
+        toast.error('El plan completo se importa en JSON. Para CSV elige una entidad.')
+      } else {
+        void handleJsonImport(file, 'plan')
+      }
+      event.target.value = ''
+      return
+    }
+
+    if (!isJson && !isCsv) {
+      toast.error('Formato no soportado. Usa CSV o JSON.')
+      event.target.value = ''
+      return
+    }
+    if (isJson) {
+      void handleJsonImport(file, importTarget)
+    } else if (isCsv) {
+      void handleCsvImport(file, importTarget)
     }
     event.target.value = ''
   }
@@ -265,9 +351,20 @@ export default function DataManagerPage() {
             <Badge variant="default">Validación con zod</Badge>
           </div>
         </div>
-        <div className="flex items-center gap-2 rounded-2xl border border-border/70 bg-white/80 px-4 py-3 text-xs text-muted-foreground">
-          <Files className="h-4 w-4 text-primary" />
-          Soporta materias, grupos, profesores y horarios.
+        <div className="flex flex-col gap-2 md:items-end">
+          <div className="flex items-center gap-2 rounded-2xl border border-border/70 bg-white/80 px-4 py-3 text-xs text-muted-foreground">
+            <Files className="h-4 w-4 text-primary" />
+            Soporta materias, grupos, profesores y horarios.
+          </div>
+          <Button
+            variant="destructive"
+            size="sm"
+            className="self-end"
+            onClick={() => setConfirmClearOpen(true)}
+          >
+            <Trash2 className="h-4 w-4" />
+            Limpiar datos
+          </Button>
         </div>
       </header>
 
@@ -278,77 +375,72 @@ export default function DataManagerPage() {
             Importar datos
           </CardTitle>
           <CardDescription>
-            Acepta .csv para materias/grupos/profesores y .json con el contrato
-            completo del solver.
+            Importa snapshots completos o entidades sueltas en CSV/JSON. Horarios
+            solo en JSON.
           </CardDescription>
           <CardContent className="mt-4 space-y-4">
-            <div className="flex flex-col gap-2">
-              <p className="text-sm font-semibold text-foreground">
-                Tipo de archivo
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant={importScope === 'plan' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setImportScope('plan')}
-                >
-                  Plan (CSV/JSON)
-                </Button>
-                <Button
-                  variant={importScope === 'horarios' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setImportScope('horarios')}
-                >
-                  Horarios (JSON)
-                </Button>
-              </div>
-              {importScope === 'plan' ? (
-                <div className="grid grid-cols-4 gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setImportCsvTarget('materias')}
-                    className="w-full"
-                  >
-                    <Layers className="h-4 w-4" />
-                    Plan
-                  </Button>
-                  {(['materias', 'grupos', 'profesores'] as CsvEntity[]).map(
-                    (kind) => (
-                      <Button
-                        key={kind}
-                        variant={
-                          importCsvTarget === kind ? 'default' : 'outline'
-                        }
-                        size="sm"
-                        onClick={() => setImportCsvTarget(kind)}
-                        className="w-full"
-                      >
-                        {kind.charAt(0).toUpperCase() + kind.slice(1)}
-                      </Button>
-                    )
-                  )}
-                </div>
-              ) : null}
-              <p className="text-xs text-muted-foreground">
-                Formatos CSV: {csvHeaders[importCsvTarget].join(', ')}. Competencias se
-                separan con <code className="font-mono">;</code>.
-              </p>
-              {importScope === 'horarios' ? (
-                <p className="text-xs text-muted-foreground">
-                  Horarios solo se importan en JSON (output del solver).
+              <div className="flex flex-col gap-2">
+                <p className="text-sm font-semibold text-foreground">
+                  Tipo de archivo
                 </p>
-              ) : null}
-            </div>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant={importScope === 'plan' ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setImportScope('plan')}
+                  >
+                    Plan / Entidades
+                  </Button>
+                  <Button
+                    variant={importScope === 'horarios' ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setImportScope('horarios')}
+                  >
+                    Horarios (JSON)
+                  </Button>
+                </div>
+                {importScope === 'plan' ? (
+                  <div className="grid grid-cols-4 gap-2">
+                    <Button
+                      variant={importTarget === 'plan' ? 'default' : 'outline'}
+                      size="sm"
+                      className="w-full"
+                      onClick={() => setImportTarget('plan')}
+                    >
+                      <Layers className="h-4 w-4" />
+                      Plan
+                    </Button>
+                    {(['materias', 'grupos', 'profesores'] as CsvEntity[]).map(
+                      (kind) => (
+                        <Button
+                          key={kind}
+                          variant={importTarget === kind ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setImportTarget(kind)}
+                          className="w-full"
+                        >
+                          {kind.charAt(0).toUpperCase() + kind.slice(1)}
+                        </Button>
+                      )
+                    )}
+                  </div>
+                ) : null}
+                <p className="text-xs text-muted-foreground">
+                  {importScope === 'plan'
+                    ? importTarget === 'plan'
+                      ? 'Plan completo: JSON (planDeEstudios, grupos, profesores). Para CSV selecciona una entidad y súbela por separado.'
+                      : `Entidades: acepta CSV o JSON. CSV usa columnas ${csvHeaders[importTarget].join(', ')}.`
+                    : 'Horarios solo se importan en JSON (output del solver).'}
+                </p>
+              </div>
 
             <div className="flex flex-col gap-3 rounded-xl border border-dashed border-border/70 bg-muted/60 p-4 text-sm">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="font-semibold text-foreground">Carga archivo</p>
               </div>
               <p className="text-muted-foreground">
-                CSV para listas rápidas o JSON para snapshot completo
-                (planDeEstudios, grupos, profesores). La disponibilidad en CSV se
-                inicializa en blanco.
+                Usa JSON para snapshots completos del plan o los horarios. También
+                puedes importar materias, grupos o profesores en CSV.
               </p>
               <input
                 ref={fileInputRef}
@@ -388,7 +480,7 @@ export default function DataManagerPage() {
                       setExportPlanTarget('plan')
                     }}
                   >
-                    Plan
+                    Plan / Entidades
                   </Button>
                   <Button
                     variant={exportScope === 'horarios' ? 'default' : 'outline'}
@@ -484,10 +576,15 @@ export default function DataManagerPage() {
                     exportScope === 'plan'
                       ? handleExportPlanJson(exportPlanTarget)
                       : horarios.length
-                        ? downloadJson('horarios.json', {
-                            horarios,
-                            resumen: { grupos: horarios.length },
-                          })
+                        ? (() => {
+                            downloadJson('horarios.json', {
+                              horarios,
+                              resumen: { grupos: horarios.length },
+                            })
+                            toast.success('Exportados horarios (JSON)', {
+                              description: `${horarios.length} grupos`,
+                            })
+                          })()
                         : toast.info('No hay horarios generados aún')
                   }
                 >
@@ -525,6 +622,18 @@ export default function DataManagerPage() {
           </CardContent>
         </Card>
       </div>
+      <ConfirmDialog
+        open={confirmClearOpen}
+        title="Limpiar todos los datos"
+        description="Se borrarán materias, grupos, profesores y horarios almacenados en la app."
+        confirmLabel="Limpiar"
+        onCancel={() => setConfirmClearOpen(false)}
+        onConfirm={() => {
+          setAllData({ materias: [], grupos: [], profesores: [] })
+          setConfirmClearOpen(false)
+          toast.success('Datos limpiados')
+        }}
+      />
     </div>
   )
 }

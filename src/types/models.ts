@@ -21,7 +21,7 @@ export const materiaSchema = z.object({
   id: z.string(),
   nombre: z.string(),
   cuatrimestre: z.number().int().min(1),
-  horasSemana: z.number().int().min(1).max(12),
+  horasSemana: z.number().int().min(1).max(15),
   color: z.string().optional(),
 })
 export type Materia = z.infer<typeof materiaSchema>
