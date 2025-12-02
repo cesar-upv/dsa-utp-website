@@ -1,26 +1,24 @@
-# Solver (Python + Cython stub)
+# Solver (Python + Cython ready)
 
-Este directorio contiene un stub del solver para el **University Course Timetabling Problem (UTP)**.  
-La versión actual es intencionalmente simple y sirve como contrato inicial para la UI:
+Solver para el **University Course Timetabling Problem (UTP)** con contrato
+**JSON in / JSON out**. La lógica actual asigna bloques respetando
+disponibilidad, competencias, unicidad de profesor/grupo y carga máxima (15h).
+Calcula huecos/softScore y marca advertencias si faltan horas por materia.
 
-- **Entrada**: archivo JSON siguiendo los esquemas `PlanDeEstudios`, `Grupo`, `Profesor` y `Disponibilidad` (ver `data/sample-input.json`).
-- **Salida**: archivo JSON con `HorarioPorGrupo`, `BloqueMateria` y métricas (ver `data/sample-output.json`).
-- **Interfaz**: función `solve_timetable(input_json_path, output_json_path)` en `solve.py`.
+- **Entrada**: `planDeEstudios[]`, `grupos[]`, `profesores[]` (ver `data/sample-input.json`).
+- **Salida**: `horarios[]`, `resumen`, `advertencias` (ver `data/sample-output.json`).
+- **Interfaz**: `solve_timetable(input_json_path, output_json_path)` en `solve.py`.
 
-## Próximos pasos (solver-architect)
+## Cython opcional
+- Núcleo acelerable en `core_fast.pyx` (misma firma que `core.py`).
+- Compilar (opcional):
+  ```bash
+  python -m pip install cython
+  cythonize -i solver/core_fast.pyx
+  ```
+  Si `core_fast` está disponible, el solver lo usará automáticamente.
 
-1. Migrar la lógica de búsqueda a Python + Cython, acelerando las evaluaciones de factibilidad y compacidad.
-2. Modelar explícitamente:
-   - Disponibilidad por franja.
-   - Unicidad profesor/grupo.
-   - Contigüidad de bloques de materia.
-   - Carga máxima profesor (≤ 15 h/sem).
-   - Competencias por materia y cumplimiento exacto de horas/semana.
-3. Implementar heurísticas/metaheurísticas (simulated annealing, tabu, GA, etc.) y exponer métricas de calidad.
-4. Mantener el contrato **JSON in / JSON out** y la compatibilidad con la UI React.
-
-Ejecutar stub:
-
+## Ejecución
 ```bash
 python solver/solve.py --input data/sample-input.json --output data/sample-output.json
 ```

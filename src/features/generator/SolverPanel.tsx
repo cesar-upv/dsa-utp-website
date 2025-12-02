@@ -1,9 +1,8 @@
 import { useMemo } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { AlertTriangle, Download, Play } from 'lucide-react'
+import { AlertTriangle, Play, Layers } from 'lucide-react'
 import { toast } from 'sonner'
 
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -12,10 +11,10 @@ import {
   CardFooter,
   CardTitle,
 } from '@/components/ui/card'
-import { downloadJson } from '@/lib/utils'
 import { mockSolve } from '@/solver/mockSolver'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import { solverInputSchema, type SolverInput } from '@/types/models'
+import { largeSeed } from '@/data/largeSeed'
 
 export function SolverPanel() {
   const materias = useTimetableStore((state) => state.materias)
@@ -23,8 +22,15 @@ export function SolverPanel() {
   const profesores = useTimetableStore((state) => state.profesores)
   const setHorarios = useTimetableStore((state) => state.setHorarios)
   const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
-  const horarios = useTimetableStore((state) => state.horarios)
   const resetDatos = useTimetableStore((state) => state.resetDatos)
+  const setAllData = useTimetableStore((state) => state.setAllData)
+  const resetHorarios = () =>
+    setHorarios([], {
+      mensaje: '',
+      tiempoMs: 0,
+      status: 'ok',
+      warnings: [],
+    })
 
   const input: SolverInput = useMemo(
     () => ({
@@ -67,15 +73,6 @@ export function SolverPanel() {
     },
   })
 
-  const statusBadge =
-    ultimaEjecucion?.status === 'ok'
-      ? { label: 'Factible', variant: 'success' as const }
-      : ultimaEjecucion?.status === 'infeasible'
-        ? { label: 'Con advertencias', variant: 'warning' as const }
-        : ultimaEjecucion?.status === 'error'
-          ? { label: 'Error', variant: 'destructive' as const }
-          : undefined
-
   return (
     <Card>
       <CardTitle className="flex items-center gap-3">
@@ -83,60 +80,31 @@ export function SolverPanel() {
         Generar horarios
       </CardTitle>
       <CardDescription>
-        Módulo 3 — ejecuta el solver (mock) con contrato JSON in/out y muestra
-        alertas en caso de advertencias.
+        Ejecuta el solver local y muestra advertencias si alguna restricción no se cumple.
       </CardDescription>
       <CardContent className="mt-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-2">
           <p className="text-sm text-muted-foreground">
-            Materias: {materias.length} | Grupos: {grupos.length} | Profesores:{' '}
+            Materias: {materias.length} • Grupos: {grupos.length} • Profesores:{' '}
             {profesores.length}
           </p>
-          {ultimaEjecucion ? (
-            <p className="text-sm text-muted-foreground">
-              Última ejecución: {ultimaEjecucion.mensaje} —{' '}
-              {ultimaEjecucion.tiempoMs} ms
-            </p>
-          ) : (
-            <p className="text-sm text-muted-foreground">
-              Aún no se ejecuta el solver.
-            </p>
-          )}
-          {statusBadge ? (
-            <div className="space-y-2">
-              <Badge variant={statusBadge.variant}>{statusBadge.label}</Badge>
-              {ultimaEjecucion?.warnings?.length ? (
-                <div className="rounded-lg bg-warning/10 p-3 text-xs text-warning">
-                  <p className="font-semibold">Advertencias</p>
-                  <ul className="ml-4 list-disc space-y-1 text-warning/90">
-                    {ultimaEjecucion.warnings.slice(0, 4).map((w) => (
-                      <li key={w}>{w}</li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
+          <p className="text-sm text-muted-foreground">
+            {ultimaEjecucion
+              ? `Última ejecución: ${ultimaEjecucion.mensaje} — ${ultimaEjecucion.tiempoMs} ms`
+              : 'Listo para generar con los datos cargados.'}
+          </p>
+          {ultimaEjecucion?.warnings?.length ? (
+            <div className="rounded-lg bg-warning/10 p-3 text-xs text-warning">
+              <p className="font-semibold">Advertencias</p>
+              <ul className="ml-4 list-disc space-y-1 text-warning/90">
+                {ultimaEjecucion.warnings.slice(0, 4).map((w) => (
+                  <li key={w}>{w}</li>
+                ))}
+              </ul>
             </div>
           ) : null}
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button
-            variant="outline"
-            onClick={() => downloadJson('entrada-solver.json', input)}
-          >
-            <Download className="h-4 w-4" />
-            Input JSON
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() =>
-              horarios.length
-                ? downloadJson('salida-solver.json', { horarios })
-                : toast.info('Primero ejecuta el solver')
-            }
-          >
-            <Download className="h-4 w-4" />
-            Output JSON
-          </Button>
           <Button
             onClick={() => mutation.mutate()}
             disabled={mutation.isPending || materias.length === 0}
@@ -155,9 +123,27 @@ export function SolverPanel() {
           <button
             type="button"
             className="text-muted-foreground underline underline-offset-2"
-            onClick={() => resetDatos()}
+            onClick={() => {
+              resetDatos()
+              resetHorarios()
+            }}
           >
             Restaurar datos de ejemplo
+          </button>
+          <span className="text-muted-foreground">•</span>
+          <button
+            type="button"
+            className="text-muted-foreground underline underline-offset-2 flex items-center gap-1"
+            onClick={() => {
+              setAllData(largeSeed)
+              resetHorarios()
+              toast.success(
+                'Seed grande aplicada (10 cuatrimestres, 2 grupos, 7 materias por grupo, disponibilidad completa)'
+              )
+            }}
+          >
+            <Layers className="h-4 w-4" />
+            Cargar seed grande
           </button>
         </div>
       </CardFooter>

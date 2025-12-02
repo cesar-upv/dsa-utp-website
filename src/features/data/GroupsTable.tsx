@@ -1,6 +1,8 @@
+import React from 'react'
 import { Users } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -20,6 +22,20 @@ import { useTimetableStore } from '@/store/useTimetableStore'
 
 export function GroupsTable() {
   const grupos = useTimetableStore((state) => state.grupos)
+  const [page, setPage] = React.useState(1)
+  const pageSize = 10
+  const totalPages = Math.max(1, Math.ceil(grupos.length / pageSize))
+
+  React.useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [page, totalPages])
+
+  const pageData = React.useMemo(
+    () => grupos.slice((page - 1) * pageSize, page * pageSize),
+    [grupos, page]
+  )
 
   return (
     <Card>
@@ -44,14 +60,14 @@ export function GroupsTable() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {grupos.length === 0 ? (
+              {pageData.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={3} className="text-center text-muted-foreground">
                     Aún no hay grupos. Crea uno en el formulario.
                   </TableCell>
                 </TableRow>
               ) : (
-                grupos.map((grupo) => (
+                pageData.map((grupo) => (
                   <TableRow key={grupo.id}>
                     <TableCell>
                       <div className="flex flex-col">
@@ -75,6 +91,31 @@ export function GroupsTable() {
             </TableBody>
           </Table>
         </div>
+        {grupos.length > pageSize ? (
+          <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
+            <span>
+              Página {page} de {totalPages}
+            </span>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={page === 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+              >
+                Anterior
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={page === totalPages}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              >
+                Siguiente
+              </Button>
+            </div>
+          </div>
+        ) : null}
       </CardContent>
     </Card>
   )

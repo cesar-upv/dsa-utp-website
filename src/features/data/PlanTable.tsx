@@ -5,7 +5,7 @@ import {
   type ColumnDef,
 } from '@tanstack/react-table'
 import { Trash2 } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -70,26 +70,43 @@ export function PlanTable() {
   const materias = useTimetableStore((state) => state.materias)
   const removeMateria = useTimetableStore((state) => state.removeMateria)
   const [pendingDelete, setPendingDelete] = useState<Materia | null>(null)
+  const [page, setPage] = useState(1)
+  const pageSize = 8
+  const totalPages = Math.max(1, Math.ceil(materias.length / pageSize))
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [page, totalPages])
+
+  const pageData = useMemo(
+    () => materias.slice((page - 1) * pageSize, page * pageSize),
+    [materias, page]
+  )
 
   const table = useReactTable({
-    data: materias,
-    columns: [
-      ...columns,
-      {
-        id: 'actions',
-        header: '',
-        cell: ({ row }) => (
-          <Button
-            variant="ghost"
-            size="icon"
-            title="Eliminar materia"
-            onClick={() => setPendingDelete(row.original)}
-          >
-            <Trash2 className="h-4 w-4 text-destructive" />
-          </Button>
-        ),
-      },
-    ],
+    data: pageData,
+    columns: useMemo(
+      () => [
+        ...columns,
+        {
+          id: 'actions',
+          header: '',
+          cell: ({ row }) => (
+            <Button
+              variant="ghost"
+              size="icon"
+              title="Eliminar materia"
+              onClick={() => setPendingDelete(row.original)}
+            >
+              <Trash2 className="h-4 w-4 text-destructive" />
+            </Button>
+          ),
+        },
+      ],
+      []
+    ),
     getCoreRowModel: getCoreRowModel(),
   })
 
@@ -143,6 +160,31 @@ export function PlanTable() {
             )}
           </TableBody>
         </Table>
+        {materias.length > pageSize ? (
+          <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
+            <span>
+              Página {page} de {totalPages}
+            </span>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={page === 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+              >
+                Anterior
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={page === totalPages}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              >
+                Siguiente
+              </Button>
+            </div>
+          </div>
+        ) : null}
       </CardContent>
       <ConfirmDialog
         open={Boolean(pendingDelete)}

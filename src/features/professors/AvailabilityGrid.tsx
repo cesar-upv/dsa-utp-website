@@ -63,7 +63,7 @@ export function AvailabilityGrid({
               ))}
               {TIME_SLOTS.map((slot) => (
                 <div key={slot.id} className="contents">
-                  <div className="flex items-center rounded-lg bg-muted/40 px-3 text-sm font-medium">
+                  <div className="flex items-center rounded-lg bg-muted/40 px-3 text-xs font-medium">
                     {slot.label}
                   </div>
                   {DAYS.map((day) => {

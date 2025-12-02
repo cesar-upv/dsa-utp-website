@@ -65,10 +65,9 @@ export default function ProfessorsPage() {
         </div>
       </header>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="space-y-6">
           <ProfessorForm />
-          <ProfessorList />
         </div>
         <div className="space-y-4">
           <Card>
@@ -106,6 +105,8 @@ export default function ProfessorsPage() {
           <AvailabilityGrid profesor={selectedProfesor} onToggle={handleToggle} />
         </div>
       </div>
+
+      <ProfessorList />
     </div>
   )
 }

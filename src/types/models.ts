@@ -44,7 +44,7 @@ export const profesorSchema = z.object({
   id: z.string(),
   nombre: z.string(),
   competencias: z.array(z.string()).default([]),
-  maxHoras: z.number().int().min(1).max(20).default(15),
+  maxHoras: z.number().int().min(1).max(15).default(15),
   disponibilidad: disponibilidadSchema,
 })
 export type Profesor = z.infer<typeof profesorSchema>

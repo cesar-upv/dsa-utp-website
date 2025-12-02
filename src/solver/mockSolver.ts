@@ -76,15 +76,17 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
     const bloques: BloqueMateria[] = []
     const groupWarnings: string[] = []
     const materias = input.planDeEstudios.filter(
-      (m) => m.cuatrimestre <= grupo.cuatrimestre
+      (m) => m.cuatrimestre === grupo.cuatrimestre
     )
 
-    materias.forEach((materia) => {
+    materias.forEach((materia, materiaIdx) => {
       let horasPendientes = materia.horasSemana
       let asignado = 0
+      const startIdx = materiaIdx % DAYS.length
+      const dayOrder = [...DAYS.slice(startIdx), ...DAYS.slice(0, startIdx)]
       while (horasPendientes > 0) {
         let placed = false
-        for (const day of DAYS) {
+        for (const day of dayOrder) {
           for (const slot of TIME_SLOTS) {
             if (horasPendientes <= 0) break
 

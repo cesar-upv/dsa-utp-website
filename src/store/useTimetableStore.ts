@@ -44,6 +44,13 @@ type TimetableStore = {
   setHorarios: (horarios: HorarioPorGrupo[], meta: RunMetadata) => void
   resetDatos: () => void
   importMaterias: (materias: Materia[]) => void
+  importGrupos: (grupos: Grupo[]) => void
+  importProfesores: (profesores: Profesor[]) => void
+  setAllData: (data: {
+    materias: Materia[]
+    grupos: Grupo[]
+    profesores: Profesor[]
+  }) => void
 }
 
 const nextState = (current: AvailabilityState): AvailabilityState => {
@@ -97,12 +104,24 @@ export const useTimetableStore = create<TimetableStore>()(
         })),
       addProfesor: (profesor) =>
         set((state) => ({
-          profesores: [...state.profesores, profesor],
+          profesores: [
+            ...state.profesores,
+            { ...profesor, maxHoras: Math.min(profesor.maxHoras, 15) },
+          ],
         })),
       updateProfesor: (id, data) =>
         set((state) => ({
           profesores: state.profesores.map((p) =>
-            p.id === id ? { ...p, ...data } : p
+            p.id === id
+              ? {
+                  ...p,
+                  ...data,
+                  maxHoras:
+                    data.maxHoras !== undefined
+                      ? Math.min(data.maxHoras, 15)
+                      : p.maxHoras,
+                }
+              : p
           ),
         })),
       removeProfesor: (id) =>
@@ -182,6 +201,34 @@ export const useTimetableStore = create<TimetableStore>()(
             materias: [...state.materias, ...nuevas],
           }
         }),
+      importGrupos: (grupos) =>
+        set((state) => {
+          const existentes = new Set(state.grupos.map((g) => g.id))
+          const nuevos = grupos.filter(
+            (g) => g.id && g.nombre && !existentes.has(g.id)
+          )
+          return { grupos: [...state.grupos, ...nuevos] }
+        }),
+      importProfesores: (profesores) =>
+        set((state) => {
+          const existentes = new Set(state.profesores.map((p) => p.id))
+          const disponibles = profesores
+            .filter((p) => p.id && p.nombre && p.disponibilidad)
+            .map((p) => ({ ...p, maxHoras: Math.min(p.maxHoras ?? 15, 15) }))
+            .filter((p) => !existentes.has(p.id))
+          return { profesores: [...state.profesores, ...disponibles] }
+        }),
+      setAllData: (data) =>
+        set(() => ({
+          materias: data.materias,
+          grupos: data.grupos,
+          profesores: data.profesores.map((p) => ({
+            ...p,
+            maxHoras: Math.min(p.maxHoras ?? 15, 15),
+          })),
+          horarios: [],
+          ultimaEjecucion: undefined,
+        })),
     }),
     {
       name: 'utp-timetable-store',

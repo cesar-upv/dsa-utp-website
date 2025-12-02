@@ -12,6 +12,12 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
   const profesores = useTimetableStore((state) => state.profesores)
 
   const horario = horarios.find((h) => h.grupoId === groupId)
+  const materiaIdsEnHorario = new Set(
+    horario?.bloques.map((b) => b.materiaId) ?? []
+  )
+  const materiasDelGrupo = materias.filter((m) =>
+    materiaIdsEnHorario.has(m.id)
+  )
   const blockIndex =
     horario?.bloques.reduce<Record<string, typeof horario.bloques[0]>>(
       (acc, bloque) => {
@@ -106,25 +112,27 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-          {materias.map((materia, idx) => (
-            <Badge
-              key={materia.id}
-              variant="outline"
-              className="flex items-center gap-2"
-              style={{
-                borderColor: colorForMateria(materia, idx),
-                color: colorForMateria(materia, idx),
-              }}
-            >
-              <span
-                className="h-3 w-3 rounded-full"
-                style={{ backgroundColor: colorForMateria(materia, idx) }}
-              />
-              {materia.nombre}
-            </Badge>
-          ))}
-        </div>
+        {materiasDelGrupo.length ? (
+          <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+            {materiasDelGrupo.map((materia, idx) => (
+              <Badge
+                key={materia.id}
+                variant="outline"
+                className="flex items-center gap-2"
+                style={{
+                  borderColor: colorForMateria(materia, idx),
+                  color: colorForMateria(materia, idx),
+                }}
+              >
+                <span
+                  className="h-3 w-3 rounded-full"
+                  style={{ backgroundColor: colorForMateria(materia, idx) }}
+                />
+                {materia.nombre}
+              </Badge>
+            ))}
+          </div>
+        ) : null}
       </CardContent>
     </Card>
   )

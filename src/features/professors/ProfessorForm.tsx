@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { BadgePlus, ClipboardList, Timer } from 'lucide-react'
+import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -14,6 +15,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Select } from '@/components/ui/select'
 import { generateDisponibilidad } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Profesor } from '@/types/models'
@@ -21,7 +23,7 @@ import type { Profesor } from '@/types/models'
 const professorSchema = z.object({
   id: z.string().min(2, 'ID requerido'),
   nombre: z.string().min(3, 'Nombre requerido'),
-  maxHoras: z.number().min(4).max(20),
+  maxHoras: z.number().min(4).max(15),
   competencias: z.array(z.string()),
 })
 
@@ -31,6 +33,8 @@ export function ProfessorForm() {
   const materias = useTimetableStore((state) => state.materias)
   const profesores = useTimetableStore((state) => state.profesores)
   const addProfesor = useTimetableStore((state) => state.addProfesor)
+  const [search, setSearch] = useState('')
+  const [selectValue, setSelectValue] = useState('')
 
   const {
     register,
@@ -43,11 +47,24 @@ export function ProfessorForm() {
     resolver: zodResolver(professorSchema),
     defaultValues: {
       competencias: [],
-      maxHoras: 12,
+      maxHoras: 15,
     },
   })
 
   const selected = watch('competencias')
+  const disponibles = useMemo(
+    () => materias.filter((m) => !(selected ?? []).includes(m.id)),
+    [materias, selected]
+  )
+  const filtradas = useMemo(() => {
+    const term = search.trim().toLowerCase()
+    if (!term) return []
+    return disponibles.filter(
+      (m) =>
+        m.nombre.toLowerCase().includes(term) ||
+        m.id.toLowerCase().includes(term)
+    )
+  }, [disponibles, search])
 
   const onSubmit = (values: ProfesorForm) => {
     if (profesores.some((p) => p.id === values.id)) {
@@ -60,7 +77,9 @@ export function ProfessorForm() {
     }
     addProfesor(profesor)
     toast.success('Profesor creado')
-    reset({ competencias: [], maxHoras: 12, id: '', nombre: '' })
+    reset({ competencias: [], maxHoras: 15, id: '', nombre: '' })
+    setSearch('')
+    setSelectValue('')
   }
 
   const toggleCompetencia = (materiaId: string) => {
@@ -106,13 +125,13 @@ export function ProfessorForm() {
             <div className="space-y-2">
               <Label htmlFor="max-horas" className="flex items-center gap-2">
                 <Timer className="h-4 w-4 text-muted-foreground" />
-                Horas máx/semana
+                Horas máx/semana (tope 15h)
               </Label>
               <Input
                 id="max-horas"
                 type="number"
                 min={4}
-                max={20}
+                max={15}
                 {...register('maxHoras', { valueAsNumber: true })}
               />
               {errors.maxHoras && (
@@ -128,26 +147,96 @@ export function ProfessorForm() {
               <ClipboardList className="h-4 w-4 text-muted-foreground" />
               Competencias por materia
             </Label>
-            <div className="flex flex-wrap gap-2">
-              {materias.length === 0 && (
-                <p className="text-sm text-muted-foreground">
-                  Primero agrega materias en el módulo de datos.
-                </p>
-              )}
-              {materias.map((materia) => {
-                const isActive = selected?.includes(materia.id)
-                return (
-                  <Badge
-                    key={materia.id}
-                    variant={isActive ? 'default' : 'outline'}
-                    className="cursor-pointer"
-                    onClick={() => toggleCompetencia(materia.id)}
-                  >
-                    {materia.nombre}
-                  </Badge>
-                )
-              })}
+            <div className="space-y-2">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                Asignadas
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {selected?.length ? (
+                  materias
+                    .filter((m) => selected?.includes(m.id))
+                    .map((materia) => (
+                      <Badge
+                        key={materia.id}
+                        variant="success"
+                        className="cursor-pointer"
+                        onClick={() => toggleCompetencia(materia.id)}
+                      >
+                        {materia.nombre}
+                      </Badge>
+                    ))
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Aún no asignas materias a este profesor.
+                  </p>
+                )}
+              </div>
             </div>
+
+            <div className="space-y-2">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                Buscar y agregar
+              </p>
+              <Input
+                placeholder="Busca por nombre o ID..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <div className="flex flex-wrap gap-2">
+                {filtradas.length === 0 && search.trim() ? (
+                  <p className="text-sm text-muted-foreground">
+                    Sin resultados para “{search.trim()}”.
+                  </p>
+                ) : (
+                  filtradas.slice(0, 8).map((materia) => (
+                    <Badge
+                      key={`buscar-${materia.id}`}
+                      variant="outline"
+                      className="cursor-pointer px-3 py-1"
+                      onClick={() => {
+                        toggleCompetencia(materia.id)
+                        setSearch('')
+                      }}
+                    >
+                      {materia.nombre}
+                    </Badge>
+                  ))
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                Selección rápida
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <Select
+                  value={selectValue}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    setSelectValue(value)
+                    if (value) {
+                      toggleCompetencia(value)
+                      setSelectValue('')
+                    }
+                  }}
+                  disabled={disponibles.length === 0}
+                >
+                  <option value="">Elige una materia</option>
+                  {disponibles.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.nombre} ({m.id})
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              {disponibles.length === 0 ? (
+                <p className="text-sm text-muted-foreground">
+                  Todas las materias ya están asignadas.
+                </p>
+              ) : null}
+            </div>
+
             {errors.competencias && (
               <p className="text-sm text-destructive">
                 {errors.competencias.message}

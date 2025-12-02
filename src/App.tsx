@@ -4,6 +4,7 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import DataPage from '@/pages/DataPage'
+import DataManagerPage from '@/pages/DataManagerPage'
 import GeneratorPage from '@/pages/GeneratorPage'
 import ProfessorsPage from '@/pages/ProfessorsPage'
 
@@ -11,6 +12,7 @@ const navItems = [
   { label: 'Datos base', href: '/', icon: BookOpen },
   { label: 'Profesores', href: '/profesores', icon: Users2 },
   { label: 'Generador', href: '/generador', icon: CalendarCheck2 },
+  { label: 'Gestor', href: '/gestor', icon: BookOpen },
 ]
 
 export default function App() {
@@ -62,6 +64,7 @@ export default function App() {
           <Route path="/" element={<DataPage />} />
           <Route path="/profesores" element={<ProfessorsPage />} />
           <Route path="/generador" element={<GeneratorPage />} />
+          <Route path="/gestor" element={<DataManagerPage />} />
           <Route path="*" element={<DataPage />} />
         </Routes>
       </main>

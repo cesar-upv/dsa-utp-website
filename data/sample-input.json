@@ -14,7 +14,7 @@
       "id": "PZ-01",
       "nombre": "Dra. Paola Zamora",
       "competencias": ["ALG1", "MATD"],
-      "maxHoras": 12,
+      "maxHoras": 15,
       "disponibilidad": {
         "mon": { "s1": "available", "s2": "available", "s3": "available", "s4": "blank", "s5": "blank", "s6": "blank", "s7": "blank", "s8": "blank" },
         "tue": { "s1": "available", "s2": "available", "s3": "blank", "s4": "blank", "s5": "blank", "s6": "blank", "s7": "blank", "s8": "blank" },

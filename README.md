@@ -8,7 +8,7 @@ Aplicación web local para generar horarios de la carrera **ITI**. Todo corre en
 - Tablas: @tanstack/react-table; Datos/async: @tanstack/react-query  
 - Iconos: lucide-react; Gráficas: recharts  
 - Tests: Vitest + React Testing Library  
-- Solver stub: Python 3 (JSON in/out) en `solver/solve.py`
+- Solver: Python 3 (JSON in/out) en `solver/solve.py` con núcleo opcional Cython (`solver/core_fast.pyx`)
 
 ## Quick start
 ```bash
@@ -25,11 +25,13 @@ npm run build    # tsc -b + vite build
 - Módulo 1: materias/grupos/turnos con import CSV y export JSON.  
 - Módulo 2: profesores, competencias y matriz de disponibilidad 3 estados.  
 - Módulo 3: generador con solver mock (TanStack Query), tablero “tetris” por grupo y métricas de compacidad/advertencias.
+- Módulo 4 (gestor): import/export centralizados de CSV/JSON, seed grande (10 cuatrimestres, 2 grupos por cuatri).
 
 ## Contrato JSON
 - **Entrada**: `planDeEstudios[]`, `grupos[]`, `profesores[]` (disponibilidad, competencias, maxHoras).  
 - **Salida**: `horarios[]` con bloques por grupo y métricas (`huecos`, `violacionesDuras`, `softScore`, `resumen`).  
 - Ejemplos: `data/sample-input.json`, `data/sample-output.json`.
+ - Seed grande disponible desde la UI (Data Manager) o como estructura en `src/data/largeSeed.ts`.
 
 ## Solver (stub)
 `python solver/solve.py --input data/sample-input.json --output data/sample-output.json`  

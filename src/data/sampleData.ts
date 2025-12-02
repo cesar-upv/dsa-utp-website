@@ -63,7 +63,7 @@ export const sampleProfesores: Profesor[] = [
     id: 'PZ-01',
     nombre: 'Dra. Paola Zamora',
     competencias: ['ALG1', 'MATD'],
-    maxHoras: 12,
+    maxHoras: 15,
     disponibilidad: disponibilidadVerde(
       ['mon', 'tue', 'wed'],
       [TIME_SLOTS[0].id, TIME_SLOTS[1].id, TIME_SLOTS[2].id]
@@ -83,7 +83,7 @@ export const sampleProfesores: Profesor[] = [
     id: 'AR-02',
     nombre: 'Mtra. Ana Ríos',
     competencias: ['BD', 'FIS', 'MATD'],
-    maxHoras: 10,
+    maxHoras: 15,
     disponibilidad: disponibilidadVerde(
       ['mon', 'tue', 'thu', 'wed'],
       [TIME_SLOTS[1].id, TIME_SLOTS[2].id, TIME_SLOTS[3].id]
@@ -93,7 +93,7 @@ export const sampleProfesores: Profesor[] = [
     id: 'CJ-03',
     nombre: 'Dr. Carlos Juárez',
     competencias: ['ALG1', 'MATD', 'PE', 'BD', 'FIS'],
-    maxHoras: 12,
+    maxHoras: 15,
     disponibilidad: disponibilidadVerde(
       ['mon', 'tue', 'wed', 'thu', 'fri'],
       [TIME_SLOTS[5].id, TIME_SLOTS[6].id, TIME_SLOTS[7].id]
