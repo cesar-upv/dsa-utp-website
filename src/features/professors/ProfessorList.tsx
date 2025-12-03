@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { Input } from '@/components/ui/input'
-import { showUndoToast } from '@/lib/utils'
+import { normalizeForSearch, showUndoToast } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Profesor } from '@/types/models'
 
@@ -27,12 +27,12 @@ export function ProfessorList() {
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredProfesores = useMemo(() => {
-    const term = searchTerm.trim().toLowerCase()
+    const term = normalizeForSearch(searchTerm)
     if (!term) return profesores
     return profesores.filter(
       (p) =>
-        p.nombre.toLowerCase().includes(term) ||
-        p.id.toLowerCase().includes(term)
+        normalizeForSearch(p.nombre).includes(term) ||
+        normalizeForSearch(p.id).includes(term)
     )
   }, [profesores, searchTerm])
 
@@ -160,7 +160,7 @@ export function ProfessorList() {
                         (m) => !prof.competencias.includes(m.id)
                       )
                       const termRaw = searchByProf[prof.id] ?? ''
-                      const term = termRaw.trim().toLowerCase()
+                      const term = normalizeForSearch(termRaw)
                       if (!disponibles.length) {
                         return (
                           <p className="text-sm text-muted-foreground">

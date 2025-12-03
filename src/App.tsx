@@ -20,6 +20,7 @@ const navItems = [
 export default function App() {
   const location = useLocation()
   const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
+  const warningsLog = useTimetableStore((state) => state.warningsLog)
   const [warningsOpen, setWarningsOpen] = useState(false)
 
   return (
@@ -65,7 +66,7 @@ export default function App() {
               onClick={() => setWarningsOpen(true)}
             >
               <AlertTriangle className="h-4 w-4 text-warning" />
-              Advertencias
+              {warningsLog.length ? `Advertencias (${warningsLog.length})` : 'Advertencias'}
             </Button>
           </div>
         </div>
@@ -101,12 +102,17 @@ export default function App() {
                     Cerrar
                   </Button>
                 </div>
-                {ultimaEjecucion?.warnings?.length ? (
-                  <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-                    {ultimaEjecucion.warnings.map((w) => (
-                      <li key={w}>{w}</li>
-                    ))}
-                  </ul>
+                {warningsLog.length ? (
+                  <div className="space-y-2">
+                    {warningsLog.map((w) => (
+                      <div
+                        key={w}
+                        className="rounded-lg border border-warning/30 bg-warning/10 p-3 text-sm text-warning"
+                      >
+                    <div className="whitespace-pre-line">{w}</div>
+                  </div>
+                ))}
+              </div>
                 ) : (
                   <p className="text-sm text-muted-foreground">
                     No hay advertencias registradas aún.

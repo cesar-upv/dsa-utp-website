@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { CheckCircle, UsersRound, Search } from 'lucide-react'
+import { CheckCircle, UsersRound, Search, Layers } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
@@ -11,6 +11,7 @@ import { ProfessorList } from '@/features/professors/ProfessorList'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { DayId } from '@/types/models'
 import { Input } from '@/components/ui/input'
+import { normalizeForSearch } from '@/lib/utils'
 
 export default function ProfessorsPage() {
   const profesores = useTimetableStore((state) => state.profesores)
@@ -23,13 +24,14 @@ export default function ProfessorsPage() {
   )
   const [searchProfesor, setSearchProfesor] = useState('')
   const [selectedMateriaFiltro, setSelectedMateriaFiltro] = useState('')
+  const [searchMateriaFiltro, setSearchMateriaFiltro] = useState('')
   const profesoresFiltrados = useMemo(() => {
-    const term = searchProfesor.trim().toLowerCase()
+    const term = normalizeForSearch(searchProfesor)
     if (!term) return profesores
     return profesores.filter(
       (p) =>
-        p.nombre.toLowerCase().includes(term) ||
-        p.id.toLowerCase().includes(term)
+        normalizeForSearch(p.nombre).includes(term) ||
+        normalizeForSearch(p.id).includes(term)
     )
   }, [profesores, searchProfesor])
 
@@ -46,16 +48,6 @@ export default function ProfessorsPage() {
     () => profesores.find((p) => p.id === selectedId),
     [profesores, selectedId]
   )
-  useEffect(() => {
-    if (!profesoresFiltrados.length) {
-      setSelectedId(undefined)
-      return
-    }
-    if (!selectedId || !profesoresFiltrados.some((p) => p.id === selectedId)) {
-      setSelectedId(profesoresFiltrados[0].id)
-    }
-  }, [profesoresFiltrados, selectedId])
-
   const handleToggle = (day: DayId, slotId: string) => {
     if (!selectedId) return
     toggleDisponibilidad(selectedId, day, slotId)
@@ -98,12 +90,51 @@ export default function ProfessorsPage() {
         <div className="space-y-6">
           <ProfessorForm />
           <Card>
-            <CardTitle>Filtrar profesores por materia</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Layers className="h-5 w-5 text-primary" />
+              Filtrar profesores por materia
+            </CardTitle>
             <CardDescription>
               Selecciona una materia para listar quién puede impartirla.
             </CardDescription>
             <CardContent className="mt-4 space-y-3">
               <Label htmlFor="filtro-materia">Materia</Label>
+              <Input
+                placeholder="Buscar materia por nombre o ID..."
+                value={searchMateriaFiltro}
+                onChange={(e) => setSearchMateriaFiltro(e.target.value)}
+              />
+              <div className="flex flex-wrap gap-2">
+                {(() => {
+                  const term = normalizeForSearch(searchMateriaFiltro)
+                  if (!term) return null
+                  const matches = materias.filter(
+                    (m) =>
+                      normalizeForSearch(m.nombre).includes(term) ||
+                      normalizeForSearch(m.id).includes(term)
+                  )
+                  if (!matches.length) {
+                    return (
+                      <p className="text-sm text-muted-foreground">
+                        Sin resultados para “{searchMateriaFiltro.trim()}”.
+                      </p>
+                    )
+                  }
+                  return matches.slice(0, 8).map((m) => (
+                    <Badge
+                      key={`match-${m.id}`}
+                      variant="outline"
+                      className="cursor-pointer px-3 py-1"
+                      onClick={() => {
+                        setSelectedMateriaFiltro(m.id)
+                        setSearchMateriaFiltro('')
+                      }}
+                    >
+                      {m.nombre} ({m.id})
+                    </Badge>
+                  ))
+                })()}
+              </div>
               <Select
                 id="filtro-materia"
                 value={selectedMateriaFiltro}
@@ -161,6 +192,34 @@ export default function ProfessorsPage() {
                 value={searchProfesor}
                 onChange={(e) => setSearchProfesor(e.target.value)}
               />
+              <div className="flex flex-wrap gap-2">
+                {(() => {
+                  const term = normalizeForSearch(searchProfesor)
+                  if (!term) return null
+                  const matches = profesores.filter(
+                    (p) =>
+                      normalizeForSearch(p.nombre).includes(term) ||
+                      normalizeForSearch(p.id).includes(term)
+                  )
+                  if (!matches.length) {
+                    return (
+                      <p className="text-sm text-muted-foreground">
+                        Sin resultados para “{searchProfesor.trim()}”.
+                      </p>
+                    )
+                  }
+                  return matches.slice(0, 8).map((p) => (
+                    <Badge
+                      key={`prof-pill-${p.id}`}
+                      variant="outline"
+                      className="cursor-pointer px-3 py-1"
+                      onClick={() => setSelectedId(p.id)}
+                    >
+                      {p.nombre} ({p.id})
+                    </Badge>
+                  ))
+                })()}
+              </div>
               <Label htmlFor="prof-selector">Profesor</Label>
               <Select
                 id="prof-selector"

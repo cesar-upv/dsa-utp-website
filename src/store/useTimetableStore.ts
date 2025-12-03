@@ -26,6 +26,7 @@ type TimetableStore = {
   grupos: Grupo[]
   profesores: Profesor[]
   horarios: HorarioPorGrupo[]
+  warningsLog: string[]
   ultimaEjecucion?: RunMetadata
   addMateria: (materia: Materia) => void
   updateMateria: (id: string, data: Partial<Materia>) => void
@@ -54,6 +55,8 @@ type TimetableStore = {
     grupos: Grupo[]
     profesores: Profesor[]
   }) => void
+  setWarnings: (warnings: string[]) => void
+  appendWarnings: (warnings: string[]) => void
 }
 
 const nextState = (current: AvailabilityState): AvailabilityState => {
@@ -71,6 +74,7 @@ export const useTimetableStore = create<TimetableStore>()(
       grupos: sampleGrupos,
       profesores: sampleProfesores,
       horarios: [],
+      warningsLog: [],
       ultimaEjecucion: undefined,
       addMateria: (materia) =>
         set((state) => ({
@@ -213,6 +217,7 @@ export const useTimetableStore = create<TimetableStore>()(
       setHorarios: (horarios, meta) =>
         set(() => ({
           horarios,
+          warningsLog: meta.warnings ?? [],
           ultimaEjecucion: meta,
         })),
       resetDatos: () =>
@@ -221,6 +226,7 @@ export const useTimetableStore = create<TimetableStore>()(
           grupos: sampleGrupos,
           profesores: sampleProfesores,
           horarios: [],
+          warningsLog: [],
           ultimaEjecucion: undefined,
         })),
       importMaterias: (materias) =>
@@ -234,13 +240,19 @@ export const useTimetableStore = create<TimetableStore>()(
           return {
             materias: materiasFiltradas,
             horarios: [],
+            warningsLog: [],
             ultimaEjecucion: undefined,
           }
         }),
       importGrupos: (grupos) =>
         set(() => {
           const nuevos = grupos.filter((g) => g.id && g.nombre)
-          return { grupos: nuevos, horarios: [], ultimaEjecucion: undefined }
+          return {
+            grupos: nuevos,
+            horarios: [],
+            warningsLog: [],
+            ultimaEjecucion: undefined,
+          }
         }),
       importProfesores: (profesores) =>
         set(() => {
@@ -261,7 +273,12 @@ export const useTimetableStore = create<TimetableStore>()(
                 disponibilidad: disponibilidadNormalizada,
               }
             })
-          return { profesores: disponibles, horarios: [], ultimaEjecucion: undefined }
+          return {
+            profesores: disponibles,
+            horarios: [],
+            warningsLog: [],
+            ultimaEjecucion: undefined,
+          }
         }),
       setAllData: (data) =>
         set(() => ({
@@ -272,8 +289,21 @@ export const useTimetableStore = create<TimetableStore>()(
             maxHoras: Math.min(p.maxHoras ?? 15, 15),
           })),
           horarios: [],
+          warningsLog: [],
           ultimaEjecucion: undefined,
         })),
+      setWarnings: (warnings) =>
+        set(() => ({
+          warningsLog: [...warnings],
+        })),
+      appendWarnings: (warnings) =>
+        set((state) => {
+          const merged = [
+            ...state.warningsLog,
+            ...warnings.filter((w) => !state.warningsLog.includes(w)),
+          ]
+          return { warningsLog: merged }
+        }),
     }),
     {
       name: 'utp-timetable-store',

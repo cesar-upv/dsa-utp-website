@@ -57,9 +57,16 @@ export function GroupForm() {
     const isManualChange =
       idValue && lastSuggestion.current && idValue !== lastSuggestion.current
     if (manualBeforeSuggestion || isManualChange) return
-    setValue('id', suggestion, { shouldValidate: true })
+    setValue('id', suggestion, { shouldValidate: false, shouldDirty: false })
     lastSuggestion.current = suggestion
   }, [nombreValue, idValue, setValue])
+
+  useEffect(() => {
+    if (!nombreValue?.trim()) {
+      setValue('id', '', { shouldValidate: false, shouldDirty: false })
+      lastSuggestion.current = ''
+    }
+  }, [nombreValue, setValue])
 
   const onSubmit = (values: GrupoForm) => {
     const normalizedId = values.id.trim()

@@ -368,10 +368,6 @@ export default function DataManagerPage() {
           </div>
         </div>
         <div className="flex flex-col gap-2 md:items-end">
-          <div className="flex items-center gap-2 rounded-2xl border border-border/70 bg-white/80 px-4 py-3 text-xs text-muted-foreground">
-            <Files className="h-4 w-4 text-primary" />
-            Soporta materias, grupos, profesores y horarios.
-          </div>
           <Button
             variant="destructive"
             size="sm"

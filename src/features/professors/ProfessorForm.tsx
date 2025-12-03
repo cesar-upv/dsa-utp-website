@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select } from '@/components/ui/select'
-import { generateDisponibilidad, suggestIdFromName } from '@/lib/utils'
+import { generateDisponibilidad, normalizeForSearch, suggestIdFromName } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Profesor } from '@/types/models'
 
@@ -60,12 +60,12 @@ export function ProfessorForm() {
     [materias, selected]
   )
   const filtradas = useMemo(() => {
-    const term = search.trim().toLowerCase()
+    const term = normalizeForSearch(search)
     if (!term) return []
     return disponibles.filter(
       (m) =>
-        m.nombre.toLowerCase().includes(term) ||
-        m.id.toLowerCase().includes(term)
+        normalizeForSearch(m.nombre).includes(term) ||
+        normalizeForSearch(m.id).includes(term)
     )
   }, [disponibles, search])
 
@@ -92,9 +92,16 @@ export function ProfessorForm() {
     const isManualChange =
       idValue && lastSuggestion.current && idValue !== lastSuggestion.current
     if (manualBeforeSuggestion || isManualChange) return
-    setValue('id', suggestion, { shouldValidate: true })
+    setValue('id', suggestion, { shouldValidate: false, shouldDirty: false })
     lastSuggestion.current = suggestion
   }, [nombreValue, idValue, setValue])
+
+  useEffect(() => {
+    if (!nombreValue?.trim()) {
+      setValue('id', '', { shouldValidate: false, shouldDirty: false })
+      lastSuggestion.current = ''
+    }
+  }, [nombreValue, setValue])
 
   const toggleCompetencia = (materiaId: string) => {
     const has = selected?.includes(materiaId)

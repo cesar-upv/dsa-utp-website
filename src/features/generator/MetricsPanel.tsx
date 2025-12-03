@@ -56,16 +56,6 @@ export function MetricsPanel() {
             <Metric label="Violaciones duras" value={violaciones} />
             <Metric label="Soft score" value={softScore.toFixed(1)} />
           </div>
-          {ultimaEjecucion?.warnings?.length ? (
-            <div className="rounded-lg bg-warning/10 p-3 text-sm text-warning">
-              Advertencias:
-              <ul className="ml-4 list-disc">
-                {ultimaEjecucion.warnings.slice(0, 3).map((w) => (
-                  <li key={w}>{w}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
         </div>
         <div className="h-56 w-full">
           <ResponsiveContainer>

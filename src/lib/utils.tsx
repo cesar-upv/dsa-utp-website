@@ -46,18 +46,34 @@ export function generateDisponibilidad(): Disponibilidad {
 export function suggestIdFromName(name: string) {
   const trimmed = name.trim()
   if (!trimmed) return ''
-  const numbers = (trimmed.match(/\d+/g) ?? []).join('')
-  const words = trimmed
+  const tokens = trimmed
     .split(/[\s_]+/)
     .map((w) => w.replace(/[^A-Za-z0-9]+/g, ''))
     .filter(Boolean)
-  if (!words.length) return numbers
+  const numbers =
+    (
+      tokens
+        .map((t) => t.match(/\d+/g)?.[0])
+        .filter((n): n is string => Boolean(n))[0] ?? ''
+    )
+  const letterTokens = tokens
+    .map((t) => t.replace(/\d+/g, ''))
+    .filter(Boolean)
+  if (!letterTokens.length) return numbers.toUpperCase()
   const base =
-    words.length === 1
-      ? words[0].slice(0, 3)
-      : words.map((w) => w[0]).join('-')
-  const combined = [base, numbers].filter(Boolean).join('-')
+    letterTokens.length === 1
+      ? letterTokens[0].slice(0, 3)
+      : letterTokens.map((w) => w[0]).join('')
+  const combined = numbers ? `${base}${numbers}` : base
   return combined.toUpperCase()
+}
+
+export function normalizeForSearch(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
 }
 
 export function humanizeDay(day: DayId) {

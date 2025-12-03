@@ -20,10 +20,10 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
   )
   const profesoresPorMateria: Record<string, string[]> = {}
   horario?.bloques.forEach((b) => {
-    if (!profesoresPorMateria[b.materiaId]) profesoresPorMateria[b.materiaId] = []
+    if (profesoresPorMateria[b.materiaId]?.length) return
     const profName = profesores.find((p) => p.id === b.profesorId)?.nombre
-    if (profName && !profesoresPorMateria[b.materiaId].includes(profName)) {
-      profesoresPorMateria[b.materiaId].push(profName)
+    if (profName) {
+      profesoresPorMateria[b.materiaId] = [profName]
     }
   })
   const blockIndex =

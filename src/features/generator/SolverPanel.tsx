@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { AlertTriangle, Play, Layers } from 'lucide-react'
 import { toast } from 'sonner'
@@ -24,6 +24,7 @@ export function SolverPanel() {
   const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
   const resetDatos = useTimetableStore((state) => state.resetDatos)
   const setAllData = useTimetableStore((state) => state.setAllData)
+  const appendWarnings = useTimetableStore((state) => state.appendWarnings)
   const resetHorarios = () =>
     setHorarios([], {
       mensaje: '',
@@ -52,7 +53,7 @@ export function SolverPanel() {
       setHorarios(output.horarios, {
         mensaje: output.resumen.mensaje,
         tiempoMs: output.resumen.tiempoMs,
-        warnings: output.advertencias,
+        warnings: [...preWarningsRef.current, ...(output.advertencias ?? [])],
         status: output.status,
       })
       return output
@@ -60,7 +61,11 @@ export function SolverPanel() {
     onSuccess: (data) => {
       if (data.status === 'infeasible') {
         toast.warning('Horario generado con advertencias', {
-          description: data.advertencias?.join('\n'),
+          description: data.advertencias?.length ? (
+            <div className="whitespace-pre-line">
+              {data.advertencias.join('\n')}
+            </div>
+          ) : undefined,
         })
       } else {
         toast.success('Horario generado')
@@ -81,6 +86,7 @@ export function SolverPanel() {
       ),
     [materias, profesores]
   )
+  const preWarningsRef = useRef<string[]>([])
 
   const gruposFueraDeRango = useMemo(() => {
     return grupos.filter((g) => {
@@ -111,33 +117,42 @@ export function SolverPanel() {
               ? `Última ejecución: ${ultimaEjecucion.mensaje} — ${ultimaEjecucion.tiempoMs} ms`
               : 'Listo para generar con los datos cargados.'}
           </p>
-          {ultimaEjecucion?.warnings?.length ? (
-            <div className="rounded-lg bg-warning/10 p-3 text-xs text-warning">
-              <p className="font-semibold">Advertencias</p>
-              <ul className="ml-4 list-disc space-y-1 text-warning/90">
-                {ultimaEjecucion.warnings.slice(0, 4).map((w) => (
-                  <li key={w}>{w}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
         </div>
         <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => {
+              preWarningsRef.current = []
               if (gruposFueraDeRango.length) {
+                const warn = gruposFueraDeRango
+                  .map(
+                    (g) =>
+                      `${g.nombre}: ${
+                        materias.filter((m) => m.cuatrimestre === g.cuatrimestre)
+                          .length
+                      } materias`
+                  )
+                  .join('\n')
                 toast.warning('Verifica materias por grupo', {
-                  description: gruposFueraDeRango
-                    .map((g) => `${g.nombre}: ${materias.filter((m) => m.cuatrimestre === g.cuatrimestre).length} materias`)
-                    .join('\n'),
+                  description: <div className="whitespace-pre-line">{warn}</div>,
                 })
+                preWarningsRef.current.push(`Verifica materias por grupo\n${warn}`)
+                appendWarnings([
+                  `Verifica materias por grupo\n${warn}`,
+                ])
               }
               if (materiasSinProfesor.length) {
+                const warn = materiasSinProfesor
+                  .map((m) => `${m.nombre} (${m.id})`)
+                  .join('\n')
                 toast.warning('Hay materias sin profesor asignado', {
-                  description: materiasSinProfesor
-                    .map((m) => `${m.nombre} (${m.id})`)
-                    .join('\n'),
+                  description: <div className="whitespace-pre-line">{warn}</div>,
                 })
+                preWarningsRef.current.push(
+                  `Hay materias sin profesor asignado\n${warn}`
+                )
+                appendWarnings([
+                  `Hay materias sin profesor asignado\n${warn}`,
+                ])
               }
               mutation.mutate()
             }}

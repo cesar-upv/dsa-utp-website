@@ -54,9 +54,16 @@ export function CurriculumForm() {
     const isManualChange =
       idValue && lastSuggestion.current && idValue !== lastSuggestion.current
     if (manualBeforeSuggestion || isManualChange) return
-    setValue('id', suggestedId, { shouldValidate: true })
+    setValue('id', suggestedId, { shouldValidate: false, shouldDirty: false })
     lastSuggestion.current = suggestedId
   }, [suggestedId, setValue, idValue])
+
+  useEffect(() => {
+    if (!nombreValue?.trim()) {
+      setValue('id', '', { shouldValidate: false, shouldDirty: false })
+      lastSuggestion.current = ''
+    }
+  }, [nombreValue, setValue])
 
   const onSubmit = (values: MateriaForm) => {
     const normalizedId = values.id.trim()

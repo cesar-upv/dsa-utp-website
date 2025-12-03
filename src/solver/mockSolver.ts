@@ -67,6 +67,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
   const busyGrupo: Record<string, BusyMap> = {}
   const materiaDayCount: Record<string, Record<string, Record<DayId, number>>> =
     {}
+  const profesorPorMateria: Record<string, Record<string, string>> = {}
 
   input.profesores.forEach((p) => {
     load[p.id] = 0
@@ -75,6 +76,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
   input.grupos.forEach((g) => {
     busyGrupo[g.id] = createBusyMap()
     materiaDayCount[g.id] = {}
+    profesorPorMateria[g.id] = {}
   })
 
   input.grupos.forEach((grupo) => {
@@ -96,23 +98,32 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
             if (slot.isReceso) continue
             if (horasPendientes <= 0) break
 
-            const profesor = pickProfessor(input.profesores, materia, load)
-            if (!profesor) {
+            const profesorAsignado = profesorPorMateria[grupo.id][materia.id]
+            const profesor =
+              profesorAsignado &&
+              input.profesores.find((p) => p.id === profesorAsignado)
+            const profesorElegible =
+              profesor ??
+              pickProfessor(input.profesores, materia, load)
+            if (!profesorElegible) {
               const mensaje = `No hay profesor con competencia para ${materia.nombre}`
               warnings.push(mensaje)
               groupWarnings.push(mensaje)
               horasPendientes = 0
               break
             }
+            if (!profesorAsignado) {
+              profesorPorMateria[grupo.id][materia.id] = profesorElegible.id
+            }
             const slotsMismaMateria = bloques.filter(
               (b) => b.materiaId === materia.id && b.dia === day.id
             )
             const disponible =
-              profesor.disponibilidad[day.id as DayId]?.[slot.id] ===
+              profesorElegible.disponibilidad[day.id as DayId]?.[slot.id] ===
                 'available' &&
-              !busyProfesor[profesor.id][day.id as DayId][slot.id] &&
+              !busyProfesor[profesorElegible.id][day.id as DayId][slot.id] &&
               !busyGrupo[grupo.id][day.id as DayId][slot.id] &&
-              load[profesor.id] < profesor.maxHoras &&
+              load[profesorElegible.id] < profesorElegible.maxHoras &&
               (materiaDayCount[grupo.id][materia.id]?.[day.id as DayId] ?? 0) < 2 &&
               (slotsMismaMateria.length === 0 ||
                 (slotsMismaMateria.length === 1 &&
@@ -126,7 +137,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
                 id: `${grupo.id}-${materia.id}-${day.id}-${slot.id}`,
                 grupoId: grupo.id,
                 materiaId: materia.id,
-                profesorId: profesor.id,
+                profesorId: profesorElegible.id,
                 dia: day.id as DayId,
                 slotId: slot.id,
                 duracion: 1,
@@ -134,7 +145,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
                 esContinuo: true,
               }
               bloques.push(bloque)
-              busyProfesor[profesor.id][day.id as DayId][slot.id] = true
+              busyProfesor[profesorElegible.id][day.id as DayId][slot.id] = true
               busyGrupo[grupo.id][day.id as DayId][slot.id] = true
               if (!materiaDayCount[grupo.id][materia.id]) {
                 materiaDayCount[grupo.id][materia.id] = {
@@ -146,7 +157,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
                 }
               }
               materiaDayCount[grupo.id][materia.id][day.id as DayId] += 1
-              load[profesor.id] += 1
+              load[profesorElegible.id] += 1
               horasPendientes -= 1
               asignado += 1
               placed = true
