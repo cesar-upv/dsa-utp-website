@@ -93,12 +93,12 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
                       return (
                         <div
                           key={`${day.id}-${slot.id}`}
-                          className={cn(
-                            'relative h-16 rounded-lg border border-border/60 bg-white/80 p-2 text-xs',
-                            block
-                              ? 'shadow-ambient'
-                              : 'text-muted-foreground/70'
-                          )}
+                        className={cn(
+                          'relative h-16 rounded-lg border border-border/60 bg-card p-2 text-xs',
+                          block
+                            ? 'shadow-ambient'
+                            : 'text-muted-foreground/70'
+                        )}
                           style={
                             block && color
                               ? { backgroundColor: `${color}22` }
@@ -107,7 +107,7 @@ export function TimetableGrid({ groupId }: { groupId: string }) {
                           title={tooltip}
                         >
                           {block && materia && profesor ? (
-                            <div className="flex h-full flex-col justify-between rounded-lg bg-white/60 p-2">
+                            <div className="flex h-full flex-col justify-between rounded-lg bg-background/70 p-2">
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-xs font-semibold leading-tight line-clamp-2">
                                   {materia.nombre}

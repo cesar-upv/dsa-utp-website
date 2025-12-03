@@ -144,7 +144,7 @@ export function PlanTable() {
               <button
                 type="button"
                 onClick={() => openColorPicker(row.original.id)}
-                className="flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs shadow-sm transition hover:border-primary/50 hover:text-primary"
+                className="flex items-center gap-2 rounded-full border border-border/60 bg-card px-3 py-1 text-xs shadow-sm transition hover:border-primary/50 hover:text-primary"
               >
                 <span
                   className="h-4 w-4 rounded-full border"

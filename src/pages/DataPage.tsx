@@ -8,7 +8,7 @@ import { PlanTable } from '@/features/data/PlanTable'
 export default function DataPage() {
   return (
     <div className="space-y-8">
-      <header className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-white/70 p-6 shadow-ambient md:flex-row md:items-center md:justify-between">
+      <header className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-white/70 p-6 shadow-ambient md:flex-row md:items-center md:justify-between dark:bg-card/90">
         <div className="space-y-2">
           <p className="text-sm uppercase tracking-[0.2em] text-primary">
             Módulo 1

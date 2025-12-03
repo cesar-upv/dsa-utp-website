@@ -15,7 +15,7 @@
   --card-foreground: 232 29% 12%;
   --border: 220 14% 89%;
   --input: 220 14% 89%;
-  --primary: 210 89% 54%;
+  --primary: 210 89% 38%;
   --primary-foreground: 210 100% 98%;
   --secondary: 26 92% 63%;
   --secondary-foreground: 25 95% 12%;
@@ -23,14 +23,87 @@
   --accent-foreground: 160 84% 8%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --ring: 214 95% 50%;
+  --ring: 210 89% 48%;
   --radius: 0.85rem;
   --success: 162 72% 42%;
   --warning: 36 92% 52%;
   --info: 210 89% 54%;
 }
 
+.dark {
+  --background: 220 26% 7%;
+  --foreground: 210 32% 96%;
+  --muted: 220 18% 13%;
+  --muted-foreground: 220 14% 72%;
+  --popover: 220 20% 11%;
+  --popover-foreground: 210 32% 96%;
+  --card: 220 22% 14%;
+  --card-foreground: 210 32% 96%;
+  --border: 220 16% 24%;
+  --input: 220 16% 24%;
+  --primary: 199 89% 42%;
+  --primary-foreground: 210 40% 96%;
+  --secondary: 27 93% 62%;
+  --secondary-foreground: 26 30% 94%;
+  --accent: 162 72% 45%;
+  --accent-foreground: 160 84% 8%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 199 89% 52%;
+  --radius: 0.85rem;
+  --success: 162 72% 45%;
+  --warning: 40 96% 52%;
+  --info: 199 89% 58%;
+}
+
 @layer base {
+  .sonner-toast {
+    background-color: hsl(var(--card) / 0.95) !important;
+    color: hsl(var(--foreground)) !important;
+    border: 1px solid hsl(var(--border)) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(8px);
+  }
+
+  .sonner-toast[data-type='warning'] .sonner-icon {
+    color: hsl(var(--warning)) !important;
+  }
+
+  .sonner-toast[data-type='success'] .sonner-icon {
+    color: hsl(var(--success)) !important;
+  }
+
+  .sonner-toast[data-type='error'] .sonner-icon {
+    color: hsl(var(--destructive)) !important;
+  }
+
+  .sonner-toast .sonner-description {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+
+  .sonner-toast .sonner-progress {
+    background-color: hsl(var(--primary)) !important;
+  }
+
+  .dark .sonner-toast {
+    background-color: hsl(var(--card) / 0.9) !important;
+    border: 1px solid hsl(var(--border) / 0.85) !important;
+    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Ensure Sonner themes respect our design tokens */
+  [data-sonner-toaster][data-sonner-theme='dark'] .sonner-toast {
+    background-color: hsl(var(--card) / 0.9) !important;
+    color: hsl(var(--foreground)) !important;
+    border: 1px solid hsl(var(--border) / 0.85) !important;
+  }
+
+  [data-sonner-toaster][data-sonner-theme='light'] .sonner-toast {
+    background-color: hsl(var(--card) / 0.95) !important;
+    color: hsl(var(--foreground)) !important;
+    border: 1px solid hsl(var(--border)) !important;
+  }
+
   * {
     @apply border-border;
   }
@@ -43,6 +116,16 @@
       linear-gradient(135deg, #f7fbff 0%, #fdfbf6 45%, #f7fbff 100%);
     min-height: 100vh;
     font-family: 'Space Grotesk', 'DM Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 200ms ease, color 200ms ease, opacity 200ms ease;
+    padding: 0;
+    margin: 0;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(14, 165, 233, 0.14), transparent 25%),
+      radial-gradient(circle at 85% 10%, rgba(244, 114, 182, 0.12), transparent 24%),
+      linear-gradient(135deg, #0c1220 0%, #0f172a 40%, #0c1220 100%);
   }
 
   ::selection {
@@ -53,7 +136,10 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/75 backdrop-blur-lg border border-white/60 shadow-ambient;
+    background-color: hsl(var(--card) / 0.9);
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border) / 0.8);
+    @apply backdrop-blur-lg shadow-ambient;
   }
 
   .pill {

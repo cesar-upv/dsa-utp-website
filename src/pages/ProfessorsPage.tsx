@@ -62,7 +62,7 @@ export default function ProfessorsPage() {
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-white/70 p-6 shadow-ambient md:flex-row md:items-center md:justify-between">
+      <header className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-white/70 p-6 shadow-ambient md:flex-row md:items-center md:justify-between dark:bg-card/90">
         <div className="space-y-2">
           <p className="text-sm uppercase tracking-[0.2em] text-primary">
             Módulo 2
@@ -80,7 +80,7 @@ export default function ProfessorsPage() {
             <Badge variant="default">Disponibilidad 3 estados</Badge>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl border border-border/70 bg-white/80 px-4 py-3 text-sm text-muted-foreground">
+        <div className="flex items-center gap-3 rounded-2xl border border-border/70 bg-card px-4 py-3 text-sm text-muted-foreground">
           <CheckCircle className="h-4 w-4 text-success" />
           Los cambios se guardan en localStorage.
         </div>

@@ -98,7 +98,7 @@ export function ProfessorList() {
           {pageData.map((prof) => (
             <div
               key={prof.id}
-              className="rounded-xl border border-border/80 bg-white/70 p-4 shadow-sm"
+              className="rounded-xl border border-border/80 bg-card p-4 shadow-sm"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>

@@ -8,9 +8,9 @@ import type { DayId, Profesor } from '@/types/models'
 
 const stateStyles = {
   blank:
-    'bg-white text-muted-foreground border border-dashed border-border/70 hover:border-primary/60',
+    'bg-muted/60 text-muted-foreground border border-dashed border-border/70 hover:border-primary/60',
   available:
-    'bg-success/15 text-success border border-success/20 hover:border-success',
+    'bg-success/20 text-success border border-success/30 hover:border-success',
   blocked:
     'bg-destructive/15 text-destructive border border-destructive/30 hover:border-destructive',
 }

@@ -172,7 +172,7 @@ export function GroupsTable() {
                         variant="default"
                         className={
                           grupo.turno === 'vespertino'
-                            ? 'bg-orange-100 text-orange-700'
+                            ? 'bg-orange-100 text-orange-700 ring-orange-300/25 dark:bg-orange-400/30 dark:text-orange-100 dark:ring-orange-300/35'
                             : undefined
                         }
                       >
