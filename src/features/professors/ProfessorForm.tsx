@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { BadgePlus, ClipboardList, Timer } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select } from '@/components/ui/select'
-import { generateDisponibilidad } from '@/lib/utils'
+import { generateDisponibilidad, suggestIdFromName } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Profesor } from '@/types/models'
 
@@ -52,6 +52,9 @@ export function ProfessorForm() {
   })
 
   const selected = watch('competencias')
+  const nombreValue = watch('nombre')
+  const idValue = watch('id')
+  const lastSuggestion = useRef<string>('')
   const disponibles = useMemo(
     () => materias.filter((m) => !(selected ?? []).includes(m.id)),
     [materias, selected]
@@ -82,6 +85,17 @@ export function ProfessorForm() {
     setSelectValue('')
   }
 
+  useEffect(() => {
+    const suggestion = suggestIdFromName(nombreValue ?? '')
+    if (!suggestion) return
+    const manualBeforeSuggestion = idValue && !lastSuggestion.current
+    const isManualChange =
+      idValue && lastSuggestion.current && idValue !== lastSuggestion.current
+    if (manualBeforeSuggestion || isManualChange) return
+    setValue('id', suggestion, { shouldValidate: true })
+    lastSuggestion.current = suggestion
+  }, [nombreValue, idValue, setValue])
+
   const toggleCompetencia = (materiaId: string) => {
     const has = selected?.includes(materiaId)
     const updated = has
@@ -94,7 +108,7 @@ export function ProfessorForm() {
     <Card>
       <CardTitle className="flex items-center gap-3">
         <BadgePlus className="h-5 w-5 text-primary" />
-        Profesores y competencias
+        Registrar profesores
       </CardTitle>
       <CardDescription>
         Define profesores, su carga máxima y materias que puede impartir.

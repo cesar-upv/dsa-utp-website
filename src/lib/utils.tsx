@@ -34,13 +34,30 @@ export function generateDisponibilidad(): Disponibilidad {
   return DAYS.reduce<Disponibilidad>((acc, day) => {
     acc[day.id as DayId] = TIME_SLOTS.reduce<Record<string, AvailabilityState>>(
       (slots, slot) => {
-        slots[slot.id] = 'blank'
+        slots[slot.id] = slot.isReceso ? 'blocked' : 'blank'
         return slots
       },
       {}
     )
     return acc
   }, {} as Disponibilidad)
+}
+
+export function suggestIdFromName(name: string) {
+  const trimmed = name.trim()
+  if (!trimmed) return ''
+  const numbers = (trimmed.match(/\d+/g) ?? []).join('')
+  const words = trimmed
+    .split(/[\s_]+/)
+    .map((w) => w.replace(/[^A-Za-z0-9]+/g, ''))
+    .filter(Boolean)
+  if (!words.length) return numbers
+  const base =
+    words.length === 1
+      ? words[0].slice(0, 3)
+      : words.map((w) => w[0]).join('-')
+  const combined = [base, numbers].filter(Boolean).join('-')
+  return combined.toUpperCase()
 }
 
 export function humanizeDay(day: DayId) {

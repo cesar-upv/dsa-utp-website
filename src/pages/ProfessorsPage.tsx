@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { CheckCircle, UsersRound } from 'lucide-react'
+import { CheckCircle, UsersRound, Search } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
@@ -10,15 +10,28 @@ import { ProfessorForm } from '@/features/professors/ProfessorForm'
 import { ProfessorList } from '@/features/professors/ProfessorList'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { DayId } from '@/types/models'
+import { Input } from '@/components/ui/input'
 
 export default function ProfessorsPage() {
   const profesores = useTimetableStore((state) => state.profesores)
+  const materias = useTimetableStore((state) => state.materias)
   const toggleDisponibilidad = useTimetableStore(
     (state) => state.toggleDisponibilidad
   )
   const [selectedId, setSelectedId] = useState<string | undefined>(
     profesores[0]?.id
   )
+  const [searchProfesor, setSearchProfesor] = useState('')
+  const [selectedMateriaFiltro, setSelectedMateriaFiltro] = useState('')
+  const profesoresFiltrados = useMemo(() => {
+    const term = searchProfesor.trim().toLowerCase()
+    if (!term) return profesores
+    return profesores.filter(
+      (p) =>
+        p.nombre.toLowerCase().includes(term) ||
+        p.id.toLowerCase().includes(term)
+    )
+  }, [profesores, searchProfesor])
 
   useEffect(() => {
     if (profesores.length && !selectedId) {
@@ -33,11 +46,27 @@ export default function ProfessorsPage() {
     () => profesores.find((p) => p.id === selectedId),
     [profesores, selectedId]
   )
+  useEffect(() => {
+    if (!profesoresFiltrados.length) {
+      setSelectedId(undefined)
+      return
+    }
+    if (!selectedId || !profesoresFiltrados.some((p) => p.id === selectedId)) {
+      setSelectedId(profesoresFiltrados[0].id)
+    }
+  }, [profesoresFiltrados, selectedId])
 
   const handleToggle = (day: DayId, slotId: string) => {
     if (!selectedId) return
     toggleDisponibilidad(selectedId, day, slotId)
   }
+
+  const profesoresPorMateria = useMemo(() => {
+    if (!selectedMateriaFiltro) return []
+    return profesores.filter((p) =>
+      p.competencias.includes(selectedMateriaFiltro)
+    )
+  }, [profesores, selectedMateriaFiltro])
 
   return (
     <div className="space-y-8">
@@ -68,6 +97,50 @@ export default function ProfessorsPage() {
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="space-y-6">
           <ProfessorForm />
+          <Card>
+            <CardTitle>Filtrar profesores por materia</CardTitle>
+            <CardDescription>
+              Selecciona una materia para listar quién puede impartirla.
+            </CardDescription>
+            <CardContent className="mt-4 space-y-3">
+              <Label htmlFor="filtro-materia">Materia</Label>
+              <Select
+                id="filtro-materia"
+                value={selectedMateriaFiltro}
+                onChange={(e) => setSelectedMateriaFiltro(e.target.value)}
+              >
+                <option value="">Elige una materia</option>
+                {materias.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.nombre} ({m.id})
+                  </option>
+                ))}
+              </Select>
+              {selectedMateriaFiltro ? (
+                <div className="flex flex-wrap gap-2">
+                  {profesoresPorMateria.length ? (
+                    profesoresPorMateria.map((p) => (
+                      <Badge
+                        key={`${selectedMateriaFiltro}-${p.id}`}
+                        variant="outline"
+                        className="px-3 py-1"
+                      >
+                        {p.nombre} ({p.id})
+                      </Badge>
+                    ))
+                  ) : (
+                    <p className="text-sm text-muted-foreground">
+                      Ningún profesor imparte esta materia aún.
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">
+                  Selecciona una materia para ver quién la imparte.
+                </p>
+              )}
+            </CardContent>
+          </Card>
         </div>
         <div className="space-y-4">
           <Card>
@@ -79,17 +152,26 @@ export default function ProfessorsPage() {
               El grid interactivo alterna blanco → verde → rojo en cada click.
             </CardDescription>
             <CardContent className="mt-4 space-y-3">
+              <Label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                <Search className="h-4 w-4 text-muted-foreground" />
+                Buscar profesor
+              </Label>
+              <Input
+                placeholder="Buscar por nombre o ID..."
+                value={searchProfesor}
+                onChange={(e) => setSearchProfesor(e.target.value)}
+              />
               <Label htmlFor="prof-selector">Profesor</Label>
               <Select
                 id="prof-selector"
                 value={selectedId ?? ''}
                 onChange={(e) => setSelectedId(e.target.value)}
-                disabled={profesores.length === 0}
+                disabled={profesoresFiltrados.length === 0}
               >
-                {profesores.length === 0 ? (
+                {profesoresFiltrados.length === 0 ? (
                   <option value="">Agrega un profesor</option>
                 ) : (
-                  profesores.map((prof) => (
+                  profesoresFiltrados.map((prof) => (
                     <option key={prof.id} value={prof.id}>
                       {prof.nombre} ({prof.id})
                     </option>

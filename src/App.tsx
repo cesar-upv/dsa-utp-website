@@ -1,12 +1,14 @@
-import { BookOpen, CalendarCheck2, Files, Users2 } from 'lucide-react'
+import { BookOpen, CalendarCheck2, Files, Users2, AlertTriangle } from 'lucide-react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
 
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import DataPage from '@/pages/DataPage'
 import DataManagerPage from '@/pages/DataManagerPage'
 import GeneratorPage from '@/pages/GeneratorPage'
 import ProfessorsPage from '@/pages/ProfessorsPage'
+import { useTimetableStore } from '@/store/useTimetableStore'
 
 const navItems = [
   { label: 'Datos base', href: '/', icon: BookOpen },
@@ -17,6 +19,8 @@ const navItems = [
 
 export default function App() {
   const location = useLocation()
+  const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
+  const [warningsOpen, setWarningsOpen] = useState(false)
 
   return (
     <div className="min-h-screen">
@@ -54,8 +58,15 @@ export default function App() {
             })}
           </nav>
           <div className="flex items-center gap-2">
-            <Badge variant="secondary">JSON in/out</Badge>
-            <Badge variant="outline">Local</Badge>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={() => setWarningsOpen(true)}
+            >
+              <AlertTriangle className="h-4 w-4 text-warning" />
+              Advertencias
+            </Button>
           </div>
         </div>
       </header>
@@ -68,6 +79,44 @@ export default function App() {
           <Route path="*" element={<DataPage />} />
         </Routes>
       </main>
+      {warningsOpen
+        ? createPortal(
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 animate-in fade-in-0">
+              <div className="w-full max-w-lg rounded-2xl border border-border/70 bg-white shadow-ambient p-6 space-y-3 animate-in fade-in-0 zoom-in-95 duration-150">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.2em] text-primary">
+                      Advertencias
+                    </p>
+                    <p className="text-lg font-semibold">
+                      Última generación de horarios
+                    </p>
+                    {ultimaEjecucion ? (
+                      <p className="text-xs text-muted-foreground">
+                        Estado: {ultimaEjecucion.status} · {ultimaEjecucion.tiempoMs} ms
+                      </p>
+                    ) : null}
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => setWarningsOpen(false)}>
+                    Cerrar
+                  </Button>
+                </div>
+                {ultimaEjecucion?.warnings?.length ? (
+                  <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+                    {ultimaEjecucion.warnings.map((w) => (
+                      <li key={w}>{w}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    No hay advertencias registradas aún.
+                  </p>
+                )}
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </div>
   )
 }

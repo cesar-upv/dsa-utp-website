@@ -11,8 +11,10 @@ import {
 
 type BusyMap = Record<DayId, Record<string, boolean>>
 
+const SCHED_SLOTS = TIME_SLOTS.filter((slot) => !slot.isReceso)
+
 const slotIndex = (slotId: string) =>
-  TIME_SLOTS.findIndex((slot) => slot.id === slotId)
+  SCHED_SLOTS.findIndex((slot) => slot.id === slotId)
 
 const createBusyMap = () =>
   DAYS.reduce<BusyMap>((acc, day) => {
@@ -63,6 +65,8 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
   const load: Record<string, number> = {}
   const busyProfesor: Record<string, BusyMap> = {}
   const busyGrupo: Record<string, BusyMap> = {}
+  const materiaDayCount: Record<string, Record<string, Record<DayId, number>>> =
+    {}
 
   input.profesores.forEach((p) => {
     load[p.id] = 0
@@ -70,6 +74,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
   })
   input.grupos.forEach((g) => {
     busyGrupo[g.id] = createBusyMap()
+    materiaDayCount[g.id] = {}
   })
 
   input.grupos.forEach((grupo) => {
@@ -88,6 +93,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
         let placed = false
         for (const day of dayOrder) {
           for (const slot of TIME_SLOTS) {
+            if (slot.isReceso) continue
             if (horasPendientes <= 0) break
 
             const profesor = pickProfessor(input.profesores, materia, load)
@@ -98,12 +104,22 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
               horasPendientes = 0
               break
             }
+            const slotsMismaMateria = bloques.filter(
+              (b) => b.materiaId === materia.id && b.dia === day.id
+            )
             const disponible =
               profesor.disponibilidad[day.id as DayId]?.[slot.id] ===
                 'available' &&
               !busyProfesor[profesor.id][day.id as DayId][slot.id] &&
               !busyGrupo[grupo.id][day.id as DayId][slot.id] &&
-              load[profesor.id] < profesor.maxHoras
+              load[profesor.id] < profesor.maxHoras &&
+              (materiaDayCount[grupo.id][materia.id]?.[day.id as DayId] ?? 0) < 2 &&
+              (slotsMismaMateria.length === 0 ||
+                (slotsMismaMateria.length === 1 &&
+                  Math.abs(
+                    slotIndex(slot.id) -
+                      slotIndex(slotsMismaMateria[0].slotId)
+                  ) === 1))
 
             if (disponible) {
               const bloque: BloqueMateria = {
@@ -120,6 +136,16 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
               bloques.push(bloque)
               busyProfesor[profesor.id][day.id as DayId][slot.id] = true
               busyGrupo[grupo.id][day.id as DayId][slot.id] = true
+              if (!materiaDayCount[grupo.id][materia.id]) {
+                materiaDayCount[grupo.id][materia.id] = {
+                  mon: 0,
+                  tue: 0,
+                  wed: 0,
+                  thu: 0,
+                  fri: 0,
+                }
+              }
+              materiaDayCount[grupo.id][materia.id][day.id as DayId] += 1
               load[profesor.id] += 1
               horasPendientes -= 1
               asignado += 1

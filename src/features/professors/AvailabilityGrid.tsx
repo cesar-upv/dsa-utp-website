@@ -61,34 +61,43 @@ export function AvailabilityGrid({
                   {day.label}
                 </div>
               ))}
-              {TIME_SLOTS.map((slot) => (
-                <div key={slot.id} className="contents">
-                  <div className="flex items-center rounded-lg bg-muted/40 px-3 text-xs font-medium">
-                    {slot.label}
+              {TIME_SLOTS.map((slot) =>
+                slot.isReceso ? (
+                  <div
+                    key={slot.id}
+                    className="col-span-6 flex items-center justify-center rounded-lg bg-warning/10 p-3 text-xs font-semibold uppercase tracking-wide text-warning"
+                  >
+                    {slot.label} • RECESO
                   </div>
-                  {DAYS.map((day) => {
-                    const state =
-                      profesor.disponibilidad[day.id]?.[slot.id] ?? 'blank'
-                    return (
-                      <button
-                        key={`${day.id}-${slot.id}`}
-                        type="button"
-                        onClick={() => onToggle(day.id as DayId, slot.id)}
-                        className={cn(
-                          'h-12 w-full rounded-lg text-xs font-semibold transition',
-                          stateStyles[state]
-                        )}
-                      >
-                        {state === 'blank'
-                          ? '—'
-                          : state === 'available'
-                            ? 'Disponible'
-                            : 'Bloqueado'}
-                      </button>
-                    )
-                  })}
-                </div>
-              ))}
+                ) : (
+                  <div key={slot.id} className="contents">
+                    <div className="flex items-center rounded-lg bg-muted/40 px-3 text-xs font-medium">
+                      {slot.label}
+                    </div>
+                    {DAYS.map((day) => {
+                      const state =
+                        profesor.disponibilidad[day.id]?.[slot.id] ?? 'blank'
+                      return (
+                        <button
+                          key={`${day.id}-${slot.id}`}
+                          type="button"
+                          onClick={() => onToggle(day.id as DayId, slot.id)}
+                          className={cn(
+                            'h-12 w-full rounded-lg text-xs font-semibold transition',
+                            stateStyles[state]
+                          )}
+                        >
+                          {state === 'blank'
+                            ? '—'
+                            : state === 'available'
+                              ? 'Disponible'
+                              : 'Bloqueado'}
+                        </button>
+                      )
+                    })}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

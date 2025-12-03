@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 import { sampleGrupos, sampleMaterias, sampleProfesores } from '@/data/sampleData'
+import { DAYS } from '@/constants/time'
 import {
   type AvailabilityState,
   type DayId,
@@ -9,7 +10,9 @@ import {
   type HorarioPorGrupo,
   type Materia,
   type Profesor,
+  type Disponibilidad,
 } from '@/types/models'
+import { generateDisponibilidad } from '@/lib/utils'
 
 type RunMetadata = {
   mensaje: string
@@ -221,37 +224,44 @@ export const useTimetableStore = create<TimetableStore>()(
           ultimaEjecucion: undefined,
         })),
       importMaterias: (materias) =>
-        set((state) => {
-          const materiasFiltradas = materias.filter(
-            (materia) => materia.id && materia.nombre
-          )
-          const ids = new Set(state.materias.map((m) => m.id))
-          const nuevas = materiasFiltradas
-            .filter((m) => !ids.has(m.id))
+        set(() => {
+          const materiasFiltradas = materias
+            .filter((materia) => materia.id && materia.nombre)
             .map((m, idx) => ({
               ...m,
-              color: m.color ?? palette[(state.materias.length + idx) % palette.length],
+              color: m.color ?? palette[idx % palette.length],
             }))
           return {
-            materias: [...state.materias, ...nuevas],
+            materias: materiasFiltradas,
+            horarios: [],
+            ultimaEjecucion: undefined,
           }
         }),
       importGrupos: (grupos) =>
-        set((state) => {
-          const existentes = new Set(state.grupos.map((g) => g.id))
-          const nuevos = grupos.filter(
-            (g) => g.id && g.nombre && !existentes.has(g.id)
-          )
-          return { grupos: [...state.grupos, ...nuevos] }
+        set(() => {
+          const nuevos = grupos.filter((g) => g.id && g.nombre)
+          return { grupos: nuevos, horarios: [], ultimaEjecucion: undefined }
         }),
       importProfesores: (profesores) =>
-        set((state) => {
-          const existentes = new Set(state.profesores.map((p) => p.id))
+        set(() => {
           const disponibles = profesores
             .filter((p) => p.id && p.nombre && p.disponibilidad)
-            .map((p) => ({ ...p, maxHoras: Math.min(p.maxHoras ?? 15, 15) }))
-            .filter((p) => !existentes.has(p.id))
-          return { profesores: [...state.profesores, ...disponibles] }
+            .map((p) => {
+              const base = generateDisponibilidad()
+              const disponibilidadNormalizada = DAYS.reduce((acc, day) => {
+                acc[day.id] = {
+                  ...base[day.id],
+                  ...(p.disponibilidad?.[day.id] ?? {}),
+                }
+                return acc
+              }, {} as Disponibilidad)
+              return {
+                ...p,
+                maxHoras: Math.min(p.maxHoras ?? 15, 15),
+                disponibilidad: disponibilidadNormalizada,
+              }
+            })
+          return { profesores: disponibles, horarios: [], ultimaEjecucion: undefined }
         }),
       setAllData: (data) =>
         set(() => ({

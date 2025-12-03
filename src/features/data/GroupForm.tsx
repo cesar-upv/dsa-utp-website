@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Building2, PlusSquare } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -17,6 +18,7 @@ import { Select } from '@/components/ui/select'
 import { TURNOS_LABEL } from '@/constants/time'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Grupo } from '@/types/models'
+import { suggestIdFromName } from '@/lib/utils'
 
 const groupSchema = z.object({
   id: z.string().min(2, 'ID requerido'),
@@ -34,6 +36,8 @@ export function GroupForm() {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<GrupoForm>({
     resolver: zodResolver(groupSchema),
@@ -42,6 +46,20 @@ export function GroupForm() {
       cuatrimestre: 1,
     },
   })
+  const nombreValue = watch('nombre')
+  const idValue = watch('id')
+  const lastSuggestion = useRef<string>('')
+
+  useEffect(() => {
+    const suggestion = suggestIdFromName(nombreValue ?? '')
+    if (!suggestion) return
+    const manualBeforeSuggestion = idValue && !lastSuggestion.current
+    const isManualChange =
+      idValue && lastSuggestion.current && idValue !== lastSuggestion.current
+    if (manualBeforeSuggestion || isManualChange) return
+    setValue('id', suggestion, { shouldValidate: true })
+    lastSuggestion.current = suggestion
+  }, [nombreValue, idValue, setValue])
 
   const onSubmit = (values: GrupoForm) => {
     const normalizedId = values.id.trim()

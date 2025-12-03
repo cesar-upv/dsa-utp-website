@@ -73,6 +73,24 @@ export function SolverPanel() {
     },
   })
 
+  const materiasSinProfesor = useMemo(
+    () =>
+      materias.filter(
+        (m) =>
+          !profesores.some((p) => p.competencias.includes(m.id))
+      ),
+    [materias, profesores]
+  )
+
+  const gruposFueraDeRango = useMemo(() => {
+    return grupos.filter((g) => {
+      const materiasDelGrupo = materias.filter(
+        (m) => m.cuatrimestre === g.cuatrimestre
+      )
+      return materiasDelGrupo.length < 6 || materiasDelGrupo.length > 7
+    })
+  }, [grupos, materias])
+
   return (
     <Card>
       <CardTitle className="flex items-center gap-3">
@@ -106,7 +124,23 @@ export function SolverPanel() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Button
-            onClick={() => mutation.mutate()}
+            onClick={() => {
+              if (gruposFueraDeRango.length) {
+                toast.warning('Verifica materias por grupo', {
+                  description: gruposFueraDeRango
+                    .map((g) => `${g.nombre}: ${materias.filter((m) => m.cuatrimestre === g.cuatrimestre).length} materias`)
+                    .join('\n'),
+                })
+              }
+              if (materiasSinProfesor.length) {
+                toast.warning('Hay materias sin profesor asignado', {
+                  description: materiasSinProfesor
+                    .map((m) => `${m.nombre} (${m.id})`)
+                    .join('\n'),
+                })
+              }
+              mutation.mutate()
+            }}
             disabled={mutation.isPending || materias.length === 0}
           >
             {mutation.isPending ? 'Generando...' : 'Generar horarios'}

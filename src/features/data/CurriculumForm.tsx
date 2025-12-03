@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { PaintBucket, Plus } from 'lucide-react'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Materia } from '@/types/models'
+import { suggestIdFromName } from '@/lib/utils'
 
 const materiaSchema = z.object({
   id: z.string().min(2, 'ID requerido'),
@@ -31,6 +32,7 @@ export function CurriculumForm() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<MateriaForm>({
     resolver: zodResolver(materiaSchema),
@@ -42,14 +44,19 @@ export function CurriculumForm() {
   })
 
   const nombreValue = watch('nombre')
-  const suggestedId = useMemo(() => {
-    const normalized = (nombreValue ?? '')
-      .toUpperCase()
-      .replace(/[^A-Z0-9]+/g, ' ')
-      .trim()
-      .replace(/\s+/g, '-')
-    return normalized.slice(0, 8) || 'ID-SUG'
-  }, [nombreValue])
+  const idValue = watch('id')
+  const lastSuggestion = useRef<string>('')
+  const suggestedId = useMemo(() => suggestIdFromName(nombreValue ?? ''), [nombreValue])
+
+  useEffect(() => {
+    if (!suggestedId) return
+    const manualBeforeSuggestion = idValue && !lastSuggestion.current
+    const isManualChange =
+      idValue && lastSuggestion.current && idValue !== lastSuggestion.current
+    if (manualBeforeSuggestion || isManualChange) return
+    setValue('id', suggestedId, { shouldValidate: true })
+    lastSuggestion.current = suggestedId
+  }, [suggestedId, setValue, idValue])
 
   const onSubmit = (values: MateriaForm) => {
     const normalizedId = values.id.trim()
@@ -109,9 +116,6 @@ export function CurriculumForm() {
           <div className="space-y-2">
             <Label htmlFor="id">ID</Label>
             <Input id="id" placeholder="ALG1" {...register('id')} />
-            <p className="text-xs text-muted-foreground">
-              Sugerencia: <code className="font-mono">{suggestedId}</code>
-            </p>
             {errors.id && (
               <p className="text-sm text-destructive">{errors.id.message}</p>
             )}

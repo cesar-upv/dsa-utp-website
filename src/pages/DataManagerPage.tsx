@@ -148,14 +148,12 @@ export default function DataManagerPage() {
       toast.error('No se encontraron filas válidas')
       return
     }
-    const resolvedTarget: PlanTarget =
-      target === 'plan'
-        ? detectedHeader.includes('competencias')
-          ? 'profesores'
-          : detectedHeader.includes('turno')
-            ? 'grupos'
-            : 'materias'
-        : target
+    const inferred: PlanTarget | null = detectedHeader.includes('competencias')
+      ? 'profesores'
+      : detectedHeader.includes('turno')
+        ? 'grupos'
+        : detectedHeader ? 'materias' : null
+    const resolvedTarget: PlanTarget = inferred ?? target
     if (resolvedTarget === 'materias') {
       const parsed = lines
         .map(([id, nombre, cuatrimestre, horasSemana, color]) => ({
@@ -225,12 +223,30 @@ export default function DataManagerPage() {
     }
   }
 
+  const detectJsonTarget = (parsed: unknown): PlanTarget | 'horarios' | null => {
+    if (typeof parsed === 'object' && parsed !== null) {
+      const obj = parsed as Record<string, unknown>
+      if (obj.planDeEstudios && obj.grupos && obj.profesores) return 'plan'
+      if (obj.horarios) return 'horarios'
+    }
+    if (Array.isArray(parsed)) {
+      const sample = parsed[0] as Record<string, unknown> | undefined
+      if (!sample) return null
+      if ('turno' in sample) return 'grupos'
+      if ('competencias' in sample) return 'profesores'
+      if ('horasSemana' in sample) return 'materias'
+    }
+    return null
+  }
+
   const handleJsonImport = async (file: File, target: PlanTarget | 'horarios') => {
     try {
       const text = await file.text()
       const parsed = JSON.parse(text)
+      const detected = detectJsonTarget(parsed)
+      const resolvedTarget = detected ?? target
       let loaded = false
-      if (target === 'plan' && parsed.planDeEstudios && parsed.grupos && parsed.profesores) {
+      if (resolvedTarget === 'plan' && parsed.planDeEstudios && parsed.grupos && parsed.profesores) {
         const data = solverInputSchema.parse(parsed)
         setAllData({
           materias: data.planDeEstudios,
@@ -242,17 +258,17 @@ export default function DataManagerPage() {
           description: `${data.planDeEstudios.length} materias · ${data.grupos.length} grupos · ${data.profesores.length} profesores`,
         })
       }
-      if (target === 'materias' && Array.isArray(parsed)) {
+      if (resolvedTarget === 'materias' && Array.isArray(parsed)) {
         importMaterias(parsed as typeof materias)
         loaded = true
         toast.success(`Importadas ${parsed.length} materias (JSON)`)
       }
-      if (target === 'grupos' && Array.isArray(parsed)) {
+      if (resolvedTarget === 'grupos' && Array.isArray(parsed)) {
         importGrupos(parsed as typeof grupos)
         loaded = true
         toast.success(`Importados ${parsed.length} grupos (JSON)`)
       }
-      if (target === 'profesores' && Array.isArray(parsed)) {
+      if (resolvedTarget === 'profesores' && Array.isArray(parsed)) {
         importProfesores(
           parsed.map((p) => ({
             ...p,
@@ -263,7 +279,7 @@ export default function DataManagerPage() {
         loaded = true
         toast.success(`Importados ${parsed.length} profesores (JSON)`)
       }
-      if (target === 'horarios' && parsed.horarios) {
+      if (resolvedTarget === 'horarios' && parsed.horarios) {
         const output = solverOutputSchema.parse(parsed)
         setHorarios(output.horarios, {
           mensaje: output.resumen.mensaje,

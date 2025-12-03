@@ -14,6 +14,7 @@ export const timeSlotSchema = z.object({
   label: z.string(),
   start: z.string(),
   end: z.string(),
+  isReceso: z.boolean().optional(),
 })
 export type TimeSlot = z.infer<typeof timeSlotSchema>
 
