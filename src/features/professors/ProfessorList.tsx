@@ -1,4 +1,4 @@
-import { Clock3, Sparkles, Trash } from 'lucide-react'
+import { Clock3, Sparkles, Trash, Pencil } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { normalizeForSearch, showUndoToast } from '@/lib/utils'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import type { Profesor } from '@/types/models'
+import { EditProfessorDialog } from './EditProfessorDialog'
 
 export function ProfessorList() {
   const profesores = useTimetableStore((state) => state.profesores)
@@ -21,6 +22,7 @@ export function ProfessorList() {
   const setCompetencias = useTimetableStore((state) => state.setCompetencias)
   const removeProfesor = useTimetableStore((state) => state.removeProfesor)
   const [pendingDelete, setPendingDelete] = useState<Profesor | null>(null)
+  const [editingProfesor, setEditingProfesor] = useState<Profesor | null>(null)
   const [page, setPage] = useState(1)
   const pageSize = 6
   const [searchByProf, setSearchByProf] = useState<Record<string, string>>({})
@@ -195,7 +197,15 @@ export function ProfessorList() {
                   </div>
                 </div>
               </div>
-              <div className="mt-3 flex justify-end">
+              <div className="mt-3 flex justify-end gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setEditingProfesor(prof)}
+                >
+                  <Pencil className="h-4 w-4 text-primary" />
+                  Editar
+                </Button>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -249,6 +259,11 @@ export function ProfessorList() {
               description: `${deleted.nombre} se eliminó.`,
             })
           }}
+        />
+        <EditProfessorDialog
+          open={Boolean(editingProfesor)}
+          professor={editingProfesor}
+          onClose={() => setEditingProfesor(null)}
         />
       </CardContent>
     </Card>
