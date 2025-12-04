@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { toast } from 'sonner'
+// toast import removed to avoid conflict with exported wrapper
+
 
 import { DAYS, TIME_SLOTS } from '@/constants/time'
 import {
@@ -103,6 +104,29 @@ export function downloadJson(name: string, data: unknown) {
   link.download = name
   link.click()
   URL.revokeObjectURL(url)
+}
+
+import { toast as sonnerToast, type ExternalToast } from 'sonner'
+import { playSound } from './sound'
+
+export const toast = {
+  ...sonnerToast,
+  success: (message: string | React.ReactNode, data?: ExternalToast) => {
+    playSound('success')
+    return sonnerToast.success(message, data)
+  },
+  error: (message: string | React.ReactNode, data?: ExternalToast) => {
+    playSound('error')
+    return sonnerToast.error(message, data)
+  },
+  info: (message: string | React.ReactNode, data?: ExternalToast) => {
+    playSound('info')
+    return sonnerToast.info(message, data)
+  },
+  warning: (message: string | React.ReactNode, data?: ExternalToast) => {
+    playSound('info')
+    return sonnerToast.warning(message, data)
+  },
 }
 
 export function showUndoToast({

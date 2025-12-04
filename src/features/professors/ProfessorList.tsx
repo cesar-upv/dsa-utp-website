@@ -248,6 +248,7 @@ export function ProfessorList() {
           title="Eliminar profesor"
           description={`¿Seguro que deseas eliminar ${pendingDelete?.nombre}?`}
           confirmLabel="Eliminar"
+          variant="destructive"
           onCancel={() => setPendingDelete(null)}
           onConfirm={() => {
             if (!pendingDelete) return

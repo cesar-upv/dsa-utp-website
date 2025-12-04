@@ -1,6 +1,6 @@
 import { useRef, useState, type ChangeEvent } from 'react'
 import { Download, Files, UploadCloud, Layers, Trash2 } from 'lucide-react'
-import { toast } from 'sonner'
+import { toast } from '@/lib/utils'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -639,6 +639,7 @@ export default function DataManagerPage() {
         title="Limpiar todos los datos"
         description="Se borrarán materias, grupos, profesores y horarios almacenados en la app."
         confirmLabel="Limpiar"
+        variant="destructive"
         onCancel={() => setConfirmClearOpen(false)}
         onConfirm={() => {
           setAllData({ materias: [], grupos: [], profesores: [] })

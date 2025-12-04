@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { BadgePlus, ClipboardList, Timer } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
+import { toast } from '@/lib/utils'
 import { z } from 'zod'
 
 import { Badge } from '@/components/ui/badge'

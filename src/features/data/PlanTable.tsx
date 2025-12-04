@@ -7,7 +7,7 @@ import {
 import { PencilLine, Trash2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { toast } from 'sonner'
+import { toast } from '@/lib/utils'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -356,6 +356,7 @@ export function PlanTable() {
         title="Eliminar materia"
         description={`¿Seguro que deseas eliminar ${pendingDelete?.nombre}?`}
         confirmLabel="Eliminar"
+        variant="destructive"
         onCancel={() => setPendingDelete(null)}
         onConfirm={() => {
           if (!pendingDelete) return
