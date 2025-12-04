@@ -106,46 +106,46 @@ export default function App() {
       <Toaster position="top-right" richColors duration={3600} theme={theme} />
       {warningsOpen
         ? createPortal(
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 animate-in fade-in-0">
-              <div className="w-full max-w-lg rounded-2xl border border-border/70 bg-card shadow-ambient p-6 space-y-3 animate-in fade-in-0 zoom-in-95 duration-150">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.2em] text-primary">
-                      Advertencias
-                    </p>
-                    <p className="text-lg font-semibold">
-                      Última generación de horarios
-                    </p>
-                    {ultimaEjecucion ? (
-                      <p className="text-xs text-muted-foreground">
-                        Estado: {ultimaEjecucion.status} · {ultimaEjecucion.tiempoMs} ms
-                      </p>
-                    ) : null}
-                  </div>
-                  <Button variant="ghost" size="sm" onClick={() => setWarningsOpen(false)}>
-                    Cerrar
-                  </Button>
-                </div>
-                {warningsLog.length ? (
-                  <div className="space-y-2">
-                    {warningsLog.map((w) => (
-                      <div
-                        key={w}
-                        className="rounded-lg border border-warning/30 bg-warning/10 p-3 text-sm text-warning"
-                      >
-                    <div className="whitespace-pre-line">{w}</div>
-                  </div>
-                ))}
-              </div>
-                ) : (
-                  <p className="text-sm text-muted-foreground">
-                    No hay advertencias registradas aún.
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 animate-in fade-in-0">
+            <div className="w-full max-w-lg rounded-2xl border border-border/70 bg-card shadow-ambient p-6 space-y-3 animate-in fade-in-0 zoom-in-95 duration-150 max-h-[85vh] flex flex-col">
+              <div className="flex items-center justify-between flex-shrink-0">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.2em] text-primary">
+                    Advertencias
                   </p>
-                )}
+                  <p className="text-lg font-semibold">
+                    Última generación de horarios
+                  </p>
+                  {ultimaEjecucion ? (
+                    <p className="text-xs text-muted-foreground">
+                      Estado: {ultimaEjecucion.status} · {ultimaEjecucion.tiempoMs} ms
+                    </p>
+                  ) : null}
+                </div>
+                <Button variant="ghost" size="sm" onClick={() => setWarningsOpen(false)}>
+                  Cerrar
+                </Button>
               </div>
-            </div>,
-            document.body
-          )
+              {warningsLog.length ? (
+                <div className="space-y-2 overflow-y-auto pr-2">
+                  {warningsLog.map((w) => (
+                    <div
+                      key={w}
+                      className="rounded-lg border border-warning/30 bg-warning/10 p-3 text-sm text-warning"
+                    >
+                      <div className="whitespace-pre-line">{w}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">
+                  No hay advertencias registradas aún.
+                </p>
+              )}
+            </div>
+          </div>,
+          document.body
+        )
         : null}
     </div>
   )
