@@ -1,0 +1,2155 @@
+[
+  {
+    "id": "JM-01",
+    "nombre": "Dr. Jean-Michael Recher",
+    "maxHoras": 9,
+    "competencias": [
+      "FUNDAMENTOS-MATEMÁTICOS",
+      "CÁLCULO-DIFERENCIAL"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "AG-01",
+    "nombre": "Dr. Alberto García Robledo",
+    "maxHoras": 11,
+    "competencias": [
+      "CÁLCULO-INTEGRAL",
+      "ECUACIONES-DIFERENCIALES",
+      "CÁLCULO-DE-VARIAS-VARIABLES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "KE-01",
+    "nombre": "Dra. Karla E. Vázquez Ortiz",
+    "maxHoras": 6,
+    "competencias": [
+      "PROBABILIDAD-Y-ESTADÍSTICA",
+      "CIENCIA-DE-DATOS",
+      "FUNDAMENTOS-MATEMÁTICOS"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "HH-01",
+    "nombre": "Dr. Hector Hugo Avilés Arriaga",
+    "maxHoras": 12,
+    "competencias": [
+      "FUNDAMENTOS-DE-PROGRAMACIÓN",
+      "PROGRAMACIÓN-ESTRUCTURADA",
+      "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "thu": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "SP-01",
+    "nombre": "Dr. Said Polanco Martagón",
+    "maxHoras": 10,
+    "competencias": [
+      "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+      "PROGRAMACIÓN-PARA-INTELIGENCIA-ARTIFICIAL"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MA-01",
+    "nombre": "Dr. Marco A. Nuño Maganda",
+    "maxHoras": 15,
+    "competencias": [
+      "ELECTRÓNICA-DIGITAL",
+      "INTERNET DE LAS COSAS",
+      "OPTATIVA-II-PROGRAMACIÓN-MÓVIL-AVANZADA",
+      "DESARROLLO-DE-APLICACIONES-MÓVILES",
+      "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "JA-01",
+    "nombre": "M.C.A. Jorge Arturo Hernández Almazan",
+    "maxHoras": 12,
+    "competencias": [
+      "ESTRUCTURA-DE-DATOS",
+      "BASES-DE-DATOS",
+      "BASES-DE-DATOS-AVANZADAS"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MH-01",
+    "nombre": "M.S.I. Mario H. Rodriguez Chávez",
+    "maxHoras": 6,
+    "competencias": [
+      "APLICACIONES-WEB",
+      "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS",
+      "OPTATIVA-III-FRAMEWORKS-PARA-EL-DESARROLLO"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "JO-01",
+    "nombre": "M.C. Jorge O. Jasso Luna",
+    "maxHoras": 15,
+    "competencias": [
+      "DESARROLLO-DE-APLICACIONES-MÓVILES",
+      "OPTATIVA-II-PROGRAMACIÓN-MÓVIL-AVANZADA"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "HH-02",
+    "nombre": "M.A.T. Hiram Herrera Rivas",
+    "maxHoras": 15,
+    "competencias": [
+      "FUNDAMENTOS-DE-REDES",
+      "CONMUTACIÓN-Y-ENRUTAMIENTO-DE-REDES",
+      "ADMINISTRACIÓN-DE-SERVIDORES",
+      "SEGURIDAD-INFORMÁTICA"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "AD-01",
+    "nombre": "M.S.I. Alma Delia Amaya Vázquez",
+    "maxHoras": 12,
+    "competencias": [
+      "SISTEMAS-OPERATIVOS",
+      "SEGURIDAD-INFORMÁTICA",
+      "INFORMÁTICA-FORENSE",
+      "COMUNICACIÓN-Y-HABILIDADES-DIGITALES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "available",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "available",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "available",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "available",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "available",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "JF-01",
+    "nombre": "M.S.I. José Fidencio López Luna",
+    "maxHoras": 4,
+    "competencias": [
+      "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+      "TÓPICOS-DE-CALIDAD-PARA-EL-DISEÑO-DE-SOFTWARE",
+      "ESTÁNDARES-Y-MÉTRICAS-PARA-EL-DESARROLLO-DE-SOFTWARE"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MR-01",
+    "nombre": "M.I. Manuel Ruiz Méndez",
+    "maxHoras": 11,
+    "competencias": [
+      "PROYECTO-INTEGRADOR-I",
+      "PROYECTO-INTEGRADOR-II",
+      "APLICACIONES-WEB",
+      "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "IP-01",
+    "nombre": "M.T.I. Israel Pulido Picazo",
+    "maxHoras": 15,
+    "competencias": [
+      "PROYECTO-INTEGRADOR-III",
+      "TECNOLOGÍAS-DISRUPTIVAS",
+      "FUNDAMENTOS-DE-REDES",
+      "CONMUTACIÓN-Y-ENRUTAMIENTO-DE-REDES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MC-01",
+    "nombre": "M.S.I. Marina Cristal Flores Flores",
+    "maxHoras": 15,
+    "competencias": [
+      "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "available",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "HE-01",
+    "nombre": "Ing. Hugo E. Treviño",
+    "maxHoras": 15,
+    "competencias": [
+      "DESARROLLO-HUMANO-Y-VALORES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "AL-01",
+    "nombre": "M.I. Adriana Lizeth Trujillo",
+    "maxHoras": 12,
+    "competencias": [
+      "HABILIDADES-SOCIOEMOCIONALES-Y-MANEJO-DE-CONFLICTOS",
+      "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "available",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "LR-01",
+    "nombre": "M.I. Luis R. De la Fuente",
+    "maxHoras": 10,
+    "competencias": [
+      "ÉTICA-PROFESIONAL",
+      "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+      "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "EG-01",
+    "nombre": "M.I. Erendira Guitierrez Meza",
+    "maxHoras": 10,
+    "competencias": [
+      "LIDERAZGO-DE-EQUIPOS-DE-ALTO-DESEMPEÑO",
+      "HABILIDADES-GERENCIALES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MM-01",
+    "nombre": "M.C. Maribel Marin Castro",
+    "maxHoras": 15,
+    "competencias": [
+      "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+      "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "CO-01",
+    "nombre": "M.C. Carlos Orozco Garcia",
+    "maxHoras": 6,
+    "competencias": [
+      "EVALUACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+      "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "JM-02",
+    "nombre": "Ing. Juan Manuel Ornelas Llerena",
+    "maxHoras": 15,
+    "competencias": [
+      "INGLES-1",
+      "INGLES-2",
+      "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "EP-01",
+    "nombre": "Eduardo Patricio González Nuño",
+    "maxHoras": 10,
+    "competencias": [
+      "INGLES-3",
+      "INGLES-4",
+      "INGLES-2"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MO-01",
+    "nombre": "Lic. Myriam Ornelas Llerena",
+    "maxHoras": 15,
+    "competencias": [
+      "INGLES-5",
+      "INGLES-6"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "LF-01",
+    "nombre": "Luis F. Castillo Cortés",
+    "maxHoras": 15,
+    "competencias": [
+      "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+      "SEGURIDAD-INFORMÁTICA"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "CC-01",
+    "nombre": "Lic. Carlos Castillo",
+    "maxHoras": 8,
+    "competencias": [
+      "INGLES-1"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "FR-01",
+    "nombre": "Fernando Requena",
+    "maxHoras": 8,
+    "competencias": [
+      "FUNDAMENTOS-MATEMÁTICOS",
+      "FÍSICA",
+      "CÁLCULO-DE-VARIAS-VARIABLES"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "available",
+        "s9": "available"
+      }
+    }
+  },
+  {
+    "id": "AL-02",
+    "nombre": "Alma Leticia Valdéz García",
+    "maxHoras": 6,
+    "competencias": [
+      "INGLES-3"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "available",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "blank",
+        "s4": "blank",
+        "receso": "blocked",
+        "s5": "blank",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "OR-01",
+    "nombre": "Oscar Romero de la Cruz",
+    "maxHoras": 15,
+    "competencias": [
+      "INGLES-4",
+      "INGLES-7",
+      "INGLES-1"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "blank",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "available",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  },
+  {
+    "id": "MAGMC",
+    "nombre": "M.I. Arturo G. Mascorro Cienfuegos",
+    "maxHoras": 15,
+    "competencias": [
+      "INGLES-5",
+      "FÍSICA",
+      "SEGURIDAD-INFORMÁTICA",
+      "CÁLCULO-DE-VARIAS-VARIABLES",
+      "CÁLCULO-DIFERENCIAL",
+      "ECUACIONES-DIFERENCIALES",
+      "CÁLCULO-INTEGRAL"
+    ],
+    "disponibilidad": {
+      "mon": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "tue": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "wed": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "thu": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      },
+      "fri": {
+        "s1": "blank",
+        "s2": "available",
+        "s3": "available",
+        "s4": "available",
+        "receso": "blocked",
+        "s5": "available",
+        "s6": "blank",
+        "s7": "blank",
+        "s8": "blank",
+        "s9": "blank"
+      }
+    }
+  }
+]

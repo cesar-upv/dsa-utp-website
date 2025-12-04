@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ITIID-1-1",
+    "nombre": "ITIID 1-1",
+    "cuatrimestre": 1,
+    "turno": "matutino"
+  },
+  {
+    "id": "ITIID-1-2",
+    "nombre": "ITIID 1-2",
+    "cuatrimestre": 1,
+    "turno": "matutino"
+  },
+  {
+    "id": "ITIID-4-1",
+    "nombre": "ITIID 4-1",
+    "cuatrimestre": 4,
+    "turno": "matutino"
+  },
+  {
+    "id": "ITIID-4-2",
+    "nombre": "ITIID 4-2",
+    "cuatrimestre": 4,
+    "turno": "matutino"
+  },
+  {
+    "id": "ITIID-7-1",
+    "nombre": "ITIID-7-1",
+    "cuatrimestre": 7,
+    "turno": "matutino"
+  },
+  {
+    "id": "ITIID-7-2",
+    "nombre": "ITIID 7-2",
+    "cuatrimestre": 7,
+    "turno": "matutino"
+  },
+  {
+    "id": "ITIID-3-1",
+    "nombre": "ITIID 3-1",
+    "cuatrimestre": 3,
+    "turno": "matutino"
+  }
+]
