@@ -1,6 +1,6 @@
 import React from 'react'
 import { PencilLine, Trash2, Users } from 'lucide-react'
-import { toast } from 'sonner'
+import { toast } from '@/lib/utils'
 import { createPortal } from 'react-dom'
 
 import { Badge } from '@/components/ui/badge'
@@ -237,6 +237,7 @@ export function GroupsTable() {
         title="Eliminar grupo"
         description={`¿Seguro que deseas eliminar ${pendingDelete?.nombre}?`}
         confirmLabel="Eliminar"
+        variant="destructive"
         onCancel={() => setPendingDelete(null)}
         onConfirm={() => {
           if (!pendingDelete) return
