@@ -1,8 +1,7 @@
 import { useMemo, useRef } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { AlertTriangle, Play, Layers } from 'lucide-react'
+import { AlertTriangle, Play, Layers, Loader2 } from 'lucide-react'
 import { toast } from '@/lib/utils'
-
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -12,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { mockSolve } from '@/solver/mockSolver'
+import { solveBacktracking } from '@/solver/backtrackingSolver'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import { solverInputSchema, type SolverInput } from '@/types/models'
 import { largeSeed } from '@/data/largeSeed'
@@ -78,6 +78,38 @@ export function SolverPanel() {
     },
   })
 
+  const backtrackingMutation = useMutation({
+    mutationFn: async () => {
+      const parsed = solverInputSchema.parse(input)
+      const output = await solveBacktracking(parsed)
+      setHorarios(output.horarios, {
+        mensaje: output.resumen.mensaje,
+        tiempoMs: output.resumen.tiempoMs,
+        warnings: [...preWarningsRef.current, ...(output.advertencias ?? [])],
+        status: output.status,
+      })
+      return output
+    },
+    onSuccess: (data) => {
+      if (data.status === 'infeasible') {
+        toast.warning('No se encontró solución perfecta', {
+          description: data.advertencias?.length ? (
+            <div className="whitespace-pre-line">
+              {data.advertencias.join('\n')}
+            </div>
+          ) : undefined,
+        })
+      } else {
+        toast.success('Horario generado con Backtracking')
+      }
+    },
+    onError: (err) => {
+      toast.error('Error al ejecutar Backtracking', {
+        description: err instanceof Error ? err.message : 'Error desconocido',
+      })
+    },
+  })
+
   const materiasSinProfesor = useMemo(
     () =>
       materias.filter(
@@ -126,9 +158,8 @@ export function SolverPanel() {
                 const warn = gruposFueraDeRango
                   .map(
                     (g) =>
-                      `${g.nombre}: ${
-                        materias.filter((m) => m.cuatrimestre === g.cuatrimestre)
-                          .length
+                      `${g.nombre}: ${materias.filter((m) => m.cuatrimestre === g.cuatrimestre)
+                        .length
                       } materias`
                   )
                   .join('\n')
@@ -158,7 +189,63 @@ export function SolverPanel() {
             }}
             disabled={mutation.isPending || materias.length === 0}
           >
-            {mutation.isPending ? 'Generando...' : 'Generar horarios'}
+            {mutation.isPending ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Generando...
+              </>
+            ) : (
+              'Generar horarios (Greedy)'
+            )}
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              preWarningsRef.current = []
+              // Basic checks same as Greedy
+              if (gruposFueraDeRango.length) {
+                const warn = gruposFueraDeRango
+                  .map(
+                    (g) =>
+                      `${g.nombre}: ${materias.filter((m) => m.cuatrimestre === g.cuatrimestre)
+                        .length
+                      } materias`
+                  )
+                  .join('\n')
+                toast.warning('Verifica materias por grupo', {
+                  description: <div className="whitespace-pre-line">{warn}</div>,
+                })
+                preWarningsRef.current.push(`Verifica materias por grupo\n${warn}`)
+                appendWarnings([
+                  `Verifica materias por grupo\n${warn}`,
+                ])
+              }
+              if (materiasSinProfesor.length) {
+                const warn = materiasSinProfesor
+                  .map((m) => `${m.nombre} (${m.id})`)
+                  .join('\n')
+                toast.warning('Hay materias sin profesor asignado', {
+                  description: <div className="whitespace-pre-line">{warn}</div>,
+                })
+                preWarningsRef.current.push(
+                  `Hay materias sin profesor asignado\n${warn}`
+                )
+                appendWarnings([
+                  `Hay materias sin profesor asignado\n${warn}`,
+                ])
+              }
+              backtrackingMutation.mutate()
+            }}
+            disabled={mutation.isPending || backtrackingMutation.isPending || materias.length === 0}
+          >
+            {backtrackingMutation.isPending ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Calculando...
+              </>
+            ) : (
+              'Generar (Backtracking)'
+            )}
           </Button>
         </div>
       </CardContent>
