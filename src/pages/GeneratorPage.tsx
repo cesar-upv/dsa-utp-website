@@ -50,7 +50,7 @@ export default function GeneratorPage() {
         </div>
         <div className="flex items-center gap-3 rounded-2xl border border-border/70 bg-card px-4 py-3 text-sm text-muted-foreground">
           <PlayCircle className="h-5 w-5 text-primary" />
-          Ejecución local del solver (mock en TS + stub Python).
+          Ejecución acelerada vía Cython (Backend local).
         </div>
       </header>
 
