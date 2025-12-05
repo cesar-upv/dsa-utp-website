@@ -99,60 +99,259 @@ Es la clase principal que contiene el estado del problema y los algoritmos de re
 
 ### 1. Algoritmo Greedy (Voraz)
 
-**Complejidad**: O(N × A) donde N = número de nodos, A = asignaciones posibles por nodo.
+**Complejidad Temporal**: O(N × A) donde N = número de nodos, A = asignaciones posibles por nodo.
+
+#### ¿Qué es el algoritmo Greedy?
+
+El algoritmo **Greedy** (voraz) es una estrategia de resolución de problemas que toma decisiones **localmente óptimas** en cada paso, con la esperanza de que estas decisiones conduzcan a una solución global aceptable. En el contexto de la generación de horarios, el algoritmo intenta asignar cada hora-clase de manera secuencial, eligiendo siempre la **primera opción válida** que encuentre.
+
+#### ¿Cómo funciona paso a paso?
+
+1. **Ordenamiento inicial**: El sistema recibe una lista de "nodos" (horas-clase) que deben ser asignadas. Cada nodo representa una hora específica de una materia para un grupo determinado. Por ejemplo, si "Cálculo" tiene 4 horas semanales, se generan 4 nodos independientes.
+
+2. **Iteración secuencial**: El algoritmo recorre cada nodo en orden. Para cada nodo, tiene una lista de "asignaciones posibles" que son combinaciones válidas de (día, horario, profesor).
+
+3. **Selección de la primera opción válida**: Para cada nodo, el algoritmo prueba las asignaciones posibles una por una. La primera que pase todas las validaciones (profesor disponible, grupo libre, sin exceder cargas máximas, etc.) se aplica inmediatamente.
+
+4. **Sin retroceso**: Una vez que se asigna un nodo, esa decisión es **permanente**. El algoritmo nunca vuelve atrás para cambiar una asignación anterior, incluso si esto causa que nodos posteriores no puedan ser asignados.
+
+5. **Manejo de fallos**: Si ninguna asignación es válida para un nodo, simplemente se deja sin asignar y se genera una advertencia. El algoritmo continúa con el siguiente nodo.
+
+#### Pseudocódigo detallado
 
 ```
-Para cada nodo en orden:
-    Para cada asignación posible (día, slot, profesor):
-        Si es válida:
-            Aplicar asignación
-            Continuar al siguiente nodo
-    Si ninguna es válida:
-        Dejar nodo sin asignar (advertencia)
+función solve_greedy():
+    Para i desde 0 hasta cantidad_de_nodos:
+        nodo = nodos[i]
+        grupo_idx = obtener_indice_grupo(nodo.grupo_id)
+        materia_idx = obtener_indice_materia(nodo.materia_id)
+        
+        asignado = Falso
+        
+        Para cada (día, slot, profesor) en nodo.asignaciones_posibles:
+            Si es_valido(nodo, grupo_idx, materia_idx, día, slot, profesor):
+                aplicar_movimiento(nodo, grupo_idx, materia_idx, día, slot, profesor)
+                asignado = Verdadero
+                Salir del bucle interno
+        
+        Si NO asignado:
+            # Este nodo queda sin asignar
+            Registrar advertencia
+    
+    Retornar Verdadero  # Siempre "termina", aunque con huecos
 ```
 
-**Ventajas**: Rápido, determinista.
-**Desventajas**: No backtrackea, puede quedarse atascado en óptimos locales.
+#### Ejemplo ilustrativo
+
+Supongamos que tenemos que asignar 3 horas de "Base de Datos" al grupo ISC-3A:
+
+| Nodo | Opciones Disponibles | Decisión |
+|------|---------------------|----------|
+| BD-hora1 | (Lunes-s1-Prof.López), (Lunes-s2-Prof.García), (Martes-s1-Prof.López) | Elige Lunes-s1-Prof.López ✓ |
+| BD-hora2 | (Lunes-s2-Prof.López), (Martes-s1-Prof.López), (Martes-s2-Prof.García) | Elige Lunes-s2-Prof.López ✓ (contiguo) |
+| BD-hora3 | (Martes-s1-Prof.López), (Miércoles-s1-Prof.López) | Elige Martes-s1-Prof.López ✓ |
+
+El Greedy tomó las primeras opciones válidas sin considerar si esto podría causar problemas más adelante.
+
+#### Ventajas y Desventajas
+
+| Ventajas | Desventajas |
+|----------|-------------|
+| ⚡ Muy rápido (milisegundos) | ❌ No garantiza solución óptima |
+| 🎯 Determinista (mismo input = mismo output) | ❌ Puede quedarse atascado |
+| 📊 Bajo consumo de memoria | ❌ No explora alternativas |
+| ✅ Siempre termina | ❌ Sensible al orden de entrada |
+
+---
 
 ### 2. Algoritmo Backtracking (Retroceso)
 
-**Complejidad**: O(A^N) en el peor caso, pero con podas muy agresivas.
+**Complejidad Temporal**: O(A^N) en el peor caso teórico, pero en la práctica es mucho menor gracias a las podas.
+
+#### ¿Qué es el algoritmo Backtracking?
+
+El algoritmo **Backtracking** es una técnica de búsqueda exhaustiva que explora el espacio de soluciones de forma sistemática. A diferencia del Greedy, el Backtracking **puede deshacer decisiones** cuando detecta que un camino no lleva a una solución válida. Es como resolver un laberinto: si llegas a un callejón sin salida, retrocedes y pruebas otro camino.
+
+#### ¿Cómo funciona paso a paso?
+
+1. **Estructura recursiva**: El algoritmo es una función que se llama a sí misma. Cada llamada intenta asignar un nodo específico (identificado por su índice).
+
+2. **Caso base**: Si el índice del nodo es igual al total de nodos, significa que todos fueron asignados exitosamente. ¡Se encontró una solución completa!
+
+3. **Exploración de opciones**: Para el nodo actual, el algoritmo prueba cada asignación posible (día, slot, profesor) una por una.
+
+4. **Validación**: Antes de aplicar una asignación, verifica que cumpla todas las restricciones (las mismas 8 restricciones que usa el Greedy).
+
+5. **Aplicar y recurrir**: Si la asignación es válida, la aplica (modifica las matrices de estado) y llama recursivamente a `backtrack(nodo_idx + 1)` para intentar asignar el siguiente nodo.
+
+6. **Retroceso (Backtrack)**: Si la llamada recursiva retorna `False` (no se pudo completar la solución desde ese punto), el algoritmo **deshace** la asignación (restaura las matrices de estado) y prueba la siguiente opción.
+
+7. **Agotamiento de opciones**: Si ninguna opción funciona para el nodo actual, retorna `False`, lo que causa que el nodo anterior también intente otra opción (efecto cascada).
+
+#### La magia del "deshacer" (Undo)
+
+El backtracking requiere poder **revertir** cada decisión. Para esto, cada vez que se aplica una asignación, se actualizan las matrices de estado:
+
+**Aplicar movimiento (`apply_move`)**:
+```
+prof_schedule[profesor][día][slot] = 1        # Marcar profesor ocupado
+group_schedule[grupo][día][slot] = 1          # Marcar grupo ocupado
+prof_load[profesor] += 1                       # Incrementar carga
+group_materia_day_count[grupo][materia][día] += 1
+group_materia_day_slots[grupo][materia][día] |= (1 << slot)  # Bitmask
+```
+
+**Deshacer movimiento (`undo_move`)**:
+```
+prof_schedule[profesor][día][slot] = 0        # Liberar profesor
+group_schedule[grupo][día][slot] = 0          # Liberar grupo
+prof_load[profesor] -= 1                       # Decrementar carga
+group_materia_day_count[grupo][materia][día] -= 1
+group_materia_day_slots[grupo][materia][día] &= ~(1 << slot)  # Limpiar bit
+```
+
+#### Control de tiempo
+
+Dado que el Backtracking puede tardar **horas o incluso días** en casos complejos, implementamos un sistema de límite de tiempo:
+
+1. **Contador de llamadas**: Se incrementa `call_count` en cada llamada recursiva.
+
+2. **Verificación periódica**: Cada 1000 llamadas, se compara el tiempo transcurrido contra el límite.
+
+3. **Bandera de abort**: Si se excede el tiempo, `time_limit_reached = True`.
+
+4. **Propagación inmediata**: Todas las funciones recursivas verifican esta bandera y retornan `False` inmediatamente, desenrollando la pila de llamadas en milisegundos.
+
+5. **Mejor solución parcial**: Antes de abortar, el algoritmo guarda la mejor solución encontrada hasta el momento (la que asignó más nodos).
+
+#### Pseudocódigo detallado
 
 ```
 función backtrack(nodo_idx):
-    # Control de tiempo cada 1000 llamadas
-    Si time_limit_reached: retornar False
-    Cada 1000 llamadas:
-        Si tiempo > límite:
-            Marcar time_limit_reached = True
-            Retornar False
+    call_count += 1
     
-    # Guardar mejor solución parcial
-    Si nodo_idx > max_assigned:
-        Guardar snapshot de asignaciones actuales
+    # === CONTROL DE TIEMPO ===
+    Si call_count % 1000 == 0:
+        Si time_limit_reached:
+            Retornar Falso
+        Si tiempo_actual() - tiempo_inicio > limite_tiempo:
+            Imprimir "Tiempo límite alcanzado"
+            time_limit_reached = Verdadero
+            Retornar Falso
     
-    # Caso base
-    Si nodo_idx >= total_nodos:
-        Retornar True (¡éxito!)
+    # === GUARDAR MEJOR SOLUCIÓN PARCIAL ===
+    Si nodo_idx > max_assigned_count:
+        max_assigned_count = nodo_idx
+        best_assignments = copiar_estado_actual()
+        Imprimir "Nueva mejor solución: {nodo_idx}/{total} asignaciones"
     
-    # Probar cada asignación posible
-    Para cada (día, slot, profesor) en posibles:
-        Si es válida:
-            Aplicar asignación
+    # === CASO BASE: SOLUCIÓN COMPLETA ===
+    Si nodo_idx >= cantidad_de_nodos:
+        Retornar Verdadero  # ¡Éxito!
+    
+    # === VERIFICACIÓN DE ABORT ===
+    Si time_limit_reached:
+        Retornar Falso
+    
+    # === OBTENER NODO ACTUAL ===
+    nodo = nodos[nodo_idx]
+    grupo_idx = obtener_indice_grupo(nodo.grupo_id)
+    materia_idx = obtener_indice_materia(nodo.materia_id)
+    
+    # === EXPLORAR TODAS LAS OPCIONES ===
+    Para cada (día, slot, profesor) en nodo.asignaciones_posibles:
+        
+        # Verificar abort antes de cada intento
+        Si time_limit_reached:
+            Retornar Falso
+        
+        Si es_valido(nodo, grupo_idx, materia_idx, día, slot, profesor):
+            
+            # PASO 1: Aplicar la asignación
+            aplicar_movimiento(nodo, grupo_idx, materia_idx, día, slot, profesor)
+            
+            # PASO 2: Recurrir al siguiente nodo
             Si backtrack(nodo_idx + 1):
-                Retornar True
+                Retornar Verdadero  # Propagar éxito hacia arriba
+            
+            # PASO 3: Verificar si debemos abortar
             Si time_limit_reached:
-                Deshacer y retornar False
-            Deshacer asignación (backtrack)
+                deshacer_movimiento(nodo, grupo_idx, materia_idx, día, slot, profesor)
+                Retornar Falso
+            
+            # PASO 4: Deshacer y probar siguiente opción (BACKTRACK)
+            deshacer_movimiento(nodo, grupo_idx, materia_idx, día, slot, profesor)
     
-    Retornar False (ninguna opción funcionó)
+    # === NINGUNA OPCIÓN FUNCIONÓ ===
+    Retornar Falso
 ```
 
-**Características clave**:
+#### Ejemplo ilustrativo: El poder del retroceso
 
-1. **Límite de tiempo configurable** (1-10 minutos)
-2. **Guardado de mejor solución parcial**: Si no encuentra solución completa, devuelve la mejor encontrada
-3. **Propagación de abort**: Cuando se acaba el tiempo, todas las llamadas recursivas se detienen inmediatamente
+Supongamos una situación donde el Greedy fallaría:
+
+**Escenario**: 2 materias (A y B), 1 profesor común, solo 2 slots disponibles.
+- Materia A: 1 hora, puede ir en slot 1 o slot 2
+- Materia B: 1 hora, SOLO puede ir en slot 1
+
+**Greedy** (falla):
+1. Asigna A en slot 1 (primera opción válida)
+2. Intenta asignar B... ¡slot 1 ocupado y no tiene otra opción!
+3. Resultado: B queda sin asignar ❌
+
+**Backtracking** (éxito):
+1. Asigna A en slot 1
+2. Intenta asignar B en slot 1... falla
+3. **RETROCEDE**: Deshace A de slot 1
+4. Asigna A en slot 2
+5. Asigna B en slot 1... ¡éxito!
+6. Resultado: Ambas materias asignadas ✓
+
+#### Árbol de decisiones
+
+El backtracking puede visualizarse como un árbol donde cada nivel representa un nodo por asignar:
+
+```
+                    [Inicio]
+                       │
+         ┌─────────────┼─────────────┐
+         ▼             ▼             ▼
+    [Nodo0-Op1]   [Nodo0-Op2]   [Nodo0-Op3]
+         │             │             │
+    ┌────┼────┐   ┌────┼────┐       ...
+    ▼    ▼    ▼   ▼    ▼    ▼
+  [N1-1][N1-2]  [N1-1][N1-2]
+    │     X       │     │
+    ▼             ▼     ▼
+  [N2-1]       [N2-1] [N2-1]
+    X             ✓     ...
+```
+
+- `✓` = Solución encontrada
+- `X` = Callejón sin salida (backtrack)
+
+El algoritmo recorre el árbol en **profundidad primero** (DFS), retrocediendo cuando encuentra un callejón sin salida.
+
+#### Ventajas y Desventajas
+
+| Ventajas | Desventajas |
+|----------|-------------|
+| ✅ Encuentra solución si existe | ⏱️ Puede ser muy lento |
+| ✅ Explora todo el espacio de búsqueda | 📊 Mayor consumo de memoria (pila de llamadas) |
+| ✅ Devuelve mejor solución parcial | 🔄 Complejidad exponencial teórica |
+| ✅ Configurable con límite de tiempo | |
+
+---
+
+### Comparación: ¿Cuándo usar cada uno?
+
+| Criterio | Greedy | Backtracking |
+|----------|--------|--------------|
+| **Tiempo disponible** | Poco (segundos) | Más (minutos) |
+| **Importancia de completar** | Baja (ok con huecos) | Alta (necesito todo) |
+| **Complejidad del problema** | Simple | Compleja |
+| **Restricciones** | Pocas/relajadas | Muchas/estrictas |
+| **Uso recomendado** | Vista previa rápida | Generación final |
 
 ---
 
