@@ -1,6 +1,6 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { AlertTriangle, Play, Layers, Loader2 } from 'lucide-react'
+import { AlertTriangle, Play, Loader2 } from 'lucide-react'
 import { toast } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -14,7 +14,7 @@ import { mockSolve } from '@/solver/mockSolver'
 import { solveBacktracking } from '@/solver/backtrackingSolver'
 import { useTimetableStore } from '@/store/useTimetableStore'
 import { solverInputSchema, type SolverInput } from '@/types/models'
-import { largeSeed } from '@/data/largeSeed'
+import { extendedData } from '@/data/extendedData'
 
 export function SolverPanel() {
   const materias = useTimetableStore((state) => state.materias)
@@ -22,10 +22,12 @@ export function SolverPanel() {
   const profesores = useTimetableStore((state) => state.profesores)
   const setHorarios = useTimetableStore((state) => state.setHorarios)
   const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
-  const resetDatos = useTimetableStore((state) => state.resetDatos)
   const setAllData = useTimetableStore((state) => state.setAllData)
   const appendWarnings = useTimetableStore((state) => state.appendWarnings)
   const [timeLimit, setTimeLimit] = useState(300)
+  const [elapsed, setElapsed] = useState(0)
+
+
 
   const resetHorarios = () =>
     setHorarios([], {
@@ -163,6 +165,18 @@ export function SolverPanel() {
       })
     },
   })
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>
+    if (cythonMutation.isPending) {
+      interval = setInterval(() => {
+        setElapsed((prev) => prev + 1)
+      }, 1000)
+    } else {
+      setElapsed(0)
+    }
+    return () => clearInterval(interval)
+  }, [cythonMutation.isPending])
 
   const materiasSinProfesor = useMemo(
     () =>
@@ -316,7 +330,7 @@ export function SolverPanel() {
             </select>
           </div>
           <Button
-            variant="outline"
+            variant="default"
             onClick={() => {
               cythonMutation.mutate({ algorithm: 'backtracking', timeLimit })
             }}
@@ -325,14 +339,14 @@ export function SolverPanel() {
             {cythonMutation.isPending && cythonMutation.variables?.algorithm === 'backtracking' ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Conectando...
+                Calculando... ({elapsed}s)
               </>
             ) : (
-              'Generar (Cython Backend)'
+              'Backtrack'
             )}
           </Button>
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => {
               cythonMutation.mutate({ algorithm: 'greedy', timeLimit })
             }}
@@ -341,10 +355,10 @@ export function SolverPanel() {
             {cythonMutation.isPending && cythonMutation.variables?.algorithm === 'greedy' ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Conectando...
+                Calculando... ({elapsed}s)
               </>
             ) : (
-              'Generar (Cython Greedy)'
+              'Greedy'
             )}
           </Button>
         </div>
@@ -360,27 +374,18 @@ export function SolverPanel() {
             type="button"
             className="text-muted-foreground underline underline-offset-2"
             onClick={() => {
-              resetDatos()
+              setAllData({
+                materias: extendedData.planDeEstudios,
+                grupos: extendedData.grupos,
+                profesores: extendedData.profesores,
+              } as any)
               resetHorarios()
+              toast.success('Datos base cargados (Plan Q1 Extended)')
             }}
           >
             Restaurar datos de ejemplo
           </button>
-          <span className="text-muted-foreground">•</span>
-          <button
-            type="button"
-            className="text-muted-foreground underline underline-offset-2 flex items-center gap-1"
-            onClick={() => {
-              setAllData(largeSeed)
-              resetHorarios()
-              toast.success(
-                'Seed grande aplicada (10 cuatrimestres, 2 grupos, 7 materias por grupo, disponibilidad completa)'
-              )
-            }}
-          >
-            <Layers className="h-4 w-4" />
-            Cargar seed grande
-          </button>
+
         </div>
       </CardFooter>
     </Card>

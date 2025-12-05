@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import scheduler
 import sys
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -84,7 +85,13 @@ def solve():
                 })
 
     try:
+        start_time = time.time()
         result = scheduler.run_scheduler(nodes_data, profesores, grupos, plan_de_estudios, algorithm, time_limit)
+        end_time = time.time()
+        
+        duration_ms = int((end_time - start_time) * 1000)
+        if duration_ms < 1:
+            duration_ms = 0 # Or < 1 ms
         
         # Format response to match frontend expected format
         horarios = []
@@ -161,7 +168,7 @@ def solve():
             'horarios': horarios,
             'resumen': {
                 'mensaje': 'Generado con Cython Backend' if result['success'] else f"Incompleto ({len(assignments)}/{len(nodes_data)} asignados)",
-                'tiempoMs': 0, 
+                'tiempoMs': duration_ms, 
                 'violacionesDuras': len(warnings),
                 'huecosPromedio': 0
             },
