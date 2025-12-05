@@ -112,17 +112,45 @@ def solve():
                     'materiaId': a['materiaId'],
                     'profesorId': a['profesorId'],
                     'dia': a['dia'],
-                    'slotId': a['slotId'], # This needs to be correct s1..s9
+                    'slotId': a['slotId'],
                     'duracion': 1,
                     'huecoPrevio': False,
                     'esContinuo': True
                 })
+
+            # Calculate Gaps for this group
+            # Group assignments by day
+            day_assignments = {}
+            for a in grp_assignments:
+                d = a['dia']
+                if d not in day_assignments: day_assignments[d] = []
+                day_assignments[d].append(slot_map[a['slotId']]) # Use numeric index
+            
+            total_gaps = 0
+            for d, slots_indices in day_assignments.items():
+                slots_indices.sort()
+                if not slots_indices: continue
                 
+                # Range from first class to last class
+                first_slot = slots_indices[0]
+                last_slot = slots_indices[-1]
+                
+                # Total span
+                span = last_slot - first_slot + 1
+                
+                # Actual classes
+                count = len(slots_indices)
+                
+                # Gaps = Span - Count
+                # Example: Class at 0, Class at 2. Span = 3 (0,1,2). Count = 2. Gaps = 1.
+                gaps = span - count
+                total_gaps += gaps
+            
             horarios.append({
                 'grupoId': grupo['id'],
                 'bloques': bloques,
                 'metricas': {
-                    'huecos': 0, # TODO: Calculate
+                    'huecos': total_gaps,
                     'violacionesDuras': 0 if result['success'] else 1,
                     'softScore': 10
                 }
@@ -170,7 +198,7 @@ def solve():
                 'mensaje': 'Generado con Cython Backend' if result['success'] else f"Incompleto ({len(assignments)}/{len(nodes_data)} asignados)",
                 'tiempoMs': duration_ms, 
                 'violacionesDuras': len(warnings),
-                'huecosPromedio': 0
+                'huecosPromedio': round(sum(h['metricas']['huecos'] for h in horarios) / len(horarios), 2) if horarios else 0
             },
             'advertencias': warnings
         })
