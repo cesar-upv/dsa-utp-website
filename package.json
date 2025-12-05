@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "npm-run-all -p dev sync",
+    "start": "npm-run-all -p dev sync backend",
     "sync": "browser-sync start --proxy http://localhost:5173 --files \"src/**/*\" \"index.html\" \"public/**/*\" --port 3000 --no-open --reload-delay 200",
     "dev": "vite",
+    "backend": "./start_backend.sh",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "typecheck": "tsc -b",
@@ -14,7 +15,8 @@
     "format:write": "prettier --write .",
     "test": "vitest run",
     "test:ui": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "./setup_backend.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

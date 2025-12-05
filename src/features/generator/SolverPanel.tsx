@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { AlertTriangle, Play, Layers, Loader2 } from 'lucide-react'
 import { toast } from '@/lib/utils'
@@ -25,6 +25,8 @@ export function SolverPanel() {
   const resetDatos = useTimetableStore((state) => state.resetDatos)
   const setAllData = useTimetableStore((state) => state.setAllData)
   const appendWarnings = useTimetableStore((state) => state.appendWarnings)
+  const [timeLimit, setTimeLimit] = useState(300)
+
   const resetHorarios = () =>
     setHorarios([], {
       mensaje: '',
@@ -110,6 +112,58 @@ export function SolverPanel() {
     },
   })
 
+  const cythonMutation = useMutation({
+    mutationFn: async ({ algorithm = 'backtracking', timeLimit = 300 }: { algorithm?: 'backtracking' | 'greedy', timeLimit?: number } = {}) => {
+      const parsed = solverInputSchema.parse(input)
+      const response = await fetch('http://localhost:5000/api/solve', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...parsed, algorithm, timeLimit }),
+      })
+      if (!response.ok) {
+        throw new Error('Error en el backend')
+      }
+      const output = await response.json()
+      setHorarios(output.horarios, {
+        mensaje: output.resumen.mensaje,
+        tiempoMs: output.resumen.tiempoMs,
+        warnings: output.advertencias ?? [],
+        status: output.status,
+      })
+      return output
+    },
+    onSuccess: (data) => {
+      const hasWarnings = data.advertencias && data.advertencias.length > 0
+
+      if (data.status === 'infeasible') {
+        toast.warning('No se encontró solución perfecta (Cython)', {
+          description: hasWarnings ? (
+            <div className="whitespace-pre-line">
+              {data.advertencias.join('\n')}
+            </div>
+          ) : undefined,
+        })
+      } else if (hasWarnings) {
+        toast.warning('Horario generado con advertencias (Cython)', {
+          description: (
+            <div className="whitespace-pre-line">
+              {data.advertencias.join('\n')}
+            </div>
+          ),
+        })
+      } else {
+        toast.success('Horario generado con Cython')
+      }
+    },
+    onError: (err) => {
+      toast.error('Error al conectar con Backend', {
+        description: 'Asegúrate de correr el servidor en el puerto 5000.',
+      })
+    },
+  })
+
   const materiasSinProfesor = useMemo(
     () =>
       materias.filter(
@@ -151,6 +205,7 @@ export function SolverPanel() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          {/* Frontend Solvers (Hidden by request)
           <Button
             onClick={() => {
               preWarningsRef.current = []
@@ -245,6 +300,51 @@ export function SolverPanel() {
               </>
             ) : (
               'Generar (Backtracking)'
+            )}
+          </Button>
+          */}
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Límite:</span>
+            <select
+              className="h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              value={timeLimit}
+              onChange={(e) => setTimeLimit(Number(e.target.value))}
+            >
+              <option value={60}>1 min</option>
+              <option value={300}>5 min</option>
+              <option value={600}>10 min</option>
+            </select>
+          </div>
+          <Button
+            variant="outline"
+            onClick={() => {
+              cythonMutation.mutate({ algorithm: 'backtracking', timeLimit })
+            }}
+            disabled={mutation.isPending || backtrackingMutation.isPending || cythonMutation.isPending || materias.length === 0}
+          >
+            {cythonMutation.isPending && cythonMutation.variables?.algorithm === 'backtracking' ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Conectando...
+              </>
+            ) : (
+              'Generar (Cython Backend)'
+            )}
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              cythonMutation.mutate({ algorithm: 'greedy', timeLimit })
+            }}
+            disabled={mutation.isPending || backtrackingMutation.isPending || cythonMutation.isPending || materias.length === 0}
+          >
+            {cythonMutation.isPending && cythonMutation.variables?.algorithm === 'greedy' ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Conectando...
+              </>
+            ) : (
+              'Generar (Cython Greedy)'
             )}
           </Button>
         </div>

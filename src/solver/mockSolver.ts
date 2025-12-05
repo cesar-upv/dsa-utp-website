@@ -120,7 +120,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
             )
             const disponible =
               profesorElegible.disponibilidad[day.id as DayId]?.[slot.id] ===
-                'available' &&
+              'available' &&
               !busyProfesor[profesorElegible.id][day.id as DayId][slot.id] &&
               !busyGrupo[grupo.id][day.id as DayId][slot.id] &&
               load[profesorElegible.id] < profesorElegible.maxHoras &&
@@ -129,8 +129,9 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
                 (slotsMismaMateria.length === 1 &&
                   Math.abs(
                     slotIndex(slot.id) -
-                      slotIndex(slotsMismaMateria[0].slotId)
-                  ) === 1))
+                    slotIndex(slotsMismaMateria[0].slotId)
+                  ) === 1)) &&
+              bloques.filter(b => b.grupoId === grupo.id && b.dia === day.id).length < 7
 
             if (disponible) {
               const bloque: BloqueMateria = {
@@ -188,7 +189,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
     })
 
     const huecos = computeHuecos(bloques)
-  horarios.push({
+    horarios.push({
       grupoId: grupo.id,
       bloques,
       metricas: {

@@ -145,6 +145,26 @@ export async function solveBacktracking(input: SolverInput): Promise<SolverOutpu
             if (Math.abs(existingSlotIndex - currentSlotIndex) !== 1) return false
         }
 
+        // 8. Max Gap <= 1 hour
+        // Check if adding this slot creates a gap > 1 with existing slots for this group/day
+        const groupDaySlots = assignments
+            .filter(b => b.grupoId === unit.grupoId && b.dia === dayId)
+            .map(b => slotIndex(b.slotId))
+
+        groupDaySlots.push(slotIndex(slotId))
+        groupDaySlots.sort((a, b) => a - b)
+
+        for (let i = 1; i < groupDaySlots.length; i++) {
+            const diff = groupDaySlots[i] - groupDaySlots[i - 1]
+            if (diff > 2) { // diff 2 means 1 gap (e.g. 1 and 3). diff > 2 means gap > 1 (e.g. 1 and 4)
+                return false
+            }
+        }
+
+        // 9. Max 7 hours per day per group
+        const groupDailyHours = assignments.filter(b => b.grupoId === unit.grupoId && b.dia === dayId).length
+        if (groupDailyHours >= 7) return false
+
         return true
     }
 
@@ -268,6 +288,20 @@ export async function solveBacktracking(input: SolverInput): Promise<SolverOutpu
             warnings.push(`No se pudieron asignar ${count} horas de ${matName} al grupo ${grpName}`)
         })
     }
+
+    // Check Min 6 Classes per Day Warning
+    input.grupos.forEach(g => {
+        const grpAssignments = finalAssignments.filter(b => b.grupoId === g.id)
+        const byDay: Record<DayId, number> = { mon: 0, tue: 0, wed: 0, thu: 0, fri: 0 }
+        grpAssignments.forEach(b => byDay[b.dia]++)
+
+        Object.entries(byDay).forEach(([day, count]) => {
+            if (count > 0 && count < 6) {
+                const dayName = DAYS.find(d => d.id === day)?.label ?? day
+                warnings.push(`El grupo ${g.nombre} tiene pocas clases (${count}) el ${dayName} (mínimo recomendado: 6)`)
+            }
+        })
+    })
 
     // Group assignments by Grupo
     input.grupos.forEach(g => {
