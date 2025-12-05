@@ -444,9 +444,7 @@
       "maxHoras": 9,
       "competencias": [
         "FUNDAMENTOS-MATEMÁTICOS",
-        "CÁLCULO-DIFERENCIAL",
-        "CÁLCULO-INTEGRAL",
-        "FÍSICA"
+        "CÁLCULO-DIFERENCIAL"
       ],
       "disponibilidad": {
         "mon": {
@@ -518,9 +516,7 @@
       "competencias": [
         "CÁLCULO-INTEGRAL",
         "ECUACIONES-DIFERENCIALES",
-        "CÁLCULO-DE-VARIAS-VARIABLES",
-        "FUNDAMENTOS-MATEMÁTICOS",
-        "CÁLCULO-DIFERENCIAL"
+        "CÁLCULO-DE-VARIAS-VARIABLES"
       ],
       "disponibilidad": {
         "mon": {
@@ -592,9 +588,7 @@
       "competencias": [
         "PROBABILIDAD-Y-ESTADÍSTICA",
         "CIENCIA-DE-DATOS",
-        "FUNDAMENTOS-MATEMÁTICOS",
-        "CÁLCULO-DIFERENCIAL",
-        "CÁLCULO-INTEGRAL"
+        "FUNDAMENTOS-MATEMÁTICOS"
       ],
       "disponibilidad": {
         "mon": {
@@ -666,9 +660,7 @@
       "competencias": [
         "FUNDAMENTOS-DE-PROGRAMACIÓN",
         "PROGRAMACIÓN-ESTRUCTURADA",
-        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
-        "ESTRUCTURA-DE-DATOS",
-        "BASES-DE-DATOS"
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
       ],
       "disponibilidad": {
         "mon": {
@@ -739,9 +731,7 @@
       "maxHoras": 10,
       "competencias": [
         "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
-        "PROGRAMACIÓN-PARA-INTELIGENCIA-ARTIFICIAL",
-        "CIENCIA-DE-DATOS",
-        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
+        "PROGRAMACIÓN-PARA-INTELIGENCIA-ARTIFICIAL"
       ],
       "disponibilidad": {
         "mon": {
@@ -815,9 +805,7 @@
         "INTERNET DE LAS COSAS",
         "OPTATIVA-II-PROGRAMACIÓN-MÓVIL-AVANZADA",
         "DESARROLLO-DE-APLICACIONES-MÓVILES",
-        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
-        "FUNDAMENTOS-DE-PROGRAMACIÓN",
-        "PROGRAMACIÓN-ESTRUCTURADA"
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
       ],
       "disponibilidad": {
         "mon": {
@@ -889,9 +877,7 @@
       "competencias": [
         "ESTRUCTURA-DE-DATOS",
         "BASES-DE-DATOS",
-        "BASES-DE-DATOS-AVANZADAS",
-        "PROGRAMACIÓN-ESTRUCTURADA",
-        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
+        "BASES-DE-DATOS-AVANZADAS"
       ],
       "disponibilidad": {
         "mon": {
@@ -963,9 +949,7 @@
       "competencias": [
         "APLICACIONES-WEB",
         "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS",
-        "OPTATIVA-III-FRAMEWORKS-PARA-EL-DESARROLLO",
-        "FUNDAMENTOS-DE-PROGRAMACIÓN",
-        "PROGRAMACIÓN-ESTRUCTURADA"
+        "OPTATIVA-III-FRAMEWORKS-PARA-EL-DESARROLLO"
       ],
       "disponibilidad": {
         "mon": {
@@ -1036,10 +1020,7 @@
       "maxHoras": 15,
       "competencias": [
         "DESARROLLO-DE-APLICACIONES-MÓVILES",
-        "OPTATIVA-II-PROGRAMACIÓN-MÓVIL-AVANZADA",
-        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
-        "FUNDAMENTOS-DE-PROGRAMACIÓN",
-        "ESTRUCTURA-DE-DATOS"
+        "OPTATIVA-II-PROGRAMACIÓN-MÓVIL-AVANZADA"
       ],
       "disponibilidad": {
         "mon": {
@@ -1112,9 +1093,7 @@
         "FUNDAMENTOS-DE-REDES",
         "CONMUTACIÓN-Y-ENRUTAMIENTO-DE-REDES",
         "ADMINISTRACIÓN-DE-SERVIDORES",
-        "SEGURIDAD-INFORMÁTICA",
-        "SISTEMAS-OPERATIVOS",
-        "INFORMÁTICA-FORENSE"
+        "SEGURIDAD-INFORMÁTICA"
       ],
       "disponibilidad": {
         "mon": {
@@ -1187,9 +1166,7 @@
         "SISTEMAS-OPERATIVOS",
         "SEGURIDAD-INFORMÁTICA",
         "INFORMÁTICA-FORENSE",
-        "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
-        "FUNDAMENTOS-DE-REDES",
-        "ADMINISTRACIÓN-DE-SERVIDORES"
+        "COMUNICACIÓN-Y-HABILIDADES-DIGITALES"
       ],
       "disponibilidad": {
         "mon": {
@@ -1261,9 +1238,7 @@
       "competencias": [
         "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
         "TÓPICOS-DE-CALIDAD-PARA-EL-DISEÑO-DE-SOFTWARE",
-        "ESTÁNDARES-Y-MÉTRICAS-PARA-EL-DESARROLLO-DE-SOFTWARE",
-        "PROYECTO-INTEGRADOR-I",
-        "PROYECTO-INTEGRADOR-II"
+        "ESTÁNDARES-Y-MÉTRICAS-PARA-EL-DESARROLLO-DE-SOFTWARE"
       ],
       "disponibilidad": {
         "mon": {
@@ -1336,9 +1311,7 @@
         "PROYECTO-INTEGRADOR-I",
         "PROYECTO-INTEGRADOR-II",
         "APLICACIONES-WEB",
-        "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS",
-        "PROYECTO-INTEGRADOR-III",
-        "OPTATIVA-III-FRAMEWORKS-PARA-EL-DESARROLLO"
+        "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS"
       ],
       "disponibilidad": {
         "mon": {
@@ -1411,10 +1384,7 @@
         "PROYECTO-INTEGRADOR-III",
         "TECNOLOGÍAS-DISRUPTIVAS",
         "FUNDAMENTOS-DE-REDES",
-        "CONMUTACIÓN-Y-ENRUTAMIENTO-DE-REDES",
-        "SISTEMAS-OPERATIVOS",
-        "ADMINISTRACIÓN-DE-SERVIDORES",
-        "SEGURIDAD-INFORMÁTICA"
+        "CONMUTACIÓN-Y-ENRUTAMIENTO-DE-REDES"
       ],
       "disponibilidad": {
         "mon": {
@@ -1484,10 +1454,7 @@
       "nombre": "M.S.I. Marina Cristal Flores Flores",
       "maxHoras": 15,
       "competencias": [
-        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
-        "BASES-DE-DATOS",
-        "BASES-DE-DATOS-AVANZADAS",
-        "CIENCIA-DE-DATOS"
+        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE"
       ],
       "disponibilidad": {
         "mon": {
@@ -1557,10 +1524,7 @@
       "nombre": "Ing. Hugo E. Treviño",
       "maxHoras": 15,
       "competencias": [
-        "DESARROLLO-HUMANO-Y-VALORES",
-        "HABILIDADES-SOCIOEMOCIONALES-Y-MANEJO-DE-CONFLICTOS",
-        "ÉTICA-PROFESIONAL",
-        "LIDERAZGO-DE-EQUIPOS-DE-ALTO-DESEMPEÑO"
+        "DESARROLLO-HUMANO-Y-VALORES"
       ],
       "disponibilidad": {
         "mon": {
@@ -1631,10 +1595,7 @@
       "maxHoras": 12,
       "competencias": [
         "HABILIDADES-SOCIOEMOCIONALES-Y-MANEJO-DE-CONFLICTOS",
-        "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES",
-        "DESARROLLO-HUMANO-Y-VALORES",
-        "LIDERAZGO-DE-EQUIPOS-DE-ALTO-DESEMPEÑO",
-        "ÉTICA-PROFESIONAL"
+        "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES"
       ],
       "disponibilidad": {
         "mon": {
@@ -1706,10 +1667,7 @@
       "competencias": [
         "ÉTICA-PROFESIONAL",
         "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
-        "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
-        "DESARROLLO-HUMANO-Y-VALORES",
-        "HABILIDADES-GERENCIALES",
-        "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
+        "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE"
       ],
       "disponibilidad": {
         "mon": {
@@ -1780,11 +1738,7 @@
       "maxHoras": 10,
       "competencias": [
         "LIDERAZGO-DE-EQUIPOS-DE-ALTO-DESEMPEÑO",
-        "HABILIDADES-GERENCIALES",
-        "ÉTICA-PROFESIONAL",
-        "DESARROLLO-HUMANO-Y-VALORES",
-        "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
-        "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
+        "HABILIDADES-GERENCIALES"
       ],
       "disponibilidad": {
         "mon": {
@@ -1855,10 +1809,7 @@
       "maxHoras": 15,
       "competencias": [
         "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
-        "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
-        "EVALUACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
-        "HABILIDADES-GERENCIALES",
-        "LIDERAZGO-DE-EQUIPOS-DE-ALTO-DESEMPEÑO"
+        "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
       ],
       "disponibilidad": {
         "mon": {
@@ -1929,9 +1880,7 @@
       "maxHoras": 6,
       "competencias": [
         "EVALUACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
-        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
-        "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
-        "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
+        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE"
       ],
       "disponibilidad": {
         "mon": {
@@ -2003,10 +1952,7 @@
       "competencias": [
         "INGLES-1",
         "INGLES-2",
-        "INGLES-3",
-        "INGLES-4",
-        "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
-        "COMUNICACIÓN-Y-HABILIDADES-DIGITALES"
+        "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN"
       ],
       "disponibilidad": {
         "mon": {
@@ -2078,9 +2024,7 @@
       "competencias": [
         "INGLES-3",
         "INGLES-4",
-        "INGLES-2",
-        "INGLES-5",
-        "INGLES-6"
+        "INGLES-2"
       ],
       "disponibilidad": {
         "mon": {
@@ -2151,10 +2095,7 @@
       "maxHoras": 15,
       "competencias": [
         "INGLES-5",
-        "INGLES-6",
-        "INGLES-7",
-        "INGLES-8",
-        "INGLES-4"
+        "INGLES-6"
       ],
       "disponibilidad": {
         "mon": {
@@ -2225,10 +2166,7 @@
       "maxHoras": 15,
       "competencias": [
         "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
-        "SEGURIDAD-INFORMÁTICA",
-        "TÓPICOS-DE-CALIDAD-PARA-EL-DISEÑO-DE-SOFTWARE",
-        "ESTÁNDARES-Y-MÉTRICAS-PARA-EL-DESARROLLO-DE-SOFTWARE",
-        "INFORMÁTICA-FORENSE"
+        "SEGURIDAD-INFORMÁTICA"
       ],
       "disponibilidad": {
         "mon": {
@@ -2298,9 +2236,7 @@
       "nombre": "Lic. Carlos Castillo",
       "maxHoras": 8,
       "competencias": [
-        "INGLES-1",
-        "INGLES-2",
-        "INGLES-3"
+        "INGLES-1"
       ],
       "disponibilidad": {
         "mon": {
@@ -2372,10 +2308,7 @@
       "competencias": [
         "FUNDAMENTOS-MATEMÁTICOS",
         "FÍSICA",
-        "CÁLCULO-DE-VARIAS-VARIABLES",
-        "CÁLCULO-DIFERENCIAL",
-        "CÁLCULO-INTEGRAL",
-        "ECUACIONES-DIFERENCIALES"
+        "CÁLCULO-DE-VARIAS-VARIABLES"
       ],
       "disponibilidad": {
         "mon": {
@@ -2445,9 +2378,7 @@
       "nombre": "Alma Leticia Valdéz García",
       "maxHoras": 6,
       "competencias": [
-        "INGLES-3",
-        "INGLES-4",
-        "INGLES-5"
+        "INGLES-3"
       ],
       "disponibilidad": {
         "mon": {
@@ -2519,10 +2450,7 @@
       "competencias": [
         "INGLES-4",
         "INGLES-7",
-        "INGLES-1",
-        "INGLES-5",
-        "INGLES-6",
-        "INGLES-8"
+        "INGLES-1"
       ],
       "disponibilidad": {
         "mon": {
@@ -2593,15 +2521,12 @@
       "maxHoras": 15,
       "competencias": [
         "INGLES-5",
-        "INGLES-6",
         "FÍSICA",
         "SEGURIDAD-INFORMÁTICA",
         "CÁLCULO-DE-VARIAS-VARIABLES",
         "CÁLCULO-DIFERENCIAL",
         "ECUACIONES-DIFERENCIALES",
-        "CÁLCULO-INTEGRAL",
-        "FUNDAMENTOS-MATEMÁTICOS",
-        "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL"
+        "CÁLCULO-INTEGRAL"
       ],
       "disponibilidad": {
         "mon": {
