@@ -24,3 +24,11 @@ dist-ssr
 *.sw?
 
 backend/venv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+tools/graph_visualizer/venv/
+.env

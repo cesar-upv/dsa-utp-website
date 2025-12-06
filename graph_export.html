@@ -1,0 +1,401 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 100vh;
+                 background-color: #0f172a;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+                
+                body { margin: 0; padding: 0; font-family: 'Outfit', sans-serif; background-color: #0f172a; color: #e2e8f0; overflow: hidden; }
+                
+                #mynetwork {
+                    position: fixed !important; top: 80px !important; left: 0 !important;
+                    width: 100vw !important; height: calc(100vh - 80px) !important;
+                    background: #0f172a; z-index: 1; outline: none;
+                }
+                
+                /* HEADER */
+                #custom-header {
+                    position: fixed; top: 0; left: 0; right: 0; height: 72px; /* Compact height */
+                    background: rgba(15, 23, 42, 0.95);
+                    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                    display: flex; align-items: center; justify-content: space-between;
+                    padding: 0 24px; z-index: 9999;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+                }
+                
+                .header-left { display: flex; align-items: center; gap: 14px; }
+                .logo-icon {
+                    width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+                    font-size: 20px; color: white; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+                }
+                .header-title h1 { margin: 0; font-size: 18px; font-weight: 600; color: #f8fafc; }
+                .header-title p { margin: 0; font-size: 11px; color: #94a3b8; font-weight: 500; letter-spacing: 0.5px; }
+
+                /* CONTROLS */
+                .controls-wrapper { display: flex; align-items: center; gap: 16px; }
+                
+                .control-group { display: flex; flex-direction: column; gap: 4px; position: relative; }
+                .control-label {
+                    font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px; 
+                    color: #94a3b8; font-weight: 700; display: flex; align-items: center; gap: 4px;
+                }
+                
+                /* Selects - Compact */
+                .custom-select {
+                    appearance: none; background: #1e293b; border: 1px solid #334155;
+                    color: #f1f5f9; padding: 6px 12px; padding-right: 32px;
+                    border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+                    min-width: 180px; height: 34px; cursor: pointer; transition: all 0.2s;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+                    background-repeat: no-repeat; background-position: right 10px center;
+                }
+                .custom-select:hover { background-color: #334155; border-color: #475569; }
+                .custom-select:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
+                .custom-select option { background: #1e293b; color: white; padding: 8px; }
+
+                /* Action Button - Compact */
+                .btn-action {
+                    height: 34px; padding: 0 16px; border-radius: 8px; border: 1px solid #334155;
+                    background: #1e293b; color: #e2e8f0; font-family: 'Outfit', sans-serif;
+                    font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;
+                    transition: all 0.2s; margin-top: 14px;
+                }
+                .btn-action:hover { background: #334155; color: white; transform: translateY(-1px); }
+                .btn-action:active { transform: translateY(0); }
+                
+                /* Slider - Fixed Visibility */
+                input[type=range] {
+                    -webkit-appearance: none; width: 120px; background: transparent; margin-top: 8px;
+                }
+                input[type=range]::-webkit-slider-thumb {
+                    -webkit-appearance: none; height: 14px; width: 14px; border-radius: 50%;
+                    background: #6366f1; cursor: pointer; margin-top: -5px;
+                    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5); border: 1px solid rgba(255,255,255,0.2);
+                }
+                input[type=range]::-webkit-slider-runnable-track {
+                    width: 100%; height: 4px; cursor: pointer;
+                    background: #475569; border-radius: 2px;
+                }
+                input[type=range]:focus { outline: none; }
+            </style>
+            </head>
+
+
+    <body>
+            <div id="custom-header">
+                <div class="header-left">
+                    <div class="logo-icon">🖇</div>
+                    <div class="header-title">
+                        <h1>Visualizador</h1>
+                        <p>NETWORK EXPLORER</p>
+                    </div>
+                </div>
+                
+                <div class="controls-wrapper">
+                    <!-- Search -->
+                    <div class="control-group">
+                        <div class="control-label">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                             BUSCAR
+                        </div>
+                        <select id="ui-search" class="custom-select">
+                            <option value="">Buscar nodo...</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Filter -->
+                    <div class="control-group">
+                        <div class="control-label">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                             FILTRAR
+                        </div>
+                        <select id="ui-filter" class="custom-select">
+                            <option value="all">Todo</option>
+                        </select>
+                    </div>
+
+                    <!-- Spacing Slider -->
+                    <div class="control-group">
+                        <div class="control-label">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+                             ESPACIADO
+                        </div>
+                        <input type="range" id="ui-spacing" min="50" max="800" value="100">
+                    </div>
+                    
+                    <!-- Reset -->
+                    <button id="ui-reset" class="btn-action">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        Recentrar
+                    </button>
+                    
+                     <!-- Physics Toggle -->
+                    <button id="ui-physics" class="btn-action" style="background: #3b82f6; border-color: #2563eb; color: white;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><activity path="M22 12h-4l-3 9L9 3l-3 9H2"/></activity><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        Física
+                    </button>
+                </div>
+            </div>
+            
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"Label": "ITIID 1-1", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-1-1", "label": "ITIID 1-1", "shape": "dot", "size": 10, "title": "ITIID 1-1"}, {"Label": "INGL\u00c9S I", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "INGLES-1", "label": "INGL\u00c9S I", "shape": "dot", "size": 10, "title": "INGL\u00c9S I"}, {"Label": "DESARROLLO HUMANO Y VALORES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "DESARROLLO-HUMANO-Y-VALORES", "label": "DESARROLLO HUMANO Y VALORES", "shape": "dot", "size": 10, "title": "DESARROLLO HUMANO Y VALORES"}, {"Label": "FUNDAMENTOS MATEM\u00c1TICOS", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "FUNDAMENTOS-MATEM\u00c1TICOS", "label": "FUNDAMENTOS MATEM\u00c1TICOS", "shape": "dot", "size": 10, "title": "FUNDAMENTOS MATEM\u00c1TICOS"}, {"Label": "FUNDAMENTOS DE REDES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "FUNDAMENTOS-DE-REDES", "label": "FUNDAMENTOS DE REDES", "shape": "dot", "size": 10, "title": "FUNDAMENTOS DE REDES"}, {"Label": "F\u00cdSICA", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "F\u00cdSICA", "label": "F\u00cdSICA", "shape": "dot", "size": 10, "title": "F\u00cdSICA"}, {"Label": "FUNDAMENTOS DE PROGRAMACI\u00d3N", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "FUNDAMENTOS-DE-PROGRAMACI\u00d3N", "label": "FUNDAMENTOS DE PROGRAMACI\u00d3N", "shape": "dot", "size": 10, "title": "FUNDAMENTOS DE PROGRAMACI\u00d3N"}, {"Label": "COMUNICACI\u00d3N Y HABILIDADES DIGITALES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES", "label": "COMUNICACI\u00d3N Y HABILIDADES DIGITALES", "shape": "dot", "size": 10, "title": "COMUNICACI\u00d3N Y HABILIDADES DIGITALES"}, {"Label": "Lic. Carlos Castillo", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "CC-01", "label": "Lic. Carlos Castillo", "shape": "dot", "size": 10, "title": "Lic. Carlos Castillo"}, {"Label": "Ing. Hugo E. Trevi\u00f1o", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "HE-01", "label": "Ing. Hugo E. Trevi\u00f1o", "shape": "dot", "size": 10, "title": "Ing. Hugo E. Trevi\u00f1o"}, {"Label": "DESARROLLO DEL PENSAMIENTO Y TOMA DE DECISIONES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES", "label": "DESARROLLO DEL PENSAMIENTO Y TOMA DE DECISIONES", "shape": "dot", "size": 10, "title": "DESARROLLO DEL PENSAMIENTO Y TOMA DE DECISIONES"}, {"Label": "ITIID 3-1", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-3-1", "label": "ITIID 3-1", "shape": "dot", "size": 10, "title": "ITIID 3-1"}, {"Label": "Dr. Jean-Michael Recher", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "JM-01", "label": "Dr. Jean-Michael Recher", "shape": "dot", "size": 10, "title": "Dr. Jean-Michael Recher"}, {"Label": "C\u00c1LCULO INTEGRAL", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "C\u00c1LCULO-INTEGRAL", "label": "C\u00c1LCULO INTEGRAL", "shape": "dot", "size": 10, "title": "C\u00c1LCULO INTEGRAL"}, {"Label": "M.A.T. Hiram Herrera Rivas", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "HH-02", "label": "M.A.T. Hiram Herrera Rivas", "shape": "dot", "size": 10, "title": "M.A.T. Hiram Herrera Rivas"}, {"Label": "SEGURIDAD INFORM\u00c1TICA", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "SEGURIDAD-INFORM\u00c1TICA", "label": "SEGURIDAD INFORM\u00c1TICA", "shape": "dot", "size": 10, "title": "SEGURIDAD INFORM\u00c1TICA"}, {"Label": "ITIID-7-1", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-7-1", "label": "ITIID-7-1", "shape": "dot", "size": 10, "title": "ITIID-7-1"}, {"Label": "M.I. Arturo G. Mascorro Cienfuegos", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MAGMC", "label": "M.I. Arturo G. Mascorro Cienfuegos", "shape": "dot", "size": 10, "title": "M.I. Arturo G. Mascorro Cienfuegos"}, {"Label": "C\u00c1LCULO DE VARIAS VARIABLES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "C\u00c1LCULO-DE-VARIAS-VARIABLES", "label": "C\u00c1LCULO DE VARIAS VARIABLES", "shape": "dot", "size": 10, "title": "C\u00c1LCULO DE VARIAS VARIABLES"}, {"Label": "ITIID 4-1", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-4-1", "label": "ITIID 4-1", "shape": "dot", "size": 10, "title": "ITIID 4-1"}, {"Label": "Dr. Hector Hugo Avil\u00e9s Arriaga", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "HH-01", "label": "Dr. Hector Hugo Avil\u00e9s Arriaga", "shape": "dot", "size": 10, "title": "Dr. Hector Hugo Avil\u00e9s Arriaga"}, {"Label": "ITIID 1-2", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-1-2", "label": "ITIID 1-2", "shape": "dot", "size": 10, "title": "ITIID 1-2"}, {"Label": "PROGRAMACI\u00d3N ORIENTADA A OBJETOS", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS", "label": "PROGRAMACI\u00d3N ORIENTADA A OBJETOS", "shape": "dot", "size": 10, "title": "PROGRAMACI\u00d3N ORIENTADA A OBJETOS"}, {"Label": "M.S.I. Alma Delia Amaya V\u00e1zquez", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "AD-01", "label": "M.S.I. Alma Delia Amaya V\u00e1zquez", "shape": "dot", "size": 10, "title": "M.S.I. Alma Delia Amaya V\u00e1zquez"}, {"Label": "Oscar Romero de la Cruz", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "OR-01", "label": "Oscar Romero de la Cruz", "shape": "dot", "size": 10, "title": "Oscar Romero de la Cruz"}, {"Label": "M.I. Erendira Guitierrez Meza", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "EG-01", "label": "M.I. Erendira Guitierrez Meza", "shape": "dot", "size": 10, "title": "M.I. Erendira Guitierrez Meza"}, {"Label": "HABILIDADES GERENCIALES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "HABILIDADES-GERENCIALES", "label": "HABILIDADES GERENCIALES", "shape": "dot", "size": 10, "title": "HABILIDADES GERENCIALES"}, {"Label": "ITIID 7-2", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-7-2", "label": "ITIID 7-2", "shape": "dot", "size": 10, "title": "ITIID 7-2"}, {"Label": "Dra. Karla E. V\u00e1zquez Ortiz", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "KE-01", "label": "Dra. Karla E. V\u00e1zquez Ortiz", "shape": "dot", "size": 10, "title": "Dra. Karla E. V\u00e1zquez Ortiz"}, {"Label": "M.T.I. Israel Pulido Picazo", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "IP-01", "label": "M.T.I. Israel Pulido Picazo", "shape": "dot", "size": 10, "title": "M.T.I. Israel Pulido Picazo"}, {"Label": "FORMULACI\u00d3N DE PROYECTOS DE TECNOLOG\u00cdA", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA", "label": "FORMULACI\u00d3N DE PROYECTOS DE TECNOLOG\u00cdA", "shape": "dot", "size": 10, "title": "FORMULACI\u00d3N DE PROYECTOS DE TECNOLOG\u00cdA"}, {"Label": "Fernando Requena", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "FR-01", "label": "Fernando Requena", "shape": "dot", "size": 10, "title": "Fernando Requena"}, {"Label": "INGL\u00c9S IV", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "INGLES-4", "label": "INGL\u00c9S IV", "shape": "dot", "size": 10, "title": "INGL\u00c9S IV"}, {"Label": "\u00c9TICA PROFESIONAL", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "\u00c9TICA-PROFESIONAL", "label": "\u00c9TICA PROFESIONAL", "shape": "dot", "size": 10, "title": "\u00c9TICA PROFESIONAL"}, {"Label": "APLICACIONES WEB", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "APLICACIONES-WEB", "label": "APLICACIONES WEB", "shape": "dot", "size": 10, "title": "APLICACIONES WEB"}, {"Label": "ESTRUCTURA DE DATOS", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "ESTRUCTURA-DE-DATOS", "label": "ESTRUCTURA DE DATOS", "shape": "dot", "size": 10, "title": "ESTRUCTURA DE DATOS"}, {"Label": "DESARROLLO DE APLICACIONES M\u00d3VILES", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "DESARROLLO-DE-APLICACIONES-M\u00d3VILES", "label": "DESARROLLO DE APLICACIONES M\u00d3VILES", "shape": "dot", "size": 10, "title": "DESARROLLO DE APLICACIONES M\u00d3VILES"}, {"Label": "AN\u00c1LISIS Y DISE\u00d1O DE SOFTWARE", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE", "label": "AN\u00c1LISIS Y DISE\u00d1O DE SOFTWARE", "shape": "dot", "size": 10, "title": "AN\u00c1LISIS Y DISE\u00d1O DE SOFTWARE"}, {"Label": "Eduardo Patricio Gonz\u00e1lez Nu\u00f1o", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "EP-01", "label": "Eduardo Patricio Gonz\u00e1lez Nu\u00f1o", "shape": "dot", "size": 10, "title": "Eduardo Patricio Gonz\u00e1lez Nu\u00f1o"}, {"Label": "M.I. Luis R. De la Fuente", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "LR-01", "label": "M.I. Luis R. De la Fuente", "shape": "dot", "size": 10, "title": "M.I. Luis R. De la Fuente"}, {"Label": "ITIID 4-2", "Type": "Group", "font": {"color": "white"}, "group": "Grupos", "id": "ITIID-4-2", "label": "ITIID 4-2", "shape": "dot", "size": 10, "title": "ITIID 4-2"}, {"Label": "\u00c9TICA Y LEGISLACI\u00d3N EN TECNOLOG\u00cdAS DE LA INFORMACI\u00d3N", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N", "label": "\u00c9TICA Y LEGISLACI\u00d3N EN TECNOLOG\u00cdAS DE LA INFORMACI\u00d3N", "shape": "dot", "size": 10, "title": "\u00c9TICA Y LEGISLACI\u00d3N EN TECNOLOG\u00cdAS DE LA INFORMACI\u00d3N"}, {"Label": "Dr. Marco A. Nu\u00f1o Maganda", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MA-01", "label": "Dr. Marco A. Nu\u00f1o Maganda", "shape": "dot", "size": 10, "title": "Dr. Marco A. Nu\u00f1o Maganda"}, {"Label": "M.C.A. Jorge Arturo Hern\u00e1ndez Almazan", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "JA-01", "label": "M.C.A. Jorge Arturo Hern\u00e1ndez Almazan", "shape": "dot", "size": 10, "title": "M.C.A. Jorge Arturo Hern\u00e1ndez Almazan"}, {"Label": "M.C. Jorge O. Jasso Luna", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "JO-01", "label": "M.C. Jorge O. Jasso Luna", "shape": "dot", "size": 10, "title": "M.C. Jorge O. Jasso Luna"}, {"Label": "Luis F. Castillo Cort\u00e9s", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "LF-01", "label": "Luis F. Castillo Cort\u00e9s", "shape": "dot", "size": 10, "title": "Luis F. Castillo Cort\u00e9s"}, {"Label": "Lic. Myriam Ornelas Llerena", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MO-01", "label": "Lic. Myriam Ornelas Llerena", "shape": "dot", "size": 10, "title": "Lic. Myriam Ornelas Llerena"}, {"Label": "INGL\u00c9S Vl", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "INGLES-6", "label": "INGL\u00c9S Vl", "shape": "dot", "size": 10, "title": "INGL\u00c9S Vl"}, {"Label": "Dr. Alberto Garc\u00eda Robledo", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "AG-01", "label": "Dr. Alberto Garc\u00eda Robledo", "shape": "dot", "size": 10, "title": "Dr. Alberto Garc\u00eda Robledo"}, {"Label": "M.S.I. Mario H. Rodriguez Ch\u00e1vez", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MH-01", "label": "M.S.I. Mario H. Rodriguez Ch\u00e1vez", "shape": "dot", "size": 10, "title": "M.S.I. Mario H. Rodriguez Ch\u00e1vez"}, {"Label": "M.S.I. Jos\u00e9 Fidencio L\u00f3pez Luna", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "JF-01", "label": "M.S.I. Jos\u00e9 Fidencio L\u00f3pez Luna", "shape": "dot", "size": 10, "title": "M.S.I. Jos\u00e9 Fidencio L\u00f3pez Luna"}, {"Label": "T\u00d3PICOS DE CALIDAD PARA EL DISE\u00d1O DE SOFTWARE", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE", "label": "T\u00d3PICOS DE CALIDAD PARA EL DISE\u00d1O DE SOFTWARE", "shape": "dot", "size": 10, "title": "T\u00d3PICOS DE CALIDAD PARA EL DISE\u00d1O DE SOFTWARE"}, {"Label": "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL", "label": "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", "shape": "dot", "size": 10, "title": "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL"}, {"Label": "OPTATIVA I MODELACI\u00d3N DE DATOS EN LA NUBE", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE", "label": "OPTATIVA I MODELACI\u00d3N DE DATOS EN LA NUBE", "shape": "dot", "size": 10, "title": "OPTATIVA I MODELACI\u00d3N DE DATOS EN LA NUBE"}, {"Label": "M.I. Adriana Lizeth Trujillo", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "AL-01", "label": "M.I. Adriana Lizeth Trujillo", "shape": "dot", "size": 10, "title": "M.I. Adriana Lizeth Trujillo"}, {"Label": "M.C. Maribel Marin Castro", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MM-01", "label": "M.C. Maribel Marin Castro", "shape": "dot", "size": 10, "title": "M.C. Maribel Marin Castro"}, {"Label": "Dr. Said Polanco Martag\u00f3n", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "SP-01", "label": "Dr. Said Polanco Martag\u00f3n", "shape": "dot", "size": 10, "title": "Dr. Said Polanco Martag\u00f3n"}, {"Label": "Ing. Juan Manuel Ornelas Llerena", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "JM-02", "label": "Ing. Juan Manuel Ornelas Llerena", "shape": "dot", "size": 10, "title": "Ing. Juan Manuel Ornelas Llerena"}, {"Label": "M.S.I. Marina Cristal Flores Flores", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MC-01", "label": "M.S.I. Marina Cristal Flores Flores", "shape": "dot", "size": 10, "title": "M.S.I. Marina Cristal Flores Flores"}, {"Label": "BASES DE DATOS", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "BASES-DE-DATOS", "label": "BASES DE DATOS", "shape": "dot", "size": 10, "title": "BASES DE DATOS"}, {"Label": "M.C. Carlos Orozco Garcia", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "CO-01", "label": "M.C. Carlos Orozco Garcia", "shape": "dot", "size": 10, "title": "M.C. Carlos Orozco Garcia"}, {"Label": "INGL\u00c9S III", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "INGLES-3", "label": "INGL\u00c9S III", "shape": "dot", "size": 10, "title": "INGL\u00c9S III"}, {"Label": "PROYECTO INTEGRADOR I", "Type": "Subject", "font": {"color": "white"}, "group": "Materias", "id": "PROYECTO-INTEGRADOR-I", "label": "PROYECTO INTEGRADOR I", "shape": "dot", "size": 10, "title": "PROYECTO INTEGRADOR I"}, {"Label": "Alma Leticia Vald\u00e9z Garc\u00eda", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "AL-02", "label": "Alma Leticia Vald\u00e9z Garc\u00eda", "shape": "dot", "size": 10, "title": "Alma Leticia Vald\u00e9z Garc\u00eda"}, {"Label": "M.I. Manuel Ruiz M\u00e9ndez", "Type": "Professor", "font": {"color": "white"}, "group": "Profesores", "id": "MR-01", "label": "M.I. Manuel Ruiz M\u00e9ndez", "shape": "dot", "size": 10, "title": "M.I. Manuel Ruiz M\u00e9ndez"}]);
+                  edges = new vis.DataSet([{"from": "ITIID-1-1", "relation": "takes", "to": "INGLES-1", "width": 1}, {"from": "ITIID-1-1", "relation": "takes", "to": "DESARROLLO-HUMANO-Y-VALORES", "width": 1}, {"from": "ITIID-1-1", "relation": "takes", "to": "FUNDAMENTOS-MATEM\u00c1TICOS", "width": 1}, {"from": "ITIID-1-1", "relation": "takes", "to": "FUNDAMENTOS-DE-REDES", "width": 1}, {"from": "ITIID-1-1", "relation": "takes", "to": "F\u00cdSICA", "width": 1}, {"from": "ITIID-1-1", "relation": "takes", "to": "FUNDAMENTOS-DE-PROGRAMACI\u00d3N", "width": 1}, {"from": "ITIID-1-1", "relation": "takes", "to": "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES", "width": 1}, {"from": "CC-01", "relation": "teaches", "to": "INGLES-1", "width": 1}, {"from": "CC-01", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "HE-01", "relation": "teaches", "to": "DESARROLLO-HUMANO-Y-VALORES", "width": 1}, {"from": "HE-01", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "HE-01", "relation": "teaches", "to": "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES", "width": 1}, {"from": "HE-01", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}, {"from": "JM-01", "relation": "teaches", "to": "FUNDAMENTOS-MATEM\u00c1TICOS", "width": 1}, {"from": "JM-01", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "JM-01", "relation": "teaches", "to": "C\u00c1LCULO-INTEGRAL", "width": 1}, {"from": "JM-01", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}, {"from": "HH-02", "relation": "teaches", "to": "FUNDAMENTOS-DE-REDES", "width": 1}, {"from": "HH-02", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "HH-02", "relation": "teaches", "to": "SEGURIDAD-INFORM\u00c1TICA", "width": 1}, {"from": "HH-02", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "MAGMC", "relation": "teaches", "to": "F\u00cdSICA", "width": 1}, {"from": "MAGMC", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "MAGMC", "relation": "teaches", "to": "C\u00c1LCULO-DE-VARIAS-VARIABLES", "width": 1}, {"from": "MAGMC", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "HH-01", "relation": "teaches", "to": "FUNDAMENTOS-DE-PROGRAMACI\u00d3N", "width": 1}, {"from": "HH-01", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "HH-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "HH-01", "relation": "teaches", "to": "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS", "width": 1}, {"from": "HH-01", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}, {"from": "AD-01", "relation": "teaches", "to": "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES", "width": 1}, {"from": "AD-01", "relation": "assigned_to", "to": "ITIID-1-1", "width": 1}, {"from": "AD-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "INGLES-1", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "DESARROLLO-HUMANO-Y-VALORES", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "FUNDAMENTOS-MATEM\u00c1TICOS", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "FUNDAMENTOS-DE-REDES", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "F\u00cdSICA", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "FUNDAMENTOS-DE-PROGRAMACI\u00d3N", "width": 1}, {"from": "ITIID-1-2", "relation": "takes", "to": "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES", "width": 1}, {"from": "OR-01", "relation": "teaches", "to": "INGLES-1", "width": 1}, {"from": "OR-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "EG-01", "relation": "teaches", "to": "DESARROLLO-HUMANO-Y-VALORES", "width": 1}, {"from": "EG-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "EG-01", "relation": "teaches", "to": "HABILIDADES-GERENCIALES", "width": 1}, {"from": "EG-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "KE-01", "relation": "teaches", "to": "FUNDAMENTOS-MATEM\u00c1TICOS", "width": 1}, {"from": "KE-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "IP-01", "relation": "teaches", "to": "FUNDAMENTOS-DE-REDES", "width": 1}, {"from": "IP-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "IP-01", "relation": "teaches", "to": "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA", "width": 1}, {"from": "IP-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "FR-01", "relation": "teaches", "to": "F\u00cdSICA", "width": 1}, {"from": "FR-01", "relation": "assigned_to", "to": "ITIID-1-2", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "INGLES-4", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "\u00c9TICA-PROFESIONAL", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "C\u00c1LCULO-DE-VARIAS-VARIABLES", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "APLICACIONES-WEB", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "ESTRUCTURA-DE-DATOS", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "DESARROLLO-DE-APLICACIONES-M\u00d3VILES", "width": 1}, {"from": "ITIID-4-1", "relation": "takes", "to": "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE", "width": 1}, {"from": "EP-01", "relation": "teaches", "to": "INGLES-4", "width": 1}, {"from": "EP-01", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "LR-01", "relation": "teaches", "to": "\u00c9TICA-PROFESIONAL", "width": 1}, {"from": "LR-01", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "LR-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "LR-01", "relation": "teaches", "to": "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N", "width": 1}, {"from": "LR-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "MA-01", "relation": "teaches", "to": "APLICACIONES-WEB", "width": 1}, {"from": "MA-01", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "MA-01", "relation": "teaches", "to": "DESARROLLO-DE-APLICACIONES-M\u00d3VILES", "width": 1}, {"from": "MA-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "JA-01", "relation": "teaches", "to": "ESTRUCTURA-DE-DATOS", "width": 1}, {"from": "JA-01", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "JO-01", "relation": "teaches", "to": "DESARROLLO-DE-APLICACIONES-M\u00d3VILES", "width": 1}, {"from": "JO-01", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "JO-01", "relation": "teaches", "to": "ESTRUCTURA-DE-DATOS", "width": 1}, {"from": "JO-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "LF-01", "relation": "teaches", "to": "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE", "width": 1}, {"from": "LF-01", "relation": "assigned_to", "to": "ITIID-4-1", "width": 1}, {"from": "LF-01", "relation": "teaches", "to": "SEGURIDAD-INFORM\u00c1TICA", "width": 1}, {"from": "LF-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "INGLES-4", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "\u00c9TICA-PROFESIONAL", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "C\u00c1LCULO-DE-VARIAS-VARIABLES", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "APLICACIONES-WEB", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "ESTRUCTURA-DE-DATOS", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "DESARROLLO-DE-APLICACIONES-M\u00d3VILES", "width": 1}, {"from": "ITIID-4-2", "relation": "takes", "to": "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE", "width": 1}, {"from": "MO-01", "relation": "teaches", "to": "INGLES-4", "width": 1}, {"from": "MO-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "MO-01", "relation": "teaches", "to": "INGLES-6", "width": 1}, {"from": "MO-01", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "MO-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "AG-01", "relation": "teaches", "to": "C\u00c1LCULO-DE-VARIAS-VARIABLES", "width": 1}, {"from": "AG-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "MH-01", "relation": "teaches", "to": "APLICACIONES-WEB", "width": 1}, {"from": "MH-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "JF-01", "relation": "teaches", "to": "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE", "width": 1}, {"from": "JF-01", "relation": "assigned_to", "to": "ITIID-4-2", "width": 1}, {"from": "JF-01", "relation": "teaches", "to": "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE", "width": 1}, {"from": "JF-01", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "INGLES-6", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "HABILIDADES-GERENCIALES", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE", "width": 1}, {"from": "ITIID-7-1", "relation": "takes", "to": "SEGURIDAD-INFORM\u00c1TICA", "width": 1}, {"from": "AL-01", "relation": "teaches", "to": "HABILIDADES-GERENCIALES", "width": 1}, {"from": "AL-01", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "MM-01", "relation": "teaches", "to": "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA", "width": 1}, {"from": "MM-01", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "SP-01", "relation": "teaches", "to": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL", "width": 1}, {"from": "SP-01", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "SP-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "JM-02", "relation": "teaches", "to": "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N", "width": 1}, {"from": "JM-02", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "MC-01", "relation": "teaches", "to": "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE", "width": 1}, {"from": "MC-01", "relation": "assigned_to", "to": "ITIID-7-1", "width": 1}, {"from": "MC-01", "relation": "teaches", "to": "BASES-DE-DATOS", "width": 1}, {"from": "MC-01", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "INGLES-6", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "HABILIDADES-GERENCIALES", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE", "width": 1}, {"from": "ITIID-7-2", "relation": "takes", "to": "SEGURIDAD-INFORM\u00c1TICA", "width": 1}, {"from": "CO-01", "relation": "teaches", "to": "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE", "width": 1}, {"from": "CO-01", "relation": "assigned_to", "to": "ITIID-7-2", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "INGLES-3", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "C\u00c1LCULO-INTEGRAL", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "BASES-DE-DATOS", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS", "width": 1}, {"from": "ITIID-3-1", "relation": "takes", "to": "PROYECTO-INTEGRADOR-I", "width": 1}, {"from": "AL-02", "relation": "teaches", "to": "INGLES-3", "width": 1}, {"from": "AL-02", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}, {"from": "MR-01", "relation": "teaches", "to": "PROYECTO-INTEGRADOR-I", "width": 1}, {"from": "MR-01", "relation": "assigned_to", "to": "ITIID-3-1", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 100, "springConstant": 0.08}, "maxVelocity": 50, "solver": "forceAtlas2Based", "timestep": 0.35, "stabilization": {"enabled": true, "iterations": 1000}}, "nodes": {"font": {"size": 16, "face": "Outfit", "strokeWidth": 2, "strokeColor": "#000"}, "shape": "dot", "size": 14}, "edges": {"color": {"inherit": true}, "smooth": {"type": "continuous"}}, "interaction": {"hover": true, "tooltipDelay": 200, "hideEdgesOnDrag": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const checkNet = setInterval(() => {
+                    if (typeof network !== 'undefined' && typeof nodes !== 'undefined' && typeof edges !== 'undefined') {
+                        clearInterval(checkNet);
+                        initCustomControls();
+                        initHighlighting();
+                    }
+                }, 200);
+            
+            function initCustomControls() {
+                const searchSel = document.getElementById("ui-search");
+                const filterSel = document.getElementById("ui-filter");
+                const spacingRange = document.getElementById("ui-spacing");
+                const resetBtn = document.getElementById("ui-reset");
+                const physicsBtn = document.getElementById("ui-physics");
+                
+                // 1. Populate Search
+                const allNodes = nodes.get();
+                allNodes.sort((a,b) => (a.label || "").localeCompare(b.label || ""));
+                
+                allNodes.forEach(n => {
+                    const opt = document.createElement("option");
+                    opt.value = n.id;
+                    opt.text = n.label || n.id;
+                    searchSel.appendChild(opt);
+                });
+                
+                searchSel.addEventListener("change", (e) => {
+                    const id = e.target.value;
+                    if(id) {
+                        network.selectNodes([id]);
+                        network.focus(id, { scale: 1.2, animation: true });
+                        // Trigger highlight manually if needed, but click listener handles selection too
+                        highlightNeighborhood(id);
+                    }
+                });
+                
+                // 2. Populate Filter
+                const groups = [...new Set(allNodes.map(n => n.group))].filter(Boolean).sort();
+                groups.forEach(g => {
+                    const opt = document.createElement("option");
+                    opt.value = g;
+                    opt.text = g;
+                    filterSel.appendChild(opt);
+                });
+                
+                filterSel.addEventListener("change", (e) => {
+                    const group = e.target.value;
+                    if (group === "all") {
+                        nodes.update(allNodes.map(n => ({id: n.id, hidden: false})));
+                    } else {
+                        nodes.update(allNodes.map(n => ({id: n.id, hidden: n.group !== group})));
+                    }
+                });
+                
+                // 3. Spacing
+                spacingRange.addEventListener("input", (e) => {
+                    const val = parseInt(e.target.value);
+                    network.setOptions({ physics: { forceAtlas2Based: { springLength: val } } });
+                });
+                
+                // 4. Reset
+                resetBtn.addEventListener("click", () => {
+                   network.fit({ animation: true });
+                   resetHighlight();
+                   searchSel.value = "";
+                });
+                
+                // 5. Physics
+                let physicsEnabled = true;
+                physicsBtn.addEventListener("click", () => {
+                    physicsEnabled = !physicsEnabled;
+                    network.setOptions({ physics: { enabled: physicsEnabled } });
+                    physicsBtn.style.opacity = physicsEnabled ? "1" : "0.5";
+                });
+            }
+
+            function initHighlighting() {
+                network.on("click", function(params) {
+                    if (params.nodes.length > 0) {
+                        highlightNeighborhood(params.nodes[0]);
+                    } else {
+                        resetHighlight();
+                    }
+                });
+            }
+
+            function highlightNeighborhood(selectedId) {
+                const allNodes = nodes.get();
+                const allEdges = edges.get();
+                const connectedNodes = network.getConnectedNodes(selectedId);
+                const connectedEdges = network.getConnectedEdges(selectedId);
+
+                // Dim unconnected nodes
+                const nodeUpdates = allNodes.map(n => {
+                    const isLinked = n.id === selectedId || connectedNodes.includes(n.id);
+                    // Use color object to set opacity without losing original color
+                    // We assume n.color is a string (hex) from our python generation
+                    // We need to convert hex to rgba for opacity? 
+                    // Simpler: Vis.js supports 'opacity' in options? No.
+                    // We must edit color. 
+                    // Hack: use color: { background: 'rgba(...)', border: 'rgba(...)' }
+                    // But parsing hex in JS is tedious.
+                    // Alternative: Set n.color.opacity if using RGBA, but we used hex.
+                    // EASIER: Just use 'hidden' for extreme cleaning? User asked for 'opacity'.
+                    // Let's try modifying the color object opacity property if supported (Vis 4.21+ supports it partially).
+                    // Actually, let's keep it simple: Gray out unconnected.
+                    
+                    if (isLinked) {
+                         // Restore full color if we have it stored? 
+                         // Vis.js DataSets merge updates. If we overwrite color, we lose original.
+                         // We should assume original color is in 'group' style or we re-assign based on group logic?
+                         // Better: Set opacity directly on the color object.
+                         return { id: n.id, opacity: 1 }; 
+                    } else {
+                         return { id: n.id, opacity: 0.1 };
+                    }
+                });
+                
+                // Dim unconnected edges
+                const edgeUpdates = allEdges.map(e => {
+                    const isLinked = connectedEdges.includes(e.id);
+                    return { id: e.id, color: { opacity: isLinked ? 1.0 : 0.05 } };
+                });
+
+                nodes.update(nodeUpdates);
+                edges.update(edgeUpdates);
+            }
+
+            function resetHighlight() {
+                const allNodes = nodes.getIds();
+                const allEdges = edges.getIds();
+                nodes.update(allNodes.map(id => ({ id: id, opacity: 1 })));
+                edges.update(allEdges.map(id => ({ id: id, color: { opacity: 1 } })));
+            }
+
+            });
+            </script>
+            </body>
+</html>

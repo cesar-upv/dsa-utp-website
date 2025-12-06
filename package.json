@@ -16,7 +16,8 @@
     "test": "vitest run",
     "test:ui": "vitest",
     "preview": "vite preview",
-    "postinstall": "./setup_backend.sh"
+    "postinstall": "./setup_backend.sh",
+    "visualize-graph": "./setup_visualizer.sh && tools/graph_visualizer/venv/bin/python tools/graph_visualizer/main.py"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
