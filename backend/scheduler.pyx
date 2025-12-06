@@ -64,6 +64,12 @@ cdef class GraphScheduler:
     # [group_idx][materia_idx] -> count of assignments
     cdef int[:, :] prof_assignment_count
 
+    # Professor-Group-Subject Tracking
+    # [prof_idx][group_idx] -> materia_idx (or -1 if none)
+    cdef int[:, :] prof_group_subject
+    # [prof_idx][group_idx] -> count of assignments for this subject
+    cdef int[:, :] prof_group_subject_count
+
     # Best Partial Solution
     cdef int max_assigned_count
     cdef list best_assignments
@@ -98,6 +104,9 @@ cdef class GraphScheduler:
         
         self.prof_assignment = np.full((len(grupos), len(materias)), -1, dtype=np.int32)
         self.prof_assignment_count = np.zeros((len(grupos), len(materias)), dtype=np.int32)
+
+        self.prof_group_subject = np.full((self.num_profs, len(grupos)), -1, dtype=np.int32)
+        self.prof_group_subject_count = np.zeros((self.num_profs, len(grupos)), dtype=np.int32)
 
         self.max_assigned_count = -1
         self.best_assignments = []
@@ -229,6 +238,7 @@ cdef class GraphScheduler:
 
     cdef bint is_valid(self, Node node, int group_idx, int materia_idx, int day_idx, int slot_idx, int prof_idx):
         cdef int current_prof
+        cdef int assigned_subject
         cdef int count
         cdef int mask
         cdef int adj_mask
@@ -242,11 +252,15 @@ cdef class GraphScheduler:
         # 3. Prof max load
         if self.prof_load[prof_idx] >= self.prof_max_load[prof_idx]: return False
         
-        # 4. Professor Consistency
-        # If this subject group already has a professor assigned, it MUST be the same one.
+        # 4. Professor Consistency (Same subject -> Same prof)
         current_prof = self.prof_assignment[group_idx, materia_idx]
         if current_prof != -1 and current_prof != prof_idx:
-            # print(f"Consistency Fail: Node {node.id} (G:{group_idx} M:{materia_idx}) wants Prof {prof_idx} but assigned {current_prof}")
+            return False
+
+        # 4b. NEW: Professor Exclusivity (Same prof -> Only ONE subject per group)
+        # Check if this professor is already assigned to this group for a DIFFERENT subject
+        assigned_subject = self.prof_group_subject[prof_idx, group_idx]
+        if assigned_subject != -1 and assigned_subject != materia_idx:
             return False
 
         # 5. Max 2 hours per day per subject
@@ -309,6 +323,10 @@ cdef class GraphScheduler:
         if self.prof_assignment_count[group_idx, materia_idx] == 0:
             self.prof_assignment[group_idx, materia_idx] = prof_idx
         self.prof_assignment_count[group_idx, materia_idx] += 1
+
+        if self.prof_group_subject_count[prof_idx, group_idx] == 0:
+            self.prof_group_subject[prof_idx, group_idx] = materia_idx
+        self.prof_group_subject_count[prof_idx, group_idx] += 1
         
         node.assigned_day = day_idx
         node.assigned_slot = slot_idx
@@ -325,6 +343,10 @@ cdef class GraphScheduler:
         self.prof_assignment_count[group_idx, materia_idx] -= 1
         if self.prof_assignment_count[group_idx, materia_idx] == 0:
             self.prof_assignment[group_idx, materia_idx] = -1
+
+        self.prof_group_subject_count[prof_idx, group_idx] -= 1
+        if self.prof_group_subject_count[prof_idx, group_idx] == 0:
+            self.prof_group_subject[prof_idx, group_idx] = -1
         
         node.assigned_day = -1
         node.assigned_slot = -1
