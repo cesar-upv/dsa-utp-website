@@ -1,21 +1,34 @@
 import { useEffect, useMemo, useState } from 'react'
-import { CalendarClock, PlayCircle } from 'lucide-react'
+import { CalendarClock, Download, PlayCircle } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Select } from '@/components/ui/select'
 import { MetricsPanel } from '@/features/generator/MetricsPanel'
 import { SolverPanel } from '@/features/generator/SolverPanel'
 import { TimetableGrid } from '@/features/generator/TimetableGrid'
+import { exportHorarios, type ExportMode } from '@/lib/excel-export'
 import { useTimetableStore } from '@/store/useTimetableStore'
 
 export default function GeneratorPage() {
   const grupos = useTimetableStore((state) => state.grupos)
   const horarios = useTimetableStore((state) => state.horarios)
+  const materias = useTimetableStore((state) => state.materias)
+  const profesores = useTimetableStore((state) => state.profesores)
+
+  // Groups state
   const [selectedGroup, setSelectedGroup] = useState<string | undefined>(
     grupos[0]?.id
   )
+  // Export mode state: 'single' (current group), 'all-one-file', 'zip'
+  const [exportMode, setExportMode] = useState<ExportMode>('all-one-file')
 
   useEffect(() => {
     if (grupos.length && !selectedGroup) {
@@ -27,6 +40,18 @@ export default function GeneratorPage() {
     () => grupos.find((g) => g.id === selectedGroup),
     [grupos, selectedGroup]
   )
+
+  const handleExport = async () => {
+    if (!horarios.length) return
+    await exportHorarios(
+      exportMode,
+      horarios,
+      grupos,
+      materias,
+      profesores,
+      selectedGroup // Pass current group ID for 'single' mode
+    )
+  }
 
   return (
     <div className="space-y-8">
@@ -84,10 +109,34 @@ export default function GeneratorPage() {
                 )}
               </Select>
             </div>
-            <div className="text-sm text-muted-foreground">
-              {horarios.length
-                ? `Se generaron ${horarios.length} horarios`
-                : 'Ejecuta el solver para ver el tablero'}
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-muted-foreground">
+                {horarios.length
+                  ? `Se generaron ${horarios.length} horarios`
+                  : 'Ejecuta el solver para ver el tablero'}
+              </div>
+              {horarios.length > 0 && (
+                <div className="flex items-center gap-2">
+                  <Select
+                    value={exportMode}
+                    onChange={(e) => setExportMode(e.target.value as ExportMode)}
+                    className="h-9 text-xs"
+                  >
+                    <option value="all-one-file">Todos (1 archivo)</option>
+                    <option value="zip">Todos (ZIP)</option>
+                    <option value="single">Solo actual (Excel)</option>
+                  </Select>
+                  <Button
+                    onClick={handleExport}
+                    variant="outline"
+                    size="sm"
+                    className="gap-2"
+                  >
+                    <Download className="h-4 w-4" />
+                    Exportar
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
