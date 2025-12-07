@@ -45,17 +45,32 @@ class GraphNode(QGraphicsEllipseItem):
         self.setToolTip(f"{node_type}: {data.get('Label', node_id)}")
         
         self.edges = []
+        
+        # Interaction styling
+        self.setAcceptHoverEvents(True)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+
+    def hoverEnterEvent(self, event):
+        # Visual feedback
+        self.setScale(1.15)
+        super().hoverEnterEvent(event)
+
+    def hoverLeaveEvent(self, event):
+        self.setScale(1.0)
+        super().hoverLeaveEvent(event)
 
     def _get_color(self, node_type):
+        from ui.theme import Theme
+        p = Theme.current
         if node_type == "Group":
-            return QColor("#3498db") # Blue
+            return Theme.get_qcolor(p.NODE_GROUP)
         elif node_type == "Professor":
-            return QColor("#e74c3c") # Red
+            return Theme.get_qcolor(p.NODE_PROFESSOR)
         elif node_type == "Subject":
-            return QColor("#2ecc71") # Green
+            return Theme.get_qcolor(p.NODE_SUBJECT)
         elif node_type == "Slot":
-            return QColor("#f1c40f") # Yellow
-        return QColor("#95a5a6") # Gray
+            return Theme.get_qcolor(p.NODE_SLOT)
+        return Theme.get_qcolor(p.NODE_DEFAULT)
 
     def add_edge(self, edge):
         self.edges.append(edge)
@@ -65,6 +80,14 @@ class GraphNode(QGraphicsEllipseItem):
             for edge in self.edges:
                 edge.adjust()
         return super().itemChange(change, value)
+        
+    def update_theme(self):
+        # Refresh colors
+        self.color = self._get_color(self.data.get("Type"))
+        self.setBrush(QBrush(self.color))
+        # Label color might need invert if we had white background? 
+        # For now, we keep Node Text white/contrast on colored nodes.
+        # But for default nodes (grey), maybe? Keeping it simple.
 
 class GraphEdge(QGraphicsLineItem):
     def __init__(self, source_node, target_node):
@@ -74,9 +97,14 @@ class GraphEdge(QGraphicsLineItem):
         self.source.add_edge(self)
         self.target.add_edge(self)
         
-        self.setPen(QPen(QColor("#bdc3c7"), 1, Qt.PenStyle.SolidLine))
+        from ui.theme import Theme
+        self.setPen(QPen(Theme.get_qcolor(Theme.current.EDGE_DEFAULT), 1, Qt.PenStyle.SolidLine))
         self.setZValue(-1) # Behind nodes
         self.adjust()
+        
+    def update_theme(self):
+        from ui.theme import Theme
+        self.setPen(QPen(Theme.get_qcolor(Theme.current.EDGE_DEFAULT), 1, Qt.PenStyle.SolidLine))
 
     def adjust(self):
         line = self.line()
@@ -100,8 +128,10 @@ class GraphWidget(QGraphicsView):
         
         self.graph = None
         self.current_layout = "spring"
-        self.layout_scale = 2000.0 # Default requested by user
+        self.layout_scale = 1200.0 # Default requested by user
         self.norm_pos = None # Normalized positions (scale=1.0)
+        self.node_items = {}
+        self.selected_node_id = None
 
     def wheelEvent(self, event):
         zoom_factor = 1.15
@@ -141,6 +171,15 @@ class GraphWidget(QGraphicsView):
         # Redraw using cached normalized positions if available
         if self.graph and self.norm_pos:
             self.draw_graph()
+
+    def reload_theme(self):
+        # Refresh all items
+        for item in self.scene.items():
+            if hasattr(item, 'update_theme'):
+                item.update_theme()
+        
+        # Update background if needed? The view background is handled by stylesheet on parent.
+        # But Scene might need update? No, scene is transparent usually.
 
     def highlight_nodes(self, text=None, center_node=None, show_neighbors=False):
         targets = set()
@@ -275,17 +314,33 @@ class GraphWidget(QGraphicsView):
             current_pos[n] = (x * self.layout_scale, y * self.layout_scale)
             
         # Draw Nodes
-        node_items = {}
+        self.node_items = {}
         for node_id, (x, y) in current_pos.items():
             data = self.graph.nodes[node_id]
             item = GraphNode(node_id, data, x, y)
             self.scene.addItem(item)
-            node_items[node_id] = item
+            self.node_items[node_id] = item
 
         # Draw Edges
         for u, v in self.graph.edges():
-            if u in node_items and v in node_items:
-                edge = GraphEdge(node_items[u], node_items[v])
+            if u in self.node_items and v in self.node_items:
+                edge = GraphEdge(self.node_items[u], self.node_items[v])
                 self.scene.addItem(edge)
 
         self.scene.setSceneRect(self.scene.itemsBoundingRect())
+        
+        # Restore selection
+        if self.selected_node_id and self.selected_node_id in self.node_items:
+            # We restore visual highlight but don't re-emit clicked signal to avoid recursion/spam
+            self.highlight_nodes(center_node=self.selected_node_id, show_neighbors=True)
+
+    def select_node(self, node_id):
+        self.selected_node_id = node_id 
+        if node_id in self.node_items:
+            item = self.node_items[node_id]
+            # Emit signal to update sidebar
+            self.nodeClicked.emit(node_id, item.data)
+            # Highlight
+            self.highlight_nodes(center_node=node_id, show_neighbors=True)
+            # Center view
+            self.centerOn(item)

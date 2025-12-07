@@ -34,7 +34,7 @@
              #mynetwork {
                  width: 100%;
                  height: 100vh;
-                 background-color: #0f172a;
+                 background-color: rgba(0,0,0,0);
                  border: 1px solid lightgray;
                  position: relative;
                  float: left;
@@ -46,37 +46,84 @@
 
              
         </style>
-    
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+    <style>
+                :root {
+                    /* LIGHT MODE TOKENS */
+                    --background: #fdfbf6;
+                    --text: #0f172a;
+                    --border: #e2e8f0;
+                    --card: #ffffff;
+                    --primary: #0f766e;
+                    
+                    /* Controls (Inputs/Buttons) */
+                    --control-bg: #f1f5f9; /* Slate 100 */
+                    --control-border: #e2e8f0;
+                    --control-text: #0f172a;
+                    --control-hover: #e2e8f0;
+                    
+                    /* Text Utilities */
+                    --muted-foreground: #64748b; /* Slate 500 */
+                    
+                    /* Highlight Colors (Ghosting) */
+                    --ghost-node: #e2e8f0; /* Light Gray for dissolving */
+                    --ghost-edge: #f1f5f9;
+                }
                 
-                body { margin: 0; padding: 0; font-family: 'Outfit', sans-serif; background-color: #0f172a; color: #e2e8f0; overflow: hidden; }
+                body.dark {
+                    /* DARK MODE TOKENS */
+                    --background: #0c1220;
+                    --text: #f1f5f9;
+                    --border: #334155;
+                    --card: #1c2536;
+                    --primary: #0ea5e9;
+                    
+                    /* Controls */
+                    --control-bg: #1e293b; /* Slate 800 */
+                    --control-border: #334155;
+                    --control-text: #f8fafc;
+                    --control-hover: #334155;
+                    
+                    /* Text Utilities */
+                    --muted-foreground: #94a3b8; /* Slate 400 */
+                    
+                    /* Highlight Colors */
+                    --ghost-node: #1e293b; /* Deep Slate for receding */
+                    --ghost-edge: #0f172a;
+                }
+            
+                @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+                
+                body { margin: 0; padding: 0; font-family: 'Space Grotesk', 'DM Sans', sans-serif; background-color: var(--background); color: var(--text); overflow: hidden; transition: background-color 0.3s, color 0.3s; }
+                
+                /* Default Body Class = Dark (applied via JS or HTML) */
                 
                 #mynetwork {
                     position: fixed !important; top: 80px !important; left: 0 !important;
                     width: 100vw !important; height: calc(100vh - 80px) !important;
-                    background: #0f172a; z-index: 1; outline: none;
+                    background: var(--background); z-index: 1; outline: none;
                 }
                 
                 /* HEADER */
                 #custom-header {
-                    position: fixed; top: 0; left: 0; right: 0; height: 72px; /* Compact height */
-                    background: rgba(15, 23, 42, 0.95);
+                    position: fixed; top: 0; left: 0; right: 0; height: 72px;
+                    background: var(--card);
+                    opacity: 0.98;
                     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                    border-bottom: 1px solid var(--border);
                     display: flex; align-items: center; justify-content: space-between;
                     padding: 0 24px; z-index: 9999;
-                    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+                    transition: all 0.3s ease;
                 }
                 
                 .header-left { display: flex; align-items: center; gap: 14px; }
                 .logo-icon {
-                    width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                    width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), #8b5cf6);
                     border-radius: 10px; display: flex; align-items: center; justify-content: center;
-                    font-size: 20px; color: white; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+                    font-size: 20px; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
                 }
-                .header-title h1 { margin: 0; font-size: 18px; font-weight: 600; color: #f8fafc; }
-                .header-title p { margin: 0; font-size: 11px; color: #94a3b8; font-weight: 500; letter-spacing: 0.5px; }
+                .header-title h1 { margin: 0; font-size: 18px; font-weight: 600; color: var(--text); }
+                .header-title p { margin: 0; font-size: 11px; color: var(--muted-foreground); font-weight: 500; letter-spacing: 0.5px; }
 
                 /* CONTROLS */
                 .controls-wrapper { display: flex; align-items: center; gap: 16px; }
@@ -84,54 +131,84 @@
                 .control-group { display: flex; flex-direction: column; gap: 4px; position: relative; }
                 .control-label {
                     font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px; 
-                    color: #94a3b8; font-weight: 700; display: flex; align-items: center; gap: 4px;
+                    color: var(--muted-foreground); font-weight: 700; display: flex; align-items: center; gap: 4px;
                 }
                 
-                /* Selects - Compact */
+                /* Selects */
                 .custom-select {
-                    appearance: none; background: #1e293b; border: 1px solid #334155;
-                    color: #f1f5f9; padding: 6px 12px; padding-right: 32px;
+                    appearance: none; 
+                    background-color: var(--control-bg);
+                    border: 1px solid var(--control-border);
+                    color: var(--control-text);
+                    padding: 6px 12px; padding-right: 32px;
                     border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
                     min-width: 180px; height: 34px; cursor: pointer; transition: all 0.2s;
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+                    /* Arrow logic needs to invert color or be SVG variable? SVG currentColor works if we set color. */
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
                     background-repeat: no-repeat; background-position: right 10px center;
                 }
-                .custom-select:hover { background-color: #334155; border-color: #475569; }
-                .custom-select:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
-                .custom-select option { background: #1e293b; color: white; padding: 8px; }
+                .custom-select:hover { background-color: var(--control-hover); border-color: var(--border); }
+                .custom-select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(var(--primary), 0.2); }
+                .custom-select option { background: var(--card); color: var(--text); padding: 8px; }
 
-                /* Action Button - Compact */
+                /* Buttons */
                 .btn-action {
-                    height: 34px; padding: 0 16px; border-radius: 8px; border: 1px solid #334155;
-                    background: #1e293b; color: #e2e8f0; font-family: 'Outfit', sans-serif;
+                    height: 34px; padding: 0 16px; border-radius: 8px; 
+                    border: 1px solid var(--control-border);
+                    background: var(--control-bg); color: var(--control-text);
+                    font-family: 'Outfit', sans-serif;
                     font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;
                     transition: all 0.2s; margin-top: 14px;
                 }
-                .btn-action:hover { background: #334155; color: white; transform: translateY(-1px); }
+                .btn-action:hover { background: var(--control-hover); transform: translateY(-1px); }
                 .btn-action:active { transform: translateY(0); }
                 
-                /* Slider - Fixed Visibility */
-                input[type=range] {
-                    -webkit-appearance: none; width: 120px; background: transparent; margin-top: 8px;
-                }
-                input[type=range]::-webkit-slider-thumb {
-                    -webkit-appearance: none; height: 14px; width: 14px; border-radius: 50%;
-                    background: #6366f1; cursor: pointer; margin-top: -5px;
-                    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5); border: 1px solid rgba(255,255,255,0.2);
-                }
+                /* Custom Scrollbar */
+                ::-webkit-scrollbar { width: 8px; height: 8px; }
+                ::-webkit-scrollbar-track { background: transparent; }
+                ::-webkit-scrollbar-thumb { background: var(--control-border); border-radius: 99px; }
+                ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+                
+                /* Slider fix */
                 input[type=range]::-webkit-slider-runnable-track {
                     width: 100%; height: 4px; cursor: pointer;
-                    background: #475569; border-radius: 2px;
+                    background: var(--control-border); border-radius: 2px;
                 }
-                input[type=range]:focus { outline: none; }
-            </style>
-            </head>
+                
+                /* SIDEBAR */
+                .sidebar {
+                    position: fixed; top: 88px; right: -320px; width: 300px; bottom: 24px;
+                    background: var(--card); border: 1px solid var(--border);
+                    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+                    border-radius: 12px 0 0 12px;
+                    box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+                    padding: 24px; display: flex; flex-direction: column; gap: 16px;
+                    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                    z-index: 1000; overflow-y: auto;
+                }
+                .sidebar.active { right: 0; }
+                
+                .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+                .sidebar-title { font-size: 16px; font-weight: 700; color: var(--text); margin: 0; }
+                .btn-close { background: transparent; border: none; color: var(--muted-foreground); cursor: pointer; padding: 4px; }
+                .btn-close:hover { color: var(--text); }
+                
+                .sidebar-content { display: flex; flex-direction: column; gap: 12px; }
+                .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+                .info-item { display: flex; flex-direction: column; gap: 4px; }
+                .info-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted-foreground); font-weight: 600; }
+                .info-value { font-size: 13px; color: var(--text); font-weight: 500; word-break: break-word; line-height: 1.4; }
+                
+                .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: var(--control-bg); border: 1px solid var(--control-border); color: var(--control-text); }
+            </style></head>
 
 
-    <body>
+    <body class="dark">
             <div id="custom-header">
                 <div class="header-left">
-                    <div class="logo-icon">🖇</div>
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    </div>
                     <div class="header-title">
                         <h1>Visualizador</h1>
                         <p>NETWORK EXPLORER</p>
@@ -161,6 +238,22 @@
                         </select>
                     </div>
 
+                    <!-- Layout -->
+                    <div class="control-group">
+                        <div class="control-label">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                             DISTRIBUCIÓN
+                        </div>
+                        <select id="ui-layout" class="custom-select">
+                            <option value="physics">Física</option>
+                            <option value="spring">Spring</option>
+                            <option value="hierarchical">Jerárquico</option>
+                            <option value="circular">Circular</option>
+                            <option value="kamada">Kamada-Kawai</option>
+                            <option value="shell">Shell</option>
+                        </select>
+                    </div>
+
                     <!-- Spacing Slider -->
                     <div class="control-group">
                         <div class="control-label">
@@ -181,6 +274,25 @@
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><activity path="M22 12h-4l-3 9L9 3l-3 9H2"/></activity><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                         Física
                     </button>
+                    
+                     <!-- Theme Toggle -->
+                    <button id="ui-theme" class="btn-action" style="min-width: 40px; justify-content: center;">
+                        <svg id="theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    </button>
+                    
+                </div>
+            </div>
+            
+            <!-- Sidebar Structure -->
+            <div id="ui-sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <h2 class="sidebar-title">Detalles</h2>
+                    <button id="btn-close-sidebar" class="btn-close">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div id="sidebar-content" class="sidebar-content">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
             
@@ -234,7 +346,7 @@
                   // adding nodes and edges to the graph
                   data = {nodes: nodes, edges: edges};
 
-                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 100, "springConstant": 0.08}, "maxVelocity": 50, "solver": "forceAtlas2Based", "timestep": 0.35, "stabilization": {"enabled": true, "iterations": 1000}}, "nodes": {"font": {"size": 16, "face": "Outfit", "strokeWidth": 2, "strokeColor": "#000"}, "shape": "dot", "size": 14}, "edges": {"color": {"inherit": true}, "smooth": {"type": "continuous"}}, "interaction": {"hover": true, "tooltipDelay": 200, "hideEdgesOnDrag": true}};
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 100, "springConstant": 0.08}, "maxVelocity": 50, "solver": "forceAtlas2Based", "timestep": 0.35, "stabilization": {"enabled": true, "iterations": 1000}}, "nodes": {"font": {"size": 16, "face": "Outfit", "color": "#ffffff", "strokeWidth": 2, "strokeColor": "#000000"}, "shape": "dot", "size": 14}, "edges": {"color": {"inherit": true}, "smooth": {"type": "continuous"}}, "interaction": {"hover": true, "tooltipDelay": 200, "hideEdgesOnDrag": true}};
 
                   
 
@@ -259,6 +371,12 @@
         </script>
     
             <script>
+            // Injected Data from Python
+            const GRAPH_DATA = {"ITIID-1-1": {"Type": "Group", "Label": "ITIID 1-1", "group": "Grupos", "ID": "ITIID-1-1", "Group": "Grupos"}, "CC-01": {"Type": "Professor", "Label": "Lic. Carlos Castillo", "group": "Profesores", "ID": "CC-01", "Group": "Profesores"}, "INGLES-1": {"Type": "Subject", "Label": "INGL\u00c9S I", "group": "Materias", "ID": "INGLES-1", "Group": "Materias"}, "HE-01": {"Type": "Professor", "Label": "Ing. Hugo E. Trevi\u00f1o", "group": "Profesores", "ID": "HE-01", "Group": "Profesores"}, "DESARROLLO-HUMANO-Y-VALORES": {"Type": "Subject", "Label": "DESARROLLO HUMANO Y VALORES", "group": "Materias", "ID": "DESARROLLO-HUMANO-Y-VALORES", "Group": "Materias"}, "JM-01": {"Type": "Professor", "Label": "Dr. Jean-Michael Recher", "group": "Profesores", "ID": "JM-01", "Group": "Profesores"}, "FUNDAMENTOS-MATEM\u00c1TICOS": {"Type": "Subject", "Label": "FUNDAMENTOS MATEM\u00c1TICOS", "group": "Materias", "ID": "FUNDAMENTOS-MATEM\u00c1TICOS", "Group": "Materias"}, "HH-02": {"Type": "Professor", "Label": "M.A.T. Hiram Herrera Rivas", "group": "Profesores", "ID": "HH-02", "Group": "Profesores"}, "FUNDAMENTOS-DE-REDES": {"Type": "Subject", "Label": "FUNDAMENTOS DE REDES", "group": "Materias", "ID": "FUNDAMENTOS-DE-REDES", "Group": "Materias"}, "MAGMC": {"Type": "Professor", "Label": "M.I. Arturo G. Mascorro Cienfuegos", "group": "Profesores", "ID": "MAGMC", "Group": "Profesores"}, "F\u00cdSICA": {"Type": "Subject", "Label": "F\u00cdSICA", "group": "Materias", "ID": "F\u00cdSICA", "Group": "Materias"}, "HH-01": {"Type": "Professor", "Label": "Dr. Hector Hugo Avil\u00e9s Arriaga", "group": "Profesores", "ID": "HH-01", "Group": "Profesores"}, "FUNDAMENTOS-DE-PROGRAMACI\u00d3N": {"Type": "Subject", "Label": "FUNDAMENTOS DE PROGRAMACI\u00d3N", "group": "Materias", "ID": "FUNDAMENTOS-DE-PROGRAMACI\u00d3N", "Group": "Materias"}, "AD-01": {"Type": "Professor", "Label": "M.S.I. Alma Delia Amaya V\u00e1zquez", "group": "Profesores", "ID": "AD-01", "Group": "Profesores"}, "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES": {"Type": "Subject", "Label": "COMUNICACI\u00d3N Y HABILIDADES DIGITALES", "group": "Materias", "ID": "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES", "Group": "Materias"}, "ITIID-1-2": {"Type": "Group", "Label": "ITIID 1-2", "group": "Grupos", "ID": "ITIID-1-2", "Group": "Grupos"}, "OR-01": {"Type": "Professor", "Label": "Oscar Romero de la Cruz", "group": "Profesores", "ID": "OR-01", "Group": "Profesores"}, "EG-01": {"Type": "Professor", "Label": "M.I. Erendira Guitierrez Meza", "group": "Profesores", "ID": "EG-01", "Group": "Profesores"}, "KE-01": {"Type": "Professor", "Label": "Dra. Karla E. V\u00e1zquez Ortiz", "group": "Profesores", "ID": "KE-01", "Group": "Profesores"}, "IP-01": {"Type": "Professor", "Label": "M.T.I. Israel Pulido Picazo", "group": "Profesores", "ID": "IP-01", "Group": "Profesores"}, "FR-01": {"Type": "Professor", "Label": "Fernando Requena", "group": "Profesores", "ID": "FR-01", "Group": "Profesores"}, "ITIID-4-1": {"Type": "Group", "Label": "ITIID 4-1", "group": "Grupos", "ID": "ITIID-4-1", "Group": "Grupos"}, "EP-01": {"Type": "Professor", "Label": "Eduardo Patricio Gonz\u00e1lez Nu\u00f1o", "group": "Profesores", "ID": "EP-01", "Group": "Profesores"}, "INGLES-4": {"Type": "Subject", "Label": "INGL\u00c9S IV", "group": "Materias", "ID": "INGLES-4", "Group": "Materias"}, "LR-01": {"Type": "Professor", "Label": "M.I. Luis R. De la Fuente", "group": "Profesores", "ID": "LR-01", "Group": "Profesores"}, "\u00c9TICA-PROFESIONAL": {"Type": "Subject", "Label": "\u00c9TICA PROFESIONAL", "group": "Materias", "ID": "\u00c9TICA-PROFESIONAL", "Group": "Materias"}, "C\u00c1LCULO-DE-VARIAS-VARIABLES": {"Type": "Subject", "Label": "C\u00c1LCULO DE VARIAS VARIABLES", "group": "Materias", "ID": "C\u00c1LCULO-DE-VARIAS-VARIABLES", "Group": "Materias"}, "MA-01": {"Type": "Professor", "Label": "Dr. Marco A. Nu\u00f1o Maganda", "group": "Profesores", "ID": "MA-01", "Group": "Profesores"}, "APLICACIONES-WEB": {"Type": "Subject", "Label": "APLICACIONES WEB", "group": "Materias", "ID": "APLICACIONES-WEB", "Group": "Materias"}, "JA-01": {"Type": "Professor", "Label": "M.C.A. Jorge Arturo Hern\u00e1ndez Almazan", "group": "Profesores", "ID": "JA-01", "Group": "Profesores"}, "ESTRUCTURA-DE-DATOS": {"Type": "Subject", "Label": "ESTRUCTURA DE DATOS", "group": "Materias", "ID": "ESTRUCTURA-DE-DATOS", "Group": "Materias"}, "JO-01": {"Type": "Professor", "Label": "M.C. Jorge O. Jasso Luna", "group": "Profesores", "ID": "JO-01", "Group": "Profesores"}, "DESARROLLO-DE-APLICACIONES-M\u00d3VILES": {"Type": "Subject", "Label": "DESARROLLO DE APLICACIONES M\u00d3VILES", "group": "Materias", "ID": "DESARROLLO-DE-APLICACIONES-M\u00d3VILES", "Group": "Materias"}, "LF-01": {"Type": "Professor", "Label": "Luis F. Castillo Cort\u00e9s", "group": "Profesores", "ID": "LF-01", "Group": "Profesores"}, "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE": {"Type": "Subject", "Label": "AN\u00c1LISIS Y DISE\u00d1O DE SOFTWARE", "group": "Materias", "ID": "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE", "Group": "Materias"}, "ITIID-4-2": {"Type": "Group", "Label": "ITIID 4-2", "group": "Grupos", "ID": "ITIID-4-2", "Group": "Grupos"}, "MO-01": {"Type": "Professor", "Label": "Lic. Myriam Ornelas Llerena", "group": "Profesores", "ID": "MO-01", "Group": "Profesores"}, "AG-01": {"Type": "Professor", "Label": "Dr. Alberto Garc\u00eda Robledo", "group": "Profesores", "ID": "AG-01", "Group": "Profesores"}, "MH-01": {"Type": "Professor", "Label": "M.S.I. Mario H. Rodriguez Ch\u00e1vez", "group": "Profesores", "ID": "MH-01", "Group": "Profesores"}, "JF-01": {"Type": "Professor", "Label": "M.S.I. Jos\u00e9 Fidencio L\u00f3pez Luna", "group": "Profesores", "ID": "JF-01", "Group": "Profesores"}, "ITIID-7-1": {"Type": "Group", "Label": "ITIID-7-1", "group": "Grupos", "ID": "ITIID-7-1", "Group": "Grupos"}, "INGLES-6": {"Type": "Subject", "Label": "INGL\u00c9S Vl", "group": "Materias", "ID": "INGLES-6", "Group": "Materias"}, "AL-01": {"Type": "Professor", "Label": "M.I. Adriana Lizeth Trujillo", "group": "Profesores", "ID": "AL-01", "Group": "Profesores"}, "HABILIDADES-GERENCIALES": {"Type": "Subject", "Label": "HABILIDADES GERENCIALES", "group": "Materias", "ID": "HABILIDADES-GERENCIALES", "Group": "Materias"}, "MM-01": {"Type": "Professor", "Label": "M.C. Maribel Marin Castro", "group": "Profesores", "ID": "MM-01", "Group": "Profesores"}, "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA": {"Type": "Subject", "Label": "FORMULACI\u00d3N DE PROYECTOS DE TECNOLOG\u00cdA", "group": "Materias", "ID": "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA", "Group": "Materias"}, "SP-01": {"Type": "Professor", "Label": "Dr. Said Polanco Martag\u00f3n", "group": "Profesores", "ID": "SP-01", "Group": "Profesores"}, "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL": {"Type": "Subject", "Label": "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", "group": "Materias", "ID": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL", "Group": "Materias"}, "JM-02": {"Type": "Professor", "Label": "Ing. Juan Manuel Ornelas Llerena", "group": "Profesores", "ID": "JM-02", "Group": "Profesores"}, "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N": {"Type": "Subject", "Label": "\u00c9TICA Y LEGISLACI\u00d3N EN TECNOLOG\u00cdAS DE LA INFORMACI\u00d3N", "group": "Materias", "ID": "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N", "Group": "Materias"}, "MC-01": {"Type": "Professor", "Label": "M.S.I. Marina Cristal Flores Flores", "group": "Profesores", "ID": "MC-01", "Group": "Profesores"}, "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE": {"Type": "Subject", "Label": "OPTATIVA I MODELACI\u00d3N DE DATOS EN LA NUBE", "group": "Materias", "ID": "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE", "Group": "Materias"}, "SEGURIDAD-INFORM\u00c1TICA": {"Type": "Subject", "Label": "SEGURIDAD INFORM\u00c1TICA", "group": "Materias", "ID": "SEGURIDAD-INFORM\u00c1TICA", "Group": "Materias"}, "ITIID-7-2": {"Type": "Group", "Label": "ITIID 7-2", "group": "Grupos", "ID": "ITIID-7-2", "Group": "Grupos"}, "CO-01": {"Type": "Professor", "Label": "M.C. Carlos Orozco Garcia", "group": "Profesores", "ID": "CO-01", "Group": "Profesores"}, "ITIID-3-1": {"Type": "Group", "Label": "ITIID 3-1", "group": "Grupos", "ID": "ITIID-3-1", "Group": "Grupos"}, "AL-02": {"Type": "Professor", "Label": "Alma Leticia Vald\u00e9z Garc\u00eda", "group": "Profesores", "ID": "AL-02", "Group": "Profesores"}, "INGLES-3": {"Type": "Subject", "Label": "INGL\u00c9S III", "group": "Materias", "ID": "INGLES-3", "Group": "Materias"}, "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES": {"Type": "Subject", "Label": "DESARROLLO DEL PENSAMIENTO Y TOMA DE DECISIONES", "group": "Materias", "ID": "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES", "Group": "Materias"}, "C\u00c1LCULO-INTEGRAL": {"Type": "Subject", "Label": "C\u00c1LCULO INTEGRAL", "group": "Materias", "ID": "C\u00c1LCULO-INTEGRAL", "Group": "Materias"}, "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE": {"Type": "Subject", "Label": "T\u00d3PICOS DE CALIDAD PARA EL DISE\u00d1O DE SOFTWARE", "group": "Materias", "ID": "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE", "Group": "Materias"}, "BASES-DE-DATOS": {"Type": "Subject", "Label": "BASES DE DATOS", "group": "Materias", "ID": "BASES-DE-DATOS", "Group": "Materias"}, "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS": {"Type": "Subject", "Label": "PROGRAMACI\u00d3N ORIENTADA A OBJETOS", "group": "Materias", "ID": "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS", "Group": "Materias"}, "MR-01": {"Type": "Professor", "Label": "M.I. Manuel Ruiz M\u00e9ndez", "group": "Profesores", "ID": "MR-01", "Group": "Profesores"}, "PROYECTO-INTEGRADOR-I": {"Type": "Subject", "Label": "PROYECTO INTEGRADOR I", "group": "Materias", "ID": "PROYECTO-INTEGRADOR-I", "Group": "Materias"}};
+            const LAYOUTS = {"spring": {"ITIID-1-1": {"x": 0.10726936676623425, "y": -0.12531584369347698}, "CC-01": {"x": -0.25822899057224746, "y": -0.4419928378495011}, "INGLES-1": {"x": -0.6197938309246497, "y": -0.7639104605580567}, "HE-01": {"x": 0.38024735777349955, "y": 0.0629093233030584}, "DESARROLLO-HUMANO-Y-VALORES": {"x": 0.3578119659871724, "y": 0.8975719751764033}, "JM-01": {"x": 0.5088042799305569, "y": -0.15415656958732593}, "FUNDAMENTOS-MATEM\u00c1TICOS": {"x": 0.8480335022806053, "y": -0.5267561044790102}, "HH-02": {"x": 0.19648729003881454, "y": 0.04169240269044794}, "FUNDAMENTOS-DE-REDES": {"x": -0.6859541929643554, "y": 0.5944943479633543}, "MAGMC": {"x": 0.4063129634226745, "y": -0.03374040006030754}, "F\u00cdSICA": {"x": 0.46367018274889843, "y": -0.8398684647092733}, "HH-01": {"x": -0.27244906306682354, "y": 0.2671743994134794}, "FUNDAMENTOS-DE-PROGRAMACI\u00d3N": {"x": -0.07904272125571596, "y": 0.9770007031607736}, "AD-01": {"x": 0.18131501285501614, "y": -0.5374812915898184}, "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES": {"x": 0.2562735793239432, "y": -0.9515686936751248}, "ITIID-1-2": {"x": 0.10821282140732498, "y": -0.12668326364123011}, "OR-01": {"x": -0.253922636361881, "y": -0.4492166483931253}, "EG-01": {"x": 0.3283908028619125, "y": 0.31536449579256015}, "KE-01": {"x": 0.4760649329101274, "y": -0.32507925738379423}, "IP-01": {"x": -0.3319339149748877, "y": 0.22163994387345506}, "FR-01": {"x": 0.28478395315085486, "y": -0.4817158212825039}, "ITIID-4-1": {"x": -0.09459557913449185, "y": 0.2102433465917939}, "EP-01": {"x": -0.16623747731645128, "y": 0.5261032000687214}, "INGLES-4": {"x": -0.23711765961933906, "y": 0.8411442551330425}, "LR-01": {"x": 0.18324762153505686, "y": 0.023434431737752778}, "\u00c9TICA-PROFESIONAL": {"x": 0.9742513786240018, "y": 0.4205750458318934}, "C\u00c1LCULO-DE-VARIAS-VARIABLES": {"x": 0.7920289597248358, "y": 0.7457439716249238}, "MA-01": {"x": -0.5178204045302679, "y": 0.033367003118869636}, "APLICACIONES-WEB": {"x": -0.9146789095929917, "y": -0.3943870226954946}, "JA-01": {"x": -0.11832098765833249, "y": -0.33938618453218766}, "ESTRUCTURA-DE-DATOS": {"x": -0.1426718408693156, "y": -0.8914114886559488}, "JO-01": {"x": -0.3194389962837524, "y": -0.15391158178073136}, "DESARROLLO-DE-APLICACIONES-M\u00d3VILES": {"x": -0.8560470101456635, "y": 0.3224702852938364}, "LF-01": {"x": 0.17937909014239597, "y": 0.2008983136819728}, "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE": {"x": -0.5561539307648928, "y": 0.9334214187198449}, "ITIID-4-2": {"x": -0.09436216792763681, "y": 0.210402654771736}, "MO-01": {"x": -0.10399121875180999, "y": -0.18487651203759273}, "AG-01": {"x": 0.3490692144956576, "y": 0.4779965475358701}, "MH-01": {"x": -0.5039732138168916, "y": -0.09191513298900399}, "JF-01": {"x": 0.007938516208284965, "y": 0.589289514479518}, "ITIID-7-1": {"x": 0.07135541629848843, "y": -0.1669444492321269}, "INGLES-6": {"x": -0.058789738791520635, "y": -0.9694781410713433}, "AL-01": {"x": 0.4236055090142845, "y": 0.2108158330812885}, "HABILIDADES-GERENCIALES": {"x": 0.7749423332850626, "y": 0.5876051695503564}, "MM-01": {"x": -0.3721195596900614, "y": 0.21008968360753988}, "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA": {"x": -0.8144392919090707, "y": 0.5875986974196944}, "SP-01": {"x": 0.512448661942892, "y": -0.1216405539963704}, "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL": {"x": 0.9534632944429408, "y": -0.07683929822175586}, "JM-02": {"x": -0.37097689566001407, "y": -0.4015513563405923}, "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N": {"x": -0.8132822910095207, "y": -0.6350115266497355}, "MC-01": {"x": -0.2806481268577293, "y": -0.3511430760551616}, "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE": {"x": -0.754923794503931, "y": -0.37995949215013064}, "SEGURIDAD-INFORM\u00c1TICA": {"x": 0.9647731660452658, "y": -0.32533223729953203}, "ITIID-7-2": {"x": 0.0712735966488848, "y": -0.16715677630863196}, "CO-01": {"x": -0.34147044755902495, "y": -0.2736459702233954}, "ITIID-3-1": {"x": -0.012340587194935387, "y": 0.08047989388039292}, "AL-02": {"x": 0.09774819680602141, "y": 0.5392386637295895}, "INGLES-3": {"x": 0.20812400585685908, "y": 0.9974247371960949}, "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES": {"x": 0.6942589662894151, "y": -0.707295463278469}, "C\u00c1LCULO-INTEGRAL": {"x": 0.9965835403164676, "y": 0.14917849649518866}, "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE": {"x": 0.5649067404629619, "y": 0.8941229451460548}, "BASES-DE-DATOS": {"x": -0.3540475772922145, "y": -0.8908076391619416}, "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS": {"x": -0.9172130259999045, "y": -0.11910184871868695}, "MR-01": {"x": -0.5060901365970881, "y": 0.10419990338508706}, "PROYECTO-INTEGRADOR-I": {"x": -1.0, "y": 0.12558980484678603}}, "circular": {"ITIID-1-1": {"x": 1.0, "y": 0.0}, "CC-01": {"x": 0.9953316450310318, "y": 0.09651391913680243}, "INGLES-1": {"x": 0.9813701511192798, "y": 0.19212672035642192}, "HE-01": {"x": 0.9582458140176892, "y": 0.2859456825459739}, "DESARROLLO-HUMANO-Y-VALORES": {"x": 0.9261746409580405, "y": 0.37709483349768697}, "JM-01": {"x": 0.8854560260698138, "y": 0.46472316789926776}, "FUNDAMENTOS-MATEM\u00c1TICOS": {"x": 0.8364701277758286, "y": 0.5480124927952373}, "HH-02": {"x": 0.7796743521182171, "y": 0.6261851761907201}, "FUNDAMENTOS-DE-REDES": {"x": 0.7155989420147283, "y": 0.6985113592134322}, "MAGMC": {"x": 0.6448422088871656, "y": 0.7643157212408359}, "F\u00cdSICA": {"x": 0.5680647510108677, "y": 0.8229838575971042}, "HH-01": {"x": 0.48598343344561085, "y": 0.8739680015989958}, "FUNDAMENTOS-DE-PROGRAMACI\u00d3N": {"x": 0.39936459310613176, "y": 0.9167921505552851}, "AD-01": {"x": 0.3090169756117512, "y": 0.9510565361151017}, "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES": {"x": 0.21578424000232418, "y": 0.9764410813373133}, "ITIID-1-2": {"x": 0.12053668859381095, "y": 0.9927088577599087}, "OR-01": {"x": 0.024163715814873248, "y": 0.9997079927486225}, "EG-01": {"x": -0.07243474878490631, "y": 0.9973731596130486}, "KE-01": {"x": -0.16835702476951206, "y": 0.9857260544437964}, "IP-01": {"x": -0.2627073772662203, "y": 0.9648755153217796}, "FR-01": {"x": -0.3546048347276996, "y": 0.9350162706206816}, "ITIID-4-1": {"x": -0.44319164161566343, "y": 0.8964269124490409}, "EP-01": {"x": -0.5276401576384746, "y": 0.8494679893016264}, "INGLES-4": {"x": -0.607162469000076, "y": 0.7945777145250309}, "LR-01": {"x": -0.6810158422249651, "y": 0.7322686284575779}, "\u00c9TICA-PROFESIONAL": {"x": -0.748510711180561, "y": 0.6631226512438247}, "C\u00c1LCULO-DE-VARIAS-VARIABLES": {"x": -0.8090169951695252, "y": 0.5877852415793994}, "MA-01": {"x": -0.8619697017663468, "y": 0.5069597938744136}, "APLICACIONES-WEB": {"x": -0.906874291235351, "y": 0.4214011711495321}, "JA-01": {"x": -0.9433118025301285, "y": 0.3319078968275387}, "ESTRUCTURA-DE-DATOS": {"x": -0.9709418335257618, "y": 0.2393156727282433}, "JO-01": {"x": -0.9895064153207203, "y": 0.14448901951708673}, "DESARROLLO-DE-APLICACIONES-M\u00d3VILES": {"x": -0.9988322176087072, "y": 0.048313312034515124}, "LF-01": {"x": -0.9988322176087072, "y": -0.04831348339786815}, "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE": {"x": -0.9895064153207203, "y": -0.1444889599124422}, "ITIID-4-2": {"x": -0.9709418335257618, "y": -0.23931561312359875}, "MO-01": {"x": -0.9433118025301285, "y": -0.3319078372228942}, "AG-01": {"x": -0.9068743508399956, "y": -0.42140114134720985}, "MH-01": {"x": -0.8619696421617022, "y": -0.5069599130837026}, "JF-01": {"x": -0.8090169355648806, "y": -0.5877853011840438}, "ITIID-7-1": {"x": -0.7485108303898501, "y": -0.6631225916391802}, "INGLES-6": {"x": -0.6810159018296096, "y": -0.7322686284575779}, "AL-01": {"x": -0.607162349790787, "y": -0.7945777741296755}, "HABILIDADES-GERENCIALES": {"x": -0.5276404556616973, "y": -0.8494678104876927}, "MM-01": {"x": -0.44319170122030793, "y": -0.8964268528443964}, "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA": {"x": -0.3546050135416332, "y": -0.935016211016037}, "SP-01": {"x": -0.2627074666731871, "y": -0.9648755153217796}, "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL": {"x": -0.16835708437415658, "y": -0.9857260544437964}, "JM-02": {"x": -0.07243480838955085, "y": -0.9973731596130486}, "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N": {"x": 0.024163769831582353, "y": -0.9997079927486225}, "MC-01": {"x": 0.12053674819845547, "y": -0.9927088577599087}, "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE": {"x": 0.2157842996069687, "y": -0.9764410813373133}, "SEGURIDAD-INFORM\u00c1TICA": {"x": 0.3090171246233625, "y": -0.9510564765104571}, "ITIID-7-2": {"x": 0.3993647421177431, "y": -0.9167921505552851}, "CO-01": {"x": 0.4859835824572222, "y": -0.8739679419943513}, "ITIID-3-1": {"x": 0.5680645721969342, "y": -0.8229839768063932}, "AL-02": {"x": 0.6448420896778765, "y": -0.764315840450125}, "INGLES-3": {"x": 0.7155988824100837, "y": -0.6985114784227213}, "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES": {"x": 0.7796742925135726, "y": -0.6261852954000091}, "C\u00c1LCULO-INTEGRAL": {"x": 0.8364701277758286, "y": -0.5480125523998819}, "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE": {"x": 0.8854560260698138, "y": -0.46472319770159004}, "BASES-DE-DATOS": {"x": 0.9261746409580405, "y": -0.37709483349768697}, "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS": {"x": 0.9582458736223336, "y": -0.28594562294132936}, "MR-01": {"x": 0.9813701511192798, "y": -0.192126616048294}, "PROYECTO-INTEGRADOR-I": {"x": 0.9953316450310318, "y": -0.0965137924769328}}, "kamada": {"ITIID-1-1": {"x": -0.25515499439417066, "y": 0.37125559119804963}, "CC-01": {"x": 0.36868111827462985, "y": 0.2271090258233823}, "INGLES-1": {"x": -0.028053116128529065, "y": 0.9541676486392263}, "HE-01": {"x": 0.36598592452547773, "y": 0.23054120597766023}, "DESARROLLO-HUMANO-Y-VALORES": {"x": -0.029515103912760424, "y": 0.9546646337197671}, "JM-01": {"x": -0.36791744525995684, "y": -0.240977350956118}, "FUNDAMENTOS-MATEM\u00c1TICOS": {"x": -0.8730155590555745, "y": 0.41390984240708867}, "HH-02": {"x": -0.3703701619490291, "y": -0.2399185250802447}, "FUNDAMENTOS-DE-REDES": {"x": -0.873384451902757, "y": 0.4147285306167708}, "MAGMC": {"x": -0.36434230220885927, "y": -0.24325683871325585}, "F\u00cdSICA": {"x": -0.8729238531244955, "y": 0.4128084285382602}, "HH-01": {"x": 0.32915438428944593, "y": 0.2306187897246095}, "FUNDAMENTOS-DE-PROGRAMACI\u00d3N": {"x": -0.25403298724132023, "y": 0.9897419322650797}, "AD-01": {"x": 0.32600023349341944, "y": 0.2317203119173794}, "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES": {"x": -0.25626377241478626, "y": 0.9895603726874697}, "ITIID-1-2": {"x": -0.2546438370460843, "y": 0.371695271055564}, "OR-01": {"x": 0.36859517696137134, "y": 0.2267384422492628}, "EG-01": {"x": 0.3683737759568727, "y": 0.22711829451213358}, "KE-01": {"x": -0.36661391530049114, "y": -0.2403081752858895}, "IP-01": {"x": -0.36973166031679633, "y": -0.23939383064482003}, "FR-01": {"x": -0.36645332022675353, "y": -0.24054435174616315}, "ITIID-4-1": {"x": -0.2009679811274077, "y": 0.3623592676406908}, "EP-01": {"x": 0.3937081783193774, "y": 0.1839617692757427}, "INGLES-4": {"x": -0.043125594724588046, "y": 0.93803158542342}, "LR-01": {"x": -0.36174891339264903, "y": -0.21598358748579452}, "\u00c9TICA-PROFESIONAL": {"x": -0.7748976144039637, "y": 0.6054135113745068}, "C\u00c1LCULO-DE-VARIAS-VARIABLES": {"x": -0.8218839292899057, "y": 0.4008548076182922}, "MA-01": {"x": 0.4218309109494382, "y": 0.39957094347046423}, "APLICACIONES-WEB": {"x": -0.05370571419017095, "y": 0.9639571794747909}, "JA-01": {"x": 0.3997673084369145, "y": 0.202144245232398}, "ESTRUCTURA-DE-DATOS": {"x": -0.053121775542774155, "y": 0.9641186026480663}, "JO-01": {"x": 0.42190605331193837, "y": 0.39957252768491697}, "DESARROLLO-DE-APLICACIONES-M\u00d3VILES": {"x": -0.06104743400661056, "y": 0.98658392508829}, "LF-01": {"x": -0.37063418152719635, "y": -0.24369749505580904}, "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE": {"x": -0.8233807598917676, "y": 0.4008411627302838}, "ITIID-4-2": {"x": -0.20088822094910724, "y": 0.36189387193550315}, "MO-01": {"x": 0.3963850391262455, "y": 0.18699006670338225}, "AG-01": {"x": -0.3617468371945365, "y": -0.2460379539011441}, "MH-01": {"x": 0.39893543112646124, "y": 0.20123614493662406}, "JF-01": {"x": -0.3684044053061708, "y": -0.24516273637086966}, "ITIID-7-1": {"x": 0.23182321023690505, "y": -0.39726125021289044}, "INGLES-6": {"x": 0.826545162059287, "y": -0.5717454229130269}, "AL-01": {"x": 0.3684685469827144, "y": 0.2272184229446518}, "HABILIDADES-GERENCIALES": {"x": 0.8584258679321053, "y": -0.34761084583202995}, "MM-01": {"x": -0.36944349871126964, "y": -0.23686463358942234}, "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA": {"x": 0.08198967301793134, "y": -0.9989749544705788}, "SP-01": {"x": 0.3992900197219697, "y": 0.18738101116197617}, "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL": {"x": 0.8271421273943823, "y": -0.5711273906155316}, "JM-02": {"x": -0.3669210827970752, "y": -0.23349665177833331}, "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N": {"x": 0.0857502470018066, "y": -0.9954241158378311}, "MC-01": {"x": -0.3691141369180042, "y": -0.23938305338559884}, "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE": {"x": 0.08178582936876248, "y": -0.9990591684574126}, "SEGURIDAD-INFORM\u00c1TICA": {"x": 0.08092052703942428, "y": -1.0}, "ITIID-7-2": {"x": 0.23187589133565883, "y": -0.3972917214268142}, "CO-01": {"x": -0.3695610366517859, "y": -0.2370709066648482}, "ITIID-3-1": {"x": 0.23745301566476074, "y": -0.3790289428918185}, "AL-02": {"x": -0.36847275423932735, "y": -0.24201456005325292}, "INGLES-3": {"x": 0.1123713735302521, "y": -0.9864762382840744}, "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES": {"x": 0.8610734322561354, "y": -0.4212087302017351}, "C\u00c1LCULO-INTEGRAL": {"x": 0.11202214076037074, "y": -0.9863845000180826}, "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE": {"x": 0.11254764357984505, "y": -0.98719875058819}, "BASES-DE-DATOS": {"x": 0.1111372965957305, "y": -0.9860738729389333}, "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS": {"x": 0.8535937250333999, "y": -0.4212161321825292}, "MR-01": {"x": 0.34972671767727603, "y": 0.2315691739497763}, "PROYECTO-INTEGRADOR-I": {"x": 0.8582163693863647, "y": -0.4198838530424339}}, "shell": {"ITIID-1-1": {"x": -1.0, "y": -8.742277657347586e-08}, "CC-01": {"x": -0.9953316450119019, "y": -0.09651404619216919}, "INGLES-1": {"x": -0.9813700914382935, "y": -0.19212688505649567}, "HE-01": {"x": -0.9582458138465881, "y": -0.2859456539154053}, "DESARROLLO-HUMANO-Y-VALORES": {"x": -0.9261746406555176, "y": -0.3770948350429535}, "JM-01": {"x": -0.8854560256004333, "y": -0.4647231996059418}, "FUNDAMENTOS-MATEM\u00c1TICOS": {"x": -0.8364701271057129, "y": -0.5480125546455383}, "HH-02": {"x": -0.7796742916107178, "y": -0.6261852979660034}, "FUNDAMENTOS-DE-REDES": {"x": -0.7155988812446594, "y": -0.6985114812850952}, "MAGMC": {"x": -0.6448420882225037, "y": -0.7643158435821533}, "F\u00cdSICA": {"x": -0.5680645704269409, "y": -0.822983980178833}, "HH-01": {"x": -0.48598358035087585, "y": -0.8739679455757141}, "FUNDAMENTOS-DE-PROGRAMACI\u00d3N": {"x": -0.39936473965644836, "y": -0.9167921543121338}, "AD-01": {"x": -0.3090171217918396, "y": -0.9510564804077148}, "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES": {"x": -0.21578426659107208, "y": -0.9764410853385925}, "ITIID-1-2": {"x": -0.12053671479225159, "y": -0.9927088618278503}, "OR-01": {"x": -0.02416374348104, "y": -0.9997079968452454}, "EG-01": {"x": 0.07243484258651733, "y": -0.9973731637001038}, "KE-01": {"x": 0.16835711896419525, "y": -0.9857260584831238}, "IP-01": {"x": 0.2627074718475342, "y": -0.9648755192756653}, "FR-01": {"x": 0.3546050190925598, "y": -0.9350162148475647}, "ITIID-4-1": {"x": 0.4431917071342468, "y": -0.8964268565177917}, "EP-01": {"x": 0.5276404619216919, "y": -0.8494678139686584}, "INGLES-4": {"x": 0.6071627140045166, "y": -0.7945775389671326}, "LR-01": {"x": 0.6810160875320435, "y": -0.7322684526443481}, "\u00c9TICA-PROFESIONAL": {"x": 0.7485109567642212, "y": -0.6631223559379578}, "C\u00c1LCULO-DE-VARIAS-VARIABLES": {"x": 0.8090172410011292, "y": -0.5877849459648132}, "MA-01": {"x": 0.8619698882102966, "y": -0.5069594979286194}, "APLICACIONES-WEB": {"x": 0.9068743586540222, "y": -0.42140111327171326}, "JA-01": {"x": 0.9433118104934692, "y": -0.33190780878067017}, "ESTRUCTURA-DE-DATOS": {"x": 0.9709418416023254, "y": -0.23931558430194855}, "JO-01": {"x": 0.9895064234733582, "y": -0.14448893070220947}, "DESARROLLO-DE-APLICACIONES-M\u00d3VILES": {"x": 0.9988322257995605, "y": -0.04831322282552719}, "LF-01": {"x": 0.9988322257995605, "y": 0.04831357300281525}, "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE": {"x": 0.9895064234733582, "y": 0.14448881149291992}, "ITIID-4-2": {"x": 0.9709418416023254, "y": 0.239315465092659}, "MO-01": {"x": 0.943311870098114, "y": 0.3319076895713806}, "AG-01": {"x": 0.906874418258667, "y": 0.4214009940624237}, "MH-01": {"x": 0.8619697093963623, "y": 0.5069597959518433}, "JF-01": {"x": 0.80901700258255, "y": 0.5877852439880371}, "ITIID-7-1": {"x": 0.7485107183456421, "y": 0.6631226539611816}, "INGLES-6": {"x": 0.6810158491134644, "y": 0.7322686910629272}, "AL-01": {"x": 0.6071624159812927, "y": 0.7945777177810669}, "HABILIDADES-GERENCIALES": {"x": 0.5276401042938232, "y": 0.8494679927825928}, "MM-01": {"x": 0.44319140911102295, "y": 0.8964269757270813}, "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA": {"x": 0.35460472106933594, "y": 0.9350163340568542}, "SP-01": {"x": 0.2627071738243103, "y": 0.9648756384849548}, "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL": {"x": 0.1683567762374878, "y": 0.9857261180877686}, "JM-02": {"x": 0.07243449240922928, "y": 0.9973731637001038}, "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N": {"x": -0.024164091795682907, "y": 0.9997079968452454}, "MC-01": {"x": -0.12053706496953964, "y": 0.9927088022232056}, "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE": {"x": -0.21578462421894073, "y": 0.976440966129303}, "SEGURIDAD-INFORM\u00c1TICA": {"x": -0.3090174198150635, "y": 0.9510563611984253}, "ITIID-7-2": {"x": -0.39936503767967224, "y": 0.9167919754981995}, "CO-01": {"x": -0.4859839081764221, "y": 0.8739677667617798}, "ITIID-3-1": {"x": -0.5680644512176514, "y": 0.8229840397834778}, "AL-02": {"x": -0.6448419690132141, "y": 0.7643159031867981}, "INGLES-3": {"x": -0.7155987620353699, "y": 0.6985116004943848}, "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES": {"x": -0.7796741724014282, "y": 0.626185417175293}, "C\u00c1LCULO-INTEGRAL": {"x": -0.8364700078964233, "y": 0.5480127334594727}, "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE": {"x": -0.8854559659957886, "y": 0.4647233188152313}, "BASES-DE-DATOS": {"x": -0.9261745810508728, "y": 0.37709495425224304}, "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS": {"x": -0.9582458138465881, "y": 0.2859457731246948}, "MR-01": {"x": -0.9813700914382935, "y": 0.19212676584720612}, "PROYECTO-INTEGRADOR-I": {"x": -0.9953316450119019, "y": 0.09651393443346024}}, "hierarchical": {"AL-02": {"x": 0.0, "y": -5.800000000000001}, "AG-01": {"x": 0.0, "y": -5.4}, "HH-01": {"x": 0.0, "y": -5.000000000000001}, "JM-01": {"x": 0.0, "y": -4.6000000000000005}, "MA-01": {"x": 0.0, "y": -4.200000000000001}, "SP-01": {"x": 0.0, "y": -3.8000000000000007}, "KE-01": {"x": 0.0, "y": -3.4000000000000004}, "EP-01": {"x": 0.0, "y": -3.0000000000000004}, "FR-01": {"x": 0.0, "y": -2.6000000000000005}, "HE-01": {"x": 0.0, "y": -2.2000000000000006}, "JM-02": {"x": 0.0, "y": -1.8000000000000007}, "CC-01": {"x": 0.0, "y": -1.4000000000000004}, "MO-01": {"x": 0.0, "y": -1.0}, "LF-01": {"x": 0.0, "y": -0.6000000000000005}, "HH-02": {"x": 0.0, "y": -0.20000000000000018}, "CO-01": {"x": 0.0, "y": 0.1999999999999993}, "JO-01": {"x": 0.0, "y": 0.5999999999999996}, "MM-01": {"x": 0.0, "y": 1.0}, "JA-01": {"x": 0.0, "y": 1.3999999999999995}, "AL-01": {"x": 0.0, "y": 1.7999999999999998}, "MAGMC": {"x": 0.0, "y": 2.1999999999999993}, "EG-01": {"x": 0.0, "y": 2.5999999999999996}, "LR-01": {"x": 0.0, "y": 3.0}, "MR-01": {"x": 0.0, "y": 3.4000000000000004}, "AD-01": {"x": 0.0, "y": 3.8000000000000007}, "JF-01": {"x": 0.0, "y": 4.199999999999999}, "MC-01": {"x": 0.0, "y": 4.6}, "MH-01": {"x": 0.0, "y": 5.0}, "IP-01": {"x": 0.0, "y": 5.4}, "OR-01": {"x": 0.0, "y": 5.800000000000001}, "ITIID-1-1": {"x": 1.5, "y": -1.2000000000000002}, "ITIID-3-1": {"x": 1.5, "y": -0.8000000000000002}, "ITIID-4-1": {"x": 1.5, "y": -0.40000000000000013}, "ITIID-7-1": {"x": 1.5, "y": 0.0}, "ITIID-4-2": {"x": 1.5, "y": 0.3999999999999999}, "ITIID-7-2": {"x": 1.5, "y": 0.7999999999999998}, "ITIID-1-2": {"x": 1.5, "y": 1.2000000000000002}, "INGLES-3": {"x": 3.0, "y": -5.4}, "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES": {"x": 3.0, "y": -5.0}, "C\u00c1LCULO-INTEGRAL": {"x": 3.0, "y": -4.6000000000000005}, "T\u00d3PICOS-DE-CALIDAD-PARA-EL-DISE\u00d1O-DE-SOFTWARE": {"x": 3.0, "y": -4.2}, "BASES-DE-DATOS": {"x": 3.0, "y": -3.8000000000000003}, "PROGRAMACI\u00d3N-ORIENTADA-A-OBJETOS": {"x": 3.0, "y": -3.4000000000000004}, "PROYECTO-INTEGRADOR-I": {"x": 3.0, "y": -3.0}, "INGLES-1": {"x": 3.0, "y": -2.6}, "DESARROLLO-HUMANO-Y-VALORES": {"x": 3.0, "y": -2.2}, "FUNDAMENTOS-MATEM\u00c1TICOS": {"x": 3.0, "y": -1.8000000000000003}, "FUNDAMENTOS-DE-REDES": {"x": 3.0, "y": -1.4000000000000004}, "F\u00cdSICA": {"x": 3.0, "y": -1.0}, "FUNDAMENTOS-DE-PROGRAMACI\u00d3N": {"x": 3.0, "y": -0.5999999999999996}, "COMUNICACI\u00d3N-Y-HABILIDADES-DIGITALES": {"x": 3.0, "y": -0.20000000000000018}, "INGLES-4": {"x": 3.0, "y": 0.20000000000000018}, "\u00c9TICA-PROFESIONAL": {"x": 3.0, "y": 0.5999999999999996}, "C\u00c1LCULO-DE-VARIAS-VARIABLES": {"x": 3.0, "y": 1.0}, "APLICACIONES-WEB": {"x": 3.0, "y": 1.4000000000000004}, "ESTRUCTURA-DE-DATOS": {"x": 3.0, "y": 1.7999999999999998}, "DESARROLLO-DE-APLICACIONES-M\u00d3VILES": {"x": 3.0, "y": 2.2}, "AN\u00c1LISIS-Y-DISE\u00d1O-DE-SOFTWARE": {"x": 3.0, "y": 2.5999999999999996}, "INGLES-6": {"x": 3.0, "y": 3.0}, "HABILIDADES-GERENCIALES": {"x": 3.0, "y": 3.4000000000000004}, "FORMULACI\u00d3N-DE-PROYECTOS-DE-TECNOLOG\u00cdA": {"x": 3.0, "y": 3.8000000000000007}, "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL": {"x": 3.0, "y": 4.200000000000001}, "\u00c9TICA-Y-LEGISLACI\u00d3N-EN-TECNOLOG\u00cdAS-DE-LA-INFORMACI\u00d3N": {"x": 3.0, "y": 4.6}, "OPTATIVA-I-MODELACI\u00d3N-DE-DATOS-EN-LA-NUBE": {"x": 3.0, "y": 5.0}, "SEGURIDAD-INFORM\u00c1TICA": {"x": 3.0, "y": 5.4}}};
+            </script>
+            
+            <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const checkNet = setInterval(() => {
                     if (typeof network !== 'undefined' && typeof nodes !== 'undefined' && typeof edges !== 'undefined') {
@@ -271,9 +389,33 @@
             function initCustomControls() {
                 const searchSel = document.getElementById("ui-search");
                 const filterSel = document.getElementById("ui-filter");
+                const layoutSel = document.getElementById("ui-layout");
                 const spacingRange = document.getElementById("ui-spacing");
                 const resetBtn = document.getElementById("ui-reset");
                 const physicsBtn = document.getElementById("ui-physics");
+                const themeBtn = document.getElementById("ui-theme");
+                
+                // Theme Toggle
+                themeBtn.addEventListener("click", () => {
+                   document.body.classList.toggle("dark");
+                   const isDark = document.body.classList.contains("dark");
+                   
+                   // Icon: Sun (Light Mode Target) vs Moon (Dark Mode Target)
+                   // If isDark is true, we are in Dark Mode, so button should show Sun (to switch to Light)
+                   // Wait, logic: Default is Dark. Button shows Sun. Click -> Light. Button shows Moon.
+                   // SVG strings for safety
+                   // Icon update
+                   const sunIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+                   const moonIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+                   
+                   themeBtn.innerHTML = isDark ? sunIcon : moonIcon;
+                   
+                   // Update Network Fonts? NO. User requested fixed White fonts with Stroke.
+                   // We do NOT change node fonts on theme toggle anymore.
+                   
+                   // Reset highlighting if active to prevent stuck wrong colors
+                   resetHighlight();
+                });
                 
                 // 1. Populate Search
                 const allNodes = nodes.get();
@@ -314,74 +456,139 @@
                     }
                 });
                 
-                // 3. Spacing
+                // 3. Spacing & Layout Logic
+                let currentLayoutBase = null; // Store normalized positions
+                
+                function applyStaticLayout() {
+                    const mode = layoutSel.value;
+                    if (mode === 'physics' || !currentLayoutBase) return;
+                    
+                    const sliderVal = parseInt(spacingRange.value);
+                    const multiplier = sliderVal * 10; // 100 -> 1000 spacing
+                    
+                    const updates = [];
+                    for(const [nid, pos] of Object.entries(currentLayoutBase)) {
+                        updates.push({ id: nid, x: pos.x * multiplier, y: pos.y * multiplier });
+                    }
+                    nodes.update(updates);
+                    // We don't call fit() every frame of slider dragging because it's jarring, 
+                    // but we might want it on change? Let's rely on user pan/zoom or call fit once after selection.
+                }
+
                 spacingRange.addEventListener("input", (e) => {
                     const val = parseInt(e.target.value);
-                    network.setOptions({ physics: { forceAtlas2Based: { springLength: val } } });
+                    if (layoutSel.value === 'physics') {
+                         network.setOptions({ physics: { forceAtlas2Based: { springLength: val } } });
+                    } else {
+                         applyStaticLayout(); 
+                    }
                 });
+                
+                // 3b. Layout Switching
+                if (layoutSel) {
+                    layoutSel.addEventListener("change", (e) => {
+                        const mode = e.target.value;
+                        if (mode === 'physics') {
+                            // Enable Physics
+                            network.setOptions({ physics: { enabled: true, stabilization: { iterations: 100 } } });
+                            physicsBtn.style.opacity = "1";
+                            physicsEnabled = true;
+                            spacingRange.disabled = false;
+                            
+                        } else {
+                            // Disable Physics
+                            network.setOptions({ physics: { enabled: false } });
+                            physicsBtn.style.opacity = "0.5";
+                            physicsEnabled = false;
+                            // Static layouts allow spacing scaling too!
+                            spacingRange.disabled = false; 
+                            
+                            if (typeof LAYOUTS !== 'undefined' && LAYOUTS[mode]) {
+                                currentLayoutBase = LAYOUTS[mode];
+                                applyStaticLayout();
+                                network.fit({ animation: { duration: 1000, easingFunction: 'easeInOutQuad' } });
+                            }
+                        }
+                    });
+                }
                 
                 // 4. Reset
                 resetBtn.addEventListener("click", () => {
                    network.fit({ animation: true });
                    resetHighlight();
                    searchSel.value = "";
+                   currentSelectedId = null;
                 });
                 
-                // 5. Physics
-                let physicsEnabled = true;
-                physicsBtn.addEventListener("click", () => {
-                    physicsEnabled = !physicsEnabled;
-                    network.setOptions({ physics: { enabled: physicsEnabled } });
-                    physicsBtn.style.opacity = physicsEnabled ? "1" : "0.5";
-                });
+                // 5. Physics Toggle Listener
+                // ...
             }
+            
+            // Global State
+            let currentSelectedId = null;
 
             function initHighlighting() {
                 network.on("click", function(params) {
                     if (params.nodes.length > 0) {
-                        highlightNeighborhood(params.nodes[0]);
+                        currentSelectedId = params.nodes[0];
+                        highlightNeighborhood(currentSelectedId);
                     } else {
+                        currentSelectedId = null;
                         resetHighlight();
                     }
                 });
             }
+            
+            // ... I18N ...
+            
+            // ... I18N ...
+            
+            
+            // ... updateSidebar ...
+            // ... closeSidebar ...
 
             function highlightNeighborhood(selectedId) {
                 const allNodes = nodes.get();
                 const allEdges = edges.get();
-                const connectedNodes = network.getConnectedNodes(selectedId);
-                const connectedEdges = network.getConnectedEdges(selectedId);
+                
+                // Show Sidebar
+                updateSidebar(selectedId);
 
+                // Calculate Visible Set (Standard 1st Degree)
+                const connectedNodes = network.getConnectedNodes(selectedId);
+                const isConnected = new Set(connectedNodes);
+                isConnected.add(selectedId);
+                
                 // Dim unconnected nodes
                 const nodeUpdates = allNodes.map(n => {
-                    const isLinked = n.id === selectedId || connectedNodes.includes(n.id);
-                    // Use color object to set opacity without losing original color
-                    // We assume n.color is a string (hex) from our python generation
-                    // We need to convert hex to rgba for opacity? 
-                    // Simpler: Vis.js supports 'opacity' in options? No.
-                    // We must edit color. 
-                    // Hack: use color: { background: 'rgba(...)', border: 'rgba(...)' }
-                    // But parsing hex in JS is tedious.
-                    // Alternative: Set n.color.opacity if using RGBA, but we used hex.
-                    // EASIER: Just use 'hidden' for extreme cleaning? User asked for 'opacity'.
-                    // Let's try modifying the color object opacity property if supported (Vis 4.21+ supports it partially).
-                    // Actually, let's keep it simple: Gray out unconnected.
-                    
-                    if (isLinked) {
-                         // Restore full color if we have it stored? 
-                         // Vis.js DataSets merge updates. If we overwrite color, we lose original.
-                         // We should assume original color is in 'group' style or we re-assign based on group logic?
-                         // Better: Set opacity directly on the color object.
-                         return { id: n.id, opacity: 1 }; 
+                    if (isConnected.has(n.id)) {
+                         return { 
+                             id: n.id, 
+                             opacity: 1, 
+                             font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } 
+                         }; 
                     } else {
-                         return { id: n.id, opacity: 0.1 };
+                         return { 
+                             id: n.id, 
+                             opacity: 0.2, 
+                             font: { color: 'rgba(255, 255, 255, 0.4)', strokeWidth: 2, strokeColor: 'rgba(0, 0, 0, 0.2)' } 
+                         }; 
                     }
                 });
                 
-                // Dim unconnected edges
+                // Edge visual logic: Show edges connected to the selected node OR between visible nodes?
+                // Standard: Show edges connected to selected node.
+                // Extended: Show edges between any two visible nodes.
+                // Let's stick to edges connected to SELECTED node + edges between neighbors.
+                // Simply: If an edge's source and target are both in 'isConnected', show it.
+                
                 const edgeUpdates = allEdges.map(e => {
-                    const isLinked = connectedEdges.includes(e.id);
-                    return { id: e.id, color: { opacity: isLinked ? 1.0 : 0.05 } };
+                     const bothVisible = isConnected.has(e.from) && isConnected.has(e.to);
+                     if (bothVisible) {
+                        return { id: e.id, color: { opacity: 1.0, inherit: true } };
+                     } else {
+                        return { id: e.id, color: { opacity: 0.1, inherit: true } };
+                     }
                 });
 
                 nodes.update(nodeUpdates);
@@ -389,13 +596,193 @@
             }
 
             function resetHighlight() {
+                const allNodes = nodes.get();
+                const allEdges = edges.get();
+                
+                nodes.update(allNodes.map(n => ({ 
+                    id: n.id, opacity: 1, 
+                    font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } 
+                })));
+                edges.update(allEdges.map(e => ({ 
+                    id: e.id, color: { opacity: 1.0, inherit: true } 
+                })));
+                closeSidebar();
+            }
+
+            const I18N = {
+                'Professor': 'Profesor',
+                'Subject': 'Materia',
+                'Group': 'Grupo',
+                'Slot': 'Horario', 
+                'Type': 'Tipo',
+                'Unknown': 'Desconocido',
+                // Plurals for Headers
+                'Professor_plural': 'Profesores',
+                'Subject_plural': 'Materias',
+                'Group_plural': 'Grupos',
+                'Slot_plural': 'Horarios',
+                'Unknown_plural': 'Otros',
+                // Keys
+                'Label': 'Nombre',
+                'ID': 'ID'
+            };
+            
+            function t(key) { return I18N[key] || key; }
+            function tPlural(key) { return I18N[key + '_plural'] || key + 's'; }
+
+            // Make it global so onclick works
+            window.selectNodeFromSidebar = function(id) {
+                // Focus and Highlight
+                network.selectNodes([id]);
+                // Smooth Animation
+                network.focus(id, { 
+                    scale: 1.2, 
+                    animation: { duration: 600, easingFunction: 'easeInOutQuad' } 
+                });
+                currentSelectedId = id;
+                highlightNeighborhood(id);
+            }
+
+            function updateSidebar(selectedId) {
+                const sidebar = document.getElementById("ui-sidebar");
+                const container = document.getElementById("sidebar-content");
+                const data = GRAPH_DATA[selectedId];
+                
+                if (!data) return;
+                
+                let html = "";
+                
+                // 1. Header Info (Label & Type)
+                const typeLabel = data.Type ? t(data.Type) : '';
+                html += `<div class="sidebar-section">
+                    <h3 style="margin:0 0 8px 0; font-size:18px; color: var(--foreground);">${data.Label || data.ID}</h3>
+                    ${typeLabel ? `<span class="tag">${typeLabel}</span>` : ''}
+                </div>`;
+                
+                // 2. Properties (Filtered)
+                html += `<div class="sidebar-divider"></div>`;
+                const exclude = ['Label', 'Type', 'Group', 'group', 'ID', 'subset']; 
+                // Note: We hide 'Group' property usually as it matches Type or ID, but if present we translate key
+                
+                Object.keys(data).forEach(key => {
+                    if (!exclude.includes(key)) {
+                         html += `
+                        <div class="info-item">
+                            <span class="info-label">${t(key)}</span>
+                            <span class="info-value">${data[key]}</span>
+                        </div>`;
+                    }
+                });
+                
+                // 3. Relations (Neighbors)
+                const connectedIds = network.getConnectedNodes(selectedId);
+                if (connectedIds.length > 0) {
+                    html += `<div class="sidebar-divider"></div>`;
+                    html += `<h4 style="margin:0 0 12px 0; font-size:14px; text-transform:uppercase; color:var(--muted-foreground);">Relaciones</h4>`;
+                    
+                    // Group neighbors by Type
+                    const groups = {};
+                    connectedIds.forEach(nid => {
+                        const nData = GRAPH_DATA[nid];
+                        const type = nData ? (nData.Type || 'Unknown') : 'Unknown';
+                        if (!groups[type]) groups[type] = [];
+                        groups[type].push({ id: nid, label: nData ? (nData.Label || nid) : nid });
+                    });
+                    
+                    // Render Groups
+                    Object.keys(groups).sort().forEach(type => {
+                        const count = groups[type].length;
+                        const header = tPlural(type).toUpperCase();
+                        
+                        html += `<div class="relation-group" style="margin-bottom:12px;">
+                            <div class="info-label" style="margin-bottom:6px;">${header} (${count})</div>
+                            <div class="relation-list" style="display:flex; flex-direction:column; gap:6px;">`;
+                            
+                        groups[type].forEach(item => {
+                            html += `
+                            <div class="relation-item" onclick="window.selectNodeFromSidebar('${item.id}')" 
+                                 style="cursor:pointer; padding:6px 10px; background:var(--control-bg); border-radius:6px; font-size:13px; border:1px solid transparent; transition:all 0.2s;">
+                                ${item.label}
+                            </div>`;
+                        });
+                        
+                        html += `</div></div>`;
+                    });
+                }
+                
+                container.innerHTML = html;
+                sidebar.classList.add("active");
+                
+                // Hover effects
+                const items = container.querySelectorAll('.relation-item');
+                items.forEach(el => {
+                    el.addEventListener('mouseenter', () => { el.style.borderColor = 'var(--primary)'; el.style.background = 'var(--control-hover)'; });
+                    el.addEventListener('mouseleave', () => { el.style.borderColor = 'transparent'; el.style.background = 'var(--control-bg)'; });
+                });
+            }
+
+            function closeSidebar() {
+                document.getElementById("ui-sidebar").classList.remove("active");
+            }
+
+            function highlightNeighborhood(selectedId) {
+                const allNodes = nodes.get();
+                const allEdges = edges.get();
+                const connectedNodes = network.getConnectedNodes(selectedId);
+                const connectedEdges = network.getConnectedEdges(selectedId);
+                
+                // Show Sidebar
+                updateSidebar(selectedId);
+                
+                // Dim unconnected nodes to Ghost Opacity
+                const nodeUpdates = allNodes.map(n => {
+                    const isLinked = n.id === selectedId || connectedNodes.includes(n.id);
+                    if (isLinked) {
+                         return { 
+                             id: n.id, 
+                             opacity: 1, 
+                             font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } 
+                         }; 
+                    } else {
+                         return { 
+                             id: n.id, 
+                             opacity: 0.2, 
+                             font: { color: 'rgba(255, 255, 255, 0.4)', strokeWidth: 2, strokeColor: 'rgba(0, 0, 0, 0.2)' } 
+                         }; 
+                    }
+                });
+                
+                const edgeUpdates = allEdges.map(e => {
+                    const isLinked = connectedEdges.includes(e.id);
+                    if (isLinked) {
+                        return { id: e.id, color: { opacity: 1.0, inherit: true } };
+                    } else {
+                        return { id: e.id, color: { opacity: 0.1, inherit: true } };
+                    }
+                });
+
+                nodes.update(nodeUpdates);
+                edges.update(edgeUpdates);
+            }
+
+            function resetHighlight() {
+                closeSidebar();
                 const allNodes = nodes.getIds();
                 const allEdges = edges.getIds();
-                nodes.update(allNodes.map(id => ({ id: id, opacity: 1 })));
-                edges.update(allEdges.map(id => ({ id: id, color: { opacity: 1 } })));
+                
+                // Restore all to defaults
+                nodes.update(allNodes.map(id => ({ 
+                    id: id, 
+                    opacity: 1, 
+                    font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } // Always restore High Contrast
+                })));
+                
+                edges.update(allEdges.map(id => ({ 
+                    id: id, 
+                    color: { opacity: 1, inherit: true } 
+                })));
             }
 
             });
-            </script>
-            </body>
+            </script></body>
 </html>
