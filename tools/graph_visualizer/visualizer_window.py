@@ -1,14 +1,21 @@
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                              QPushButton, QLabel, QFileDialog, QComboBox, QDockWidget,
                              QTextEdit, QLineEdit, QCheckBox, QSlider)
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSignal
 from graph_widget import GraphWidget
 from data_loader import DataLoader
 import os
 import json
 
 from ui.styles import get_stylesheet
-from ui.theme import Theme
+# from ui.theme import Theme # Imported later due to circular import risk if any?
+
+class StatsDock(QDockWidget):
+    closed = pyqtSignal()
+    
+    def closeEvent(self, event):
+        self.closed.emit()
+        super().closeEvent(event)
 
 class VisualizerWindow(QMainWindow):
     def __init__(self):
@@ -36,8 +43,11 @@ class VisualizerWindow(QMainWindow):
         self.btn_export.clicked.connect(self.export_pyvis)
         controls_layout.addWidget(self.btn_export)
 
-        self.btn_theme = QPushButton("Temas") # Unicode causing issues in some envs, using text or handled via icon later if needed
-        self.btn_theme.setFixedWidth(40)
+        self.btn_theme = QPushButton("☀️") # Initial state assumption (will update on toggle)
+        self.btn_theme.setFixedWidth(50) # Slightly larger
+        font = self.btn_theme.font()
+        font.setPointSize(16) # Bigger emoji
+        self.btn_theme.setFont(font)
         self.btn_theme.setToolTip("Cambiar Tema")
         self.btn_theme.clicked.connect(self.toggle_theme)
         controls_layout.addWidget(self.btn_theme)
@@ -47,11 +57,20 @@ class VisualizerWindow(QMainWindow):
         
         controls_layout.addStretch()
 
+        # Filter section
+        self.combo_filter_cuatri = QComboBox()
+        self.combo_filter_cuatri.addItem("Todos", None)
+        self.combo_filter_cuatri.currentIndexChanged.connect(self.apply_combined_filters)
+        self.combo_filter_cuatri.setFixedWidth(180)
+        controls_layout.addWidget(self.combo_filter_cuatri)
+
         self.search_input = QLineEdit()
-        self.search_input.setPlaceholderText("Buscar nodos...")
-        self.search_input.textChanged.connect(self.filter_nodes)
+        self.search_input.setPlaceholderText("Buscar nodo...")
+        self.search_input.textChanged.connect(self.apply_combined_filters)
         self.search_input.setFixedWidth(200)
         controls_layout.addWidget(self.search_input)
+        
+        # Add Search Icon/Button logic if needed, but textChanged is enough
         
         
         self.combo_layout = QComboBox()
@@ -73,12 +92,13 @@ class VisualizerWindow(QMainWindow):
         # Graph Area
         self.graph_widget = GraphWidget()
         self.graph_widget.nodeClicked.connect(self.show_node_details)
-        self.graph_widget.backgroundClicked.connect(lambda: self.filter_nodes(self.search_input.text()))
+        # Fix: background click should re-apply filters (maintain view) rather than just search text
+        self.graph_widget.backgroundClicked.connect(self.apply_combined_filters)
         self.layout.addWidget(self.graph_widget)
         
-        # Stats Dock
-        # Stats Dock
-        self.dock = QDockWidget("Estadísticas", self)
+        # Stats Dock - Custom Class
+        self.dock = StatsDock("Estadísticas", self)
+        self.dock.closed.connect(lambda: self.on_sidebar_visibility_changed(False))
         
         # Use QTextBrowser for clickable links
         from PyQt6.QtWidgets import QTextBrowser
@@ -88,16 +108,63 @@ class VisualizerWindow(QMainWindow):
         self.stats_text.anchorClicked.connect(self.on_sidebar_link_click)
         
         self.dock.setWidget(self.stats_text)
+        self.dock.visibilityChanged.connect(self.on_sidebar_visibility_changed)
         self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dock)
+
+        # Init theme state text properly
+        from ui.theme import Theme
+        self.btn_theme.setText("☀️" if Theme.mode == "light" else "🌙")
 
     def on_sidebar_link_click(self, url):
         node_id = url.toString()
         if node_id:
             self.graph_widget.select_node(node_id)
 
-    def filter_nodes(self, text):
-        self.graph_widget.highlight_nodes(text)
+    def on_sidebar_visibility_changed(self, visible):
+        if not visible:
+            # Deselect/Clear highlight when sidebar is closed
+            self.graph_widget.highlight_nodes(None)
 
+    def apply_combined_filters(self):
+        # 1. Get Text
+        text = self.search_input.text().strip()
+        
+        # 2. Get Cuatrimestre Targets
+        idx = self.combo_filter_cuatri.currentIndex()
+        target_cuatri = self.combo_filter_cuatri.itemData(idx)
+        
+        targets = None
+        
+        if target_cuatri is not None:
+            targets = []  # Initialize empty list to imply filtering active
+            if self.loader.graph:
+                for n, d in self.loader.graph.nodes(data=True):
+                    if d.get("Type") == "Subject":
+                        c = d.get("cuatrimestre")
+                        if str(c) == str(target_cuatri):
+                            targets.append(n)
+                            
+        # 3. Apply to Graph
+        # Note: highlight_nodes logic handles:
+        # - targets=list -> show specific nodes (and neighbors if flag?)
+        # - text -> search and add to targets
+        # We need to be careful. usage: highlight_nodes(text, targets=...)
+        # If targets is not None, it uses that as base.
+        
+        self.graph_widget.highlight_nodes(text=text, targets=targets, show_neighbors=True)
+
+    def apply_cuatri_filter(self):
+        # Redirect to combined
+        self.apply_combined_filters()
+        
+    def filter_nodes(self, text):
+        # Redirect to combined, ignoring arg text (it's pulled from widget anyway)
+        self.apply_combined_filters()
+
+    # Old methods redirected or deprecated
+    # filter_nodes and apply_cuatri_filter are now redirecting to apply_combined_filters
+    # Keeping them for compatibility if needed or cleaned up above.
+    
     def change_spacing(self, value):
         self.graph_widget.set_layout_scale(value)
 
@@ -116,9 +183,29 @@ class VisualizerWindow(QMainWindow):
             try:
                 self.lbl_status.setText(f"Cargando: {os.path.basename(file_path)}...")
                 graph = self.loader.load_file(file_path)
-                self.graph_widget.set_graph(graph)
+                self.graph_widget.set_graph(self.loader.graph)
                 self.lbl_status.setText(f"Cargado: {os.path.basename(file_path)}")
                 self.update_stats()
+                
+                # Populate Cuatrimestre Filter
+                self.combo_filter_cuatri.blockSignals(True)
+                self.combo_filter_cuatri.clear()
+                self.combo_filter_cuatri.addItem("Todos", None)
+                
+                cuatris = set()
+                for _, d in self.loader.graph.nodes(data=True):
+                    if "cuatrimestre" in d:
+                        cuatris.add(d["cuatrimestre"])
+                
+                # Sort logic: try int, else str
+                def sort_key(x):
+                    try: return int(x)
+                    except: return str(x)
+                    
+                for c in sorted(cuatris, key=sort_key):
+                     self.combo_filter_cuatri.addItem(f"Cuatrimestre {c}", c)
+                
+                self.combo_filter_cuatri.blockSignals(False)
             except Exception as e:
                 self.lbl_status.setText(f"Error: {str(e)}")
                 print(e)
@@ -149,7 +236,7 @@ class VisualizerWindow(QMainWindow):
     def toggle_theme(self):
         from ui.theme import Theme
         new_mode = Theme.toggle()
-        self.btn_theme.setText("Claro" if new_mode == "light" else "Oscuro")
+        self.btn_theme.setText("☀️" if new_mode == "light" else "🌙")
         self.setStyleSheet(get_stylesheet())
         self.graph_widget.reload_theme()
         # Update stats text color? It resets content style.
@@ -514,6 +601,7 @@ class VisualizerWindow(QMainWindow):
                 .sidebar-title { font-size: 16px; font-weight: 700; color: var(--text); margin: 0; }
                 .btn-close { background: transparent; border: none; color: var(--muted-foreground); cursor: pointer; padding: 4px; }
                 .btn-close:hover { color: var(--text); }
+                .btn-close:focus { outline: none; }
                 
                 .sidebar-content { display: flex; flex-direction: column; gap: 12px; }
                 .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
@@ -560,6 +648,17 @@ class VisualizerWindow(QMainWindow):
                         </div>
                         <select id="ui-filter" class="custom-select">
                             <option value="all">Todo</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Cuatrimestre Filter -->
+                    <div class="control-group">
+                        <div class="control-label">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                             CUATRIMESTRE
+                        </div>
+                        <select id="ui-filter-cuatri" class="custom-select">
+                            <option value="">Todos</option>
                         </select>
                     </div>
 
@@ -611,7 +710,7 @@ class VisualizerWindow(QMainWindow):
             <!-- Sidebar Structure -->
             <div id="ui-sidebar" class="sidebar">
                 <div class="sidebar-header">
-                    <h2 class="sidebar-title">Detalles</h2>
+                    <h2 id="sidebar-title" class="sidebar-title">Detalles</h2>
                     <button id="btn-close-sidebar" class="btn-close">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
@@ -722,6 +821,28 @@ class VisualizerWindow(QMainWindow):
                     opt.text = g;
                     filterSel.appendChild(opt);
                 });
+
+                // 2b. Populate Cuatrimestre Filter
+                const cuatriSel = document.getElementById("ui-filter-cuatri");
+                const cuatris = [...new Set(allNodes.map(n => n.cuatrimestre))].filter(Boolean).sort((a,b) => parseInt(a) - parseInt(b));
+                cuatris.forEach(c => {
+                    const opt = document.createElement("option");
+                    opt.value = c;
+                    opt.text = "Cuatrimestre " + c;
+                    cuatriSel.appendChild(opt);
+                });
+                
+                cuatriSel.addEventListener("change", (e) => {
+                    const val = e.target.value;
+                    if (!val) {
+                         resetHighlight();
+                         return;
+                    }
+                    
+                    // Find targets
+                    const targets = allNodes.filter(n => n.cuatrimestre == val).map(n => n.id);
+                    highlightMultiple(targets);
+                });
                 
                 filterSel.addEventListener("change", (e) => {
                     const group = e.target.value;
@@ -793,6 +914,8 @@ class VisualizerWindow(QMainWindow):
                    network.fit({ animation: true });
                    resetHighlight();
                    searchSel.value = "";
+                   filterSel.value = "all";
+                   cuatriSel.value = "";
                    currentSelectedId = null;
                 });
                 
@@ -823,13 +946,26 @@ class VisualizerWindow(QMainWindow):
             // ... updateSidebar ...
             // ... closeSidebar ...
 
+            function closeSidebar() {
+                document.getElementById("ui-sidebar").classList.remove("active");
+                // Reset Selection in Network
+                network.unselectAll();
+                currentSelectedId = null;
+                
+                // IMPORTANT: Call resetHighlight to restore visual state (filtered or all)
+                // But ensure resetHighlight does NOT call closeSidebar to avoid loop
+                resetHighlight(false); // pass false to say "don't touch sidebar"
+            }
+
             function highlightNeighborhood(selectedId) {
                 const allNodes = nodes.get();
                 const allEdges = edges.get();
+                const connectedEdges = network.getConnectedEdges(selectedId);
                 
                 // Show Sidebar
+                // Show Sidebar
                 updateSidebar(selectedId);
-
+                
                 // Calculate Visible Set (Standard 1st Degree)
                 const connectedNodes = network.getConnectedNodes(selectedId);
                 const isConnected = new Set(connectedNodes);
@@ -871,18 +1007,91 @@ class VisualizerWindow(QMainWindow):
                 edges.update(edgeUpdates);
             }
 
-            function resetHighlight() {
+            function highlightMultiple(nodeIds) {
                 const allNodes = nodes.get();
                 const allEdges = edges.get();
                 
-                nodes.update(allNodes.map(n => ({ 
-                    id: n.id, opacity: 1, 
-                    font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } 
+                // Build Set of Visible Nodes (Targets + Neighbors)
+                const isConnected = new Set(nodeIds);
+                
+                nodeIds.forEach(id => {
+                     const neighbors = network.getConnectedNodes(id);
+                     neighbors.forEach(n => isConnected.add(n));
+                });
+                
+                // REMOVED: closeSidebar(); // Don't close sidebar here, it causes loops and annoyance if just filtering.
+                
+                // Dim others
+                 const nodeUpdates = allNodes.map(n => {
+                    if (isConnected.has(n.id)) {
+                         return { 
+                             id: n.id, 
+                             opacity: 1, 
+                             font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } 
+                         }; 
+                    } else {
+                         return { 
+                             id: n.id, 
+                             opacity: 0.2, 
+                             font: { color: 'rgba(255, 255, 255, 0.4)', strokeWidth: 2, strokeColor: 'rgba(0, 0, 0, 0.2)' } 
+                         }; 
+                    }
+                });
+                
+                const edgeUpdates = allEdges.map(e => {
+                     const bothVisible = isConnected.has(e.from) && isConnected.has(e.to);
+                     if (bothVisible) {
+                        return { id: e.id, color: { opacity: 1.0, inherit: true } };
+                     } else {
+                        return { id: e.id, color: { opacity: 0.1, inherit: true } };
+                     }
+                });
+
+                nodes.update(nodeUpdates);
+                edges.update(edgeUpdates);
+            }
+
+            function resetHighlight(updateSidebar = true) {
+                // If updateSidebar is true, we might want to ensure sidebar uses this,
+                // but for now closeSidebar() handles the sidebar UI state.
+                
+                // If filter is active, revert TO filtered state
+                const cuatriSel = document.getElementById("ui-filter-cuatri");
+                if (cuatriSel && cuatriSel.value) {
+                    // Re-apply filter WITHOUT dispatching event to avoid recursion if called from listener
+                    // Retrieve targets manually
+                    const val = cuatriSel.value;
+                    const allNodes = nodes.get();
+                    const targets = allNodes.filter(n => n.cuatrimestre == val).map(n => n.id);
+                    highlightMultiple(targets);
+                    
+                    // Ensure sidebar is closed if this was a full reset? 
+                    // If called from closeSidebar, sidebar is already closing.
+                    // If called from Reset Button, we want to close sidebar.
+                    if (updateSidebar) {
+                         document.getElementById("ui-sidebar").classList.remove("active"); 
+                    }
+                    return;
+                }
+            
+                if (updateSidebar) {
+                     document.getElementById("ui-sidebar").classList.remove("active");
+                }
+                
+                const allNodes = nodes.getIds();
+                const allEdges = edges.getIds();
+                
+                // Restore all to defaults
+                nodes.update(allNodes.map(id => ({ 
+                    id: id, 
+                    opacity: 1, 
+                    font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } // Always restore High Contrast
                 })));
-                edges.update(allEdges.map(e => ({ 
-                    id: e.id, color: { opacity: 1.0, inherit: true } 
+                
+                edges.update(allEdges.map(id => ({ 
+                    id: id, 
+                    color: { opacity: 1, inherit: true } 
                 })));
-                closeSidebar();
             }
 
             const I18N = {
@@ -997,66 +1206,25 @@ class VisualizerWindow(QMainWindow):
                 });
             }
 
-            function closeSidebar() {
-                document.getElementById("ui-sidebar").classList.remove("active");
-            }
-
-            function highlightNeighborhood(selectedId) {
-                const allNodes = nodes.get();
-                const allEdges = edges.get();
-                const connectedNodes = network.getConnectedNodes(selectedId);
-                const connectedEdges = network.getConnectedEdges(selectedId);
-                
-                // Show Sidebar
-                updateSidebar(selectedId);
-                
-                // Dim unconnected nodes to Ghost Opacity
-                const nodeUpdates = allNodes.map(n => {
-                    const isLinked = n.id === selectedId || connectedNodes.includes(n.id);
-                    if (isLinked) {
-                         return { 
-                             id: n.id, 
-                             opacity: 1, 
-                             font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } 
-                         }; 
-                    } else {
-                         return { 
-                             id: n.id, 
-                             opacity: 0.2, 
-                             font: { color: 'rgba(255, 255, 255, 0.4)', strokeWidth: 2, strokeColor: 'rgba(0, 0, 0, 0.2)' } 
-                         }; 
-                    }
+            // Wiring Cleanups
+            const resetBtn = document.getElementById("ui-reset"); // Changed from btn-reset to ui-reset
+            if (resetBtn) {
+                resetBtn.addEventListener("click", () => {
+                   network.fit({ animation: true });
+                   const cuatriSel = document.getElementById("ui-filter-cuatri");
+                   if (cuatriSel) cuatriSel.value = ""; // Clear filter on explicit reset
+                   resetHighlight(true); // Full Reset
+                   currentSelectedId = null;
+                   network.unselectAll();
                 });
-                
-                const edgeUpdates = allEdges.map(e => {
-                    const isLinked = connectedEdges.includes(e.id);
-                    if (isLinked) {
-                        return { id: e.id, color: { opacity: 1.0, inherit: true } };
-                    } else {
-                        return { id: e.id, color: { opacity: 0.1, inherit: true } };
-                    }
-                });
-
-                nodes.update(nodeUpdates);
-                edges.update(edgeUpdates);
             }
-
-            function resetHighlight() {
-                closeSidebar();
-                const allNodes = nodes.getIds();
-                const allEdges = edges.getIds();
-                
-                // Restore all to defaults
-                nodes.update(allNodes.map(id => ({ 
-                    id: id, 
-                    opacity: 1, 
-                    font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#000000' } // Always restore High Contrast
-                })));
-                
-                edges.update(allEdges.map(id => ({ 
-                    id: id, 
-                    color: { opacity: 1, inherit: true } 
-                })));
+            
+            // Close Sidebar Button specific wiring
+            const closeSidebarBtn = document.getElementById("btn-close-sidebar");
+            if (closeSidebarBtn) {
+                closeSidebarBtn.addEventListener("click", () => {
+                    closeSidebar();
+                });
             }
 
             });

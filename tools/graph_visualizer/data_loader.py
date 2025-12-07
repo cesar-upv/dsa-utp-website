@@ -23,9 +23,13 @@ class DataLoader:
 
         # Build Name Map if definitions are present
         self.names_map = {}
+        self.meta_map = {} # Store extra metadata like cuatrimestre
         if "planDeEstudios" in self.raw_data:
             for m in self.raw_data["planDeEstudios"]:
                 self.names_map[m["id"]] = m["nombre"]
+                # Capture cuatrimestre if available
+                if "cuatrimestre" in m:
+                    self.meta_map[m["id"]] = {"cuatrimestre": m["cuatrimestre"]}
         if "grupos" in self.raw_data:
             for g in self.raw_data["grupos"]:
                 self.names_map[g["id"]] = g["nombre"]
@@ -80,7 +84,9 @@ class DataLoader:
                 self.graph.add_node(prof_id, Type="Professor", Label=label, title=label, group="Professor")
             if subject_id:
                 label = self.names_map.get(subject_id, subject_id)
-                self.graph.add_node(subject_id, Type="Subject", Label=label, title=label, group="Subject")
+                # Attach metadata
+                meta = self.meta_map.get(subject_id, {})
+                self.graph.add_node(subject_id, Type="Subject", Label=label, title=label, group="Subject", **meta)
             
             # Add edges
             # Group takes Subject

@@ -181,41 +181,55 @@ class GraphWidget(QGraphicsView):
         # Update background if needed? The view background is handled by stylesheet on parent.
         # But Scene might need update? No, scene is transparent usually.
 
-    def highlight_nodes(self, text=None, center_node=None, show_neighbors=False):
-        targets = set()
+    def highlight_nodes(self, text=None, center_node=None, show_neighbors=False, targets=None):
+        final_targets = set()
         
+        # 1. Start with explicit targets if any
+        if targets:
+            final_targets.update(targets)
+
+        # 2. Add text matches
         if text:
             text = text.lower()
             for n, d in self.graph.nodes(data=True):
                  label = d.get('Label', n).lower()
                  if text in str(label) or text in str(n).lower():
-                     targets.add(n)
+                     final_targets.add(n)
         
+        # 3. Add center node
         if center_node:
-            targets.add(center_node)
+            final_targets.add(center_node)
         
-        if show_neighbors and targets:
-            current_targets = list(targets)
-            for t in current_targets:
-                try:
-                    neighbors = list(nx.all_neighbors(self.graph, t))
-                    targets.update(neighbors)
-                except:
-                    pass
-
-        if not text and not center_node:
+        # 4. Expand to neighbors if requested
+        # Important: Only expand if we have some targets to start with, OR if we want to default to nothing?
+        # If no filters are active (text/center/targets are all empty/None), we should show EVERYTHING (reset).
+        
+        # FIX: targets is not None means we HAVE a target filter, even if empty (0 results).
+        is_filtering = (text is not None and text != "") or (center_node is not None) or (targets is not None)
+        
+        if not is_filtering:
              for item in self.scene.items():
                  item.setOpacity(1.0)
              return
 
+        if show_neighbors and final_targets:
+            current_targets = list(final_targets)
+            for t in current_targets:
+                try:
+                    neighbors = list(nx.all_neighbors(self.graph, t))
+                    final_targets.update(neighbors)
+                except:
+                    pass
+        
+        # 5. Apply Opacity
         for item in self.scene.items():
             if isinstance(item, GraphNode):
-                if item.node_id in targets:
+                if item.node_id in final_targets:
                     item.setOpacity(1.0)
                 else:
                     item.setOpacity(0.1) 
             elif isinstance(item, GraphEdge):
-                if item.source.node_id in targets and item.target.node_id in targets:
+                if item.source.node_id in final_targets and item.target.node_id in final_targets:
                      item.setOpacity(1.0)
                 else:
                      item.setOpacity(0.05) 
