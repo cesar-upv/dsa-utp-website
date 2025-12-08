@@ -25,6 +25,12 @@ Automatizar la creación de horarios para la carrera de ITI, reduciendo el tiemp
 - **Cumplimiento estricto** de cargas horarias y competencias.
 - **Optimización** de huecos y tiempos muertos.
 
+<div align="center">
+  <img src="screenshots/home-light.png" width="45%" alt="Home Light Mode" />
+  <img src="screenshots/schedule-dark.png" width="45%" alt="Schedule Dark Mode" />
+  <p><em>Comparativa: Home (Light) vs Horarios (Dark)</em></p>
+</div>
+
 ## 🏗️ Arquitectura del Sistema
 
 El sistema implementa una arquitectura de tres capas para separar responsabilidades y maximizar el rendimiento.
@@ -114,7 +120,10 @@ El sistema incluye una potente herramienta de visualización basada en **Python*
 npm run visualize-graph
 ```
 
-Esto abrirá una ventana de escritorio donde podrás ver los nodos (materias-hora), sus conexiones (restricciones) y exportar la vista a HTML interactivo.
+<div align="center">
+  <img src="screenshots/graph-visualizer.png" width="80%" alt="Graph Visualizer" />
+  <p><em>Herramienta de Visualización de Grafos</em></p>
+</div>
 
 ---
 
