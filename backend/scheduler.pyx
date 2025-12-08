@@ -195,7 +195,16 @@ cdef class GraphScheduler:
                 self.best_assignments.append((n.assigned_day, n.assigned_slot, n.assigned_prof))
             
             # Log progress on new best found
-            print(f"New best solution found: {node_idx}/{len(self.nodes)} assignments")
+            # Log progress on new best found
+            elapsed = time.time() - self.start_time
+            percentage = (node_idx / len(self.nodes)) * 100
+            last_node_info = ""
+            if node_idx > 0:
+                last_node = <Node>self.nodes[node_idx - 1]
+                prof_id = self.idx_to_prof_id[last_node.assigned_prof]
+                last_node_info = f" - Last: {last_node.grupo_id} {last_node.materia_id} -> {prof_id}"
+            
+            print(f"New best solution found: {node_idx}/{len(self.nodes)} ({percentage:.1f}%) - Time: {elapsed:.2f}s{last_node_info}")
 
         if node_idx >= len(self.nodes):
             return True

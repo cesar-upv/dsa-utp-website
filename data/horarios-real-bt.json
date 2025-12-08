@@ -1,0 +1,5032 @@
+{
+  "planDeEstudios": [
+    {
+      "id": "INGLES-1",
+      "nombre": "INGLÉS I",
+      "cuatrimestre": 1,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-2",
+      "nombre": "INGLÉS II",
+      "cuatrimestre": 2,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-3",
+      "nombre": "INGLÉS III",
+      "cuatrimestre": 3,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-4",
+      "nombre": "INGLÉS IV",
+      "cuatrimestre": 4,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-5",
+      "nombre": "INGLÉS V",
+      "cuatrimestre": 5,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-6",
+      "nombre": "INGLÉS Vl",
+      "cuatrimestre": 7,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-7",
+      "nombre": "INGLÉS Vll",
+      "cuatrimestre": 8,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "INGLES-8",
+      "nombre": "INGLÉS Vlll",
+      "cuatrimestre": 9,
+      "horasSemana": 5,
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "DESARROLLO-HUMANO-Y-VALORES",
+      "nombre": "DESARROLLO HUMANO Y VALORES",
+      "cuatrimestre": 1,
+      "horasSemana": 4,
+      "color": "#22c55e"
+    },
+    {
+      "id": "FUNDAMENTOS-MATEMÁTICOS",
+      "nombre": "FUNDAMENTOS MATEMÁTICOS",
+      "cuatrimestre": 1,
+      "horasSemana": 7,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "FUNDAMENTOS-DE-REDES",
+      "nombre": "FUNDAMENTOS DE REDES",
+      "cuatrimestre": 1,
+      "horasSemana": 4,
+      "color": "#a855f7"
+    },
+    {
+      "id": "FÍSICA",
+      "nombre": "FÍSICA",
+      "cuatrimestre": 1,
+      "horasSemana": 6,
+      "color": "#ec4899"
+    },
+    {
+      "id": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+      "nombre": "FUNDAMENTOS DE PROGRAMACIÓN",
+      "cuatrimestre": 1,
+      "horasSemana": 4,
+      "color": "#ef4444"
+    },
+    {
+      "id": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+      "nombre": "COMUNICACIÓN Y HABILIDADES DIGITALES",
+      "cuatrimestre": 1,
+      "horasSemana": 5,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "HABILIDADES-SOCIOEMOCIONALES-Y-MANEJO-DE-CONFLICTOS",
+      "nombre": "HABILIDADES SOCIOEMOCIONA LES Y MANEJO DE CONFLICTOS",
+      "cuatrimestre": 2,
+      "horasSemana": 4,
+      "color": "#22c55e"
+    },
+    {
+      "id": "CÁLCULO-DIFERENCIAL",
+      "nombre": "CÁLCULO DIFERENCIAL",
+      "cuatrimestre": 2,
+      "horasSemana": 6,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "CONMUTACIÓN-Y-ENRUTAMIENTO-DE-REDES",
+      "nombre": "CONMUTACIÓN Y ENRUTAMIENTO DE REDES",
+      "cuatrimestre": 2,
+      "horasSemana": 5,
+      "color": "#a855f7"
+    },
+    {
+      "id": "PROBABILIDAD-Y-ESTADÍSTICA",
+      "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+      "cuatrimestre": 2,
+      "horasSemana": 5,
+      "color": "#ec4899"
+    },
+    {
+      "id": "PROGRAMACIÓN-ESTRUCTURADA",
+      "nombre": "PROGRAMACIÓN-ESTRUCTURADA",
+      "cuatrimestre": 2,
+      "horasSemana": 5,
+      "color": "#ef4444"
+    },
+    {
+      "id": "SISTEMAS-OPERATIVOS",
+      "nombre": "SISTEMAS OPERATIVOS",
+      "cuatrimestre": 2,
+      "horasSemana": 5,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES",
+      "nombre": "DESARROLLO DEL PENSAMIENTO Y TOMA DE DECISIONES",
+      "cuatrimestre": 3,
+      "horasSemana": 4,
+      "color": "#22c55e"
+    },
+    {
+      "id": "CÁLCULO-INTEGRAL",
+      "nombre": "CÁLCULO INTEGRAL",
+      "cuatrimestre": 3,
+      "horasSemana": 4,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "TÓPICOS-DE-CALIDAD-PARA-EL-DISEÑO-DE-SOFTWARE",
+      "nombre": "TÓPICOS DE CALIDAD PARA EL DISEÑO DE SOFTWARE",
+      "cuatrimestre": 3,
+      "horasSemana": 6,
+      "color": "#a855f7"
+    },
+    {
+      "id": "BASES-DE-DATOS",
+      "nombre": "BASES DE DATOS",
+      "cuatrimestre": 3,
+      "horasSemana": 5,
+      "color": "#ec4899"
+    },
+    {
+      "id": "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
+      "nombre": "PROGRAMACIÓN ORIENTADA A OBJETOS",
+      "cuatrimestre": 3,
+      "horasSemana": 7,
+      "color": "#ef4444"
+    },
+    {
+      "id": "PROYECTO-INTEGRADOR-I",
+      "nombre": "PROYECTO INTEGRADOR I",
+      "cuatrimestre": 3,
+      "horasSemana": 4,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "ÉTICA-PROFESIONAL",
+      "nombre": "ÉTICA PROFESIONAL",
+      "cuatrimestre": 4,
+      "horasSemana": 4,
+      "color": "#22c55e"
+    },
+    {
+      "id": "CÁLCULO-DE-VARIAS-VARIABLES",
+      "nombre": "CÁLCULO DE VARIAS VARIABLES",
+      "cuatrimestre": 4,
+      "horasSemana": 5,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "APLICACIONES-WEB",
+      "nombre": "APLICACIONES WEB",
+      "cuatrimestre": 4,
+      "horasSemana": 5,
+      "color": "#a855f7"
+    },
+    {
+      "id": "ESTRUCTURA-DE-DATOS",
+      "nombre": "ESTRUCTURA DE DATOS",
+      "cuatrimestre": 4,
+      "horasSemana": 5,
+      "color": "#ec4899"
+    },
+    {
+      "id": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+      "nombre": "DESARROLLO DE APLICACIONES MÓVILES",
+      "cuatrimestre": 4,
+      "horasSemana": 6,
+      "color": "#ef4444"
+    },
+    {
+      "id": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+      "nombre": "ANÁLISIS Y DISEÑO DE SOFTWARE",
+      "cuatrimestre": 4,
+      "horasSemana": 5,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "ECUACIONES-DIFERENCIALES",
+      "nombre": "ECUACIONES DIFERENCIALES",
+      "cuatrimestre": 5,
+      "horasSemana": 5,
+      "color": "#22c55e"
+    },
+    {
+      "id": "LIDERAZGO-DE-EQUIPOS-DE-ALTO-DESEMPEÑO",
+      "nombre": "LIDERAZGO DE EQUIPOS DE ALTO DESEMPEÑO",
+      "cuatrimestre": 5,
+      "horasSemana": 4,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS",
+      "nombre": "APLICACIONES WEB ORIENTADAS A SERVICIOS",
+      "cuatrimestre": 5,
+      "horasSemana": 6,
+      "color": "#a855f7"
+    },
+    {
+      "id": "BASES-DE-DATOS-AVANZADAS",
+      "nombre": "BASES DE DATOS AVANZADAS",
+      "cuatrimestre": 5,
+      "horasSemana": 5,
+      "color": "#ec4899"
+    },
+    {
+      "id": "ESTÁNDARES-Y-MÉTRICAS-PARA-EL-DESARROLLO-DE-SOFTWARE",
+      "nombre": "ESTÁNDARES Y MÉTRICAS PARA EL DESARROLLO DE SOFTWARE",
+      "cuatrimestre": 5,
+      "horasSemana": 6,
+      "color": "#ef4444"
+    },
+    {
+      "id": "PROYECTO-INTEGRADOR-II",
+      "nombre": "PROYECTO INTEGRADOR II",
+      "cuatrimestre": 5,
+      "horasSemana": 4,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "HABILIDADES-GERENCIALES",
+      "nombre": "HABILIDADES GERENCIALES",
+      "cuatrimestre": 7,
+      "horasSemana": 4,
+      "color": "#22c55e"
+    },
+    {
+      "id": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+      "nombre": "FORMULACIÓN DE PROYECTOS DE TECNOLOGÍA",
+      "cuatrimestre": 7,
+      "horasSemana": 4,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+      "nombre": "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL",
+      "cuatrimestre": 7,
+      "horasSemana": 6,
+      "color": "#a855f7"
+    },
+    {
+      "id": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+      "nombre": "ÉTICA Y LEGISLACIÓN EN TECNOLOGÍAS DE LA INFORMACIÓN",
+      "cuatrimestre": 7,
+      "horasSemana": 4,
+      "color": "#ec4899"
+    },
+    {
+      "id": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+      "nombre": "OPTATIVA I MODELACIÓN DE DATOS EN LA NUBE",
+      "cuatrimestre": 7,
+      "horasSemana": 6,
+      "color": "#ef4444"
+    },
+    {
+      "id": "SEGURIDAD-INFORMÁTICA",
+      "nombre": "SEGURIDAD INFORMÁTICA",
+      "cuatrimestre": 7,
+      "horasSemana": 6,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "ELECTRÓNICA-DIGITAL",
+      "nombre": "ELECTRÓNICA DIGITAL",
+      "cuatrimestre": 8,
+      "horasSemana": 5,
+      "color": "#22c55e"
+    },
+    {
+      "id": "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+      "nombre": "GESTIÓN DE PROYECTOS DE TECNOLOGÍA",
+      "cuatrimestre": 8,
+      "horasSemana": 4,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "PROGRAMACIÓN-PARA-INTELIGENCIA-ARTIFICIAL",
+      "nombre": "PROGRAMACIÓN PARA INTELIGENCIA ARTIFICIAL",
+      "cuatrimestre": 8,
+      "horasSemana": 5,
+      "color": "#a855f7"
+    },
+    {
+      "id": "ADMINISTRACIÓN-DE-SERVIDORES",
+      "nombre": "ADMINISTRACIÓN DE SERVIDORES",
+      "cuatrimestre": 8,
+      "horasSemana": 5,
+      "color": "#ec4899"
+    },
+    {
+      "id": "OPTATIVA-II-PROGRAMACIÓN-MÓVIL-AVANZADA",
+      "nombre": "OPTATIVA II PROGRAMACIÓN MÓVIL AVANZADA",
+      "cuatrimestre": 8,
+      "horasSemana": 6,
+      "color": "#ef4444"
+    },
+    {
+      "id": "INFORMÁTICA-FORENSE",
+      "nombre": "INFORMÁTICA FORENSE",
+      "cuatrimestre": 8,
+      "horasSemana": 5,
+      "color": "#14b8a6"
+    },
+    {
+      "id": "INTERNET DE LAS COSAS",
+      "nombre": "INTERNET-DE-LAS-COSAS",
+      "cuatrimestre": 9,
+      "horasSemana": 5,
+      "color": "#22c55e"
+    },
+    {
+      "id": "CIENCIA-DE-DATOS",
+      "nombre": "CIENCIA DE DATOS",
+      "cuatrimestre": 9,
+      "horasSemana": 6,
+      "color": "#f59e0b"
+    },
+    {
+      "id": "EVALUACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+      "nombre": "EVALUACIÓN DE PROYECTOS DE TECNOLOGÍA",
+      "cuatrimestre": 9,
+      "horasSemana": 4,
+      "color": "#a855f7"
+    },
+    {
+      "id": "TECNOLOGÍAS-DISRUPTIVAS",
+      "nombre": "TECNOLOGÍAS DISRUPTIVAS",
+      "cuatrimestre": 9,
+      "horasSemana": 5,
+      "color": "#ec4899"
+    },
+    {
+      "id": "OPTATIVA-III-FRAMEWORKS-PARA-EL-DESARROLLO",
+      "nombre": "OPTATIVA III FRAMEWORKS PARA EL DESARROLLO",
+      "cuatrimestre": 9,
+      "horasSemana": 6,
+      "color": "#ef4444"
+    },
+    {
+      "id": "PROYECTO-INTEGRADOR-III",
+      "nombre": "PROYECTO INTEGRADOR III",
+      "cuatrimestre": 9,
+      "horasSemana": 4,
+      "color": "#14b8a6"
+    }
+  ],
+  "grupos": [
+    {
+      "id": "ITIID-1-1",
+      "nombre": "ITIID 1-1",
+      "cuatrimestre": 1,
+      "turno": "matutino"
+    },
+    {
+      "id": "ITIID-1-2",
+      "nombre": "ITIID 1-2",
+      "cuatrimestre": 1,
+      "turno": "matutino"
+    },
+    {
+      "id": "ITIID-4-1",
+      "nombre": "ITIID 4-1",
+      "cuatrimestre": 4,
+      "turno": "matutino"
+    },
+    {
+      "id": "ITIID-4-2",
+      "nombre": "ITIID 4-2",
+      "cuatrimestre": 4,
+      "turno": "matutino"
+    },
+    {
+      "id": "ITIID-7-1",
+      "nombre": "ITIID-7-1",
+      "cuatrimestre": 7,
+      "turno": "matutino"
+    },
+    {
+      "id": "ITIID-7-2",
+      "nombre": "ITIID 7-2",
+      "cuatrimestre": 7,
+      "turno": "matutino"
+    },
+    {
+      "id": "ITIID-3-1",
+      "nombre": "ITIID 3-1",
+      "cuatrimestre": 3,
+      "turno": "matutino"
+    }
+  ],
+  "profesores": [
+    {
+      "id": "JM-01",
+      "nombre": "Dr. Jean-Michael Recher",
+      "competencias": [
+        "FUNDAMENTOS-MATEMÁTICOS",
+        "CÁLCULO-INTEGRAL",
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "AG-01",
+      "nombre": "Dr. Alberto García Robledo",
+      "competencias": [
+        "CÁLCULO-INTEGRAL",
+        "CÁLCULO-DE-VARIAS-VARIABLES",
+        "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "KE-01",
+      "nombre": "Dra. Karla E. Vázquez Ortiz",
+      "competencias": [
+        "FUNDAMENTOS-MATEMÁTICOS",
+        "BASES-DE-DATOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "HH-01",
+      "nombre": "Dr. Hector Hugo Avilés Arriaga",
+      "competencias": [
+        "FUNDAMENTOS-DE-PROGRAMACIÓN",
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
+        "ESTRUCTURA-DE-DATOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "SP-01",
+      "nombre": "Dr. Said Polanco Martagón",
+      "competencias": [
+        "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
+        "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+        "EVALUACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+        "GESTIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MA-01",
+      "nombre": "Dr. Marco A. Nuño Maganda",
+      "competencias": [
+        "DESARROLLO-DE-APLICACIONES-MÓVILES",
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
+        "APLICACIONES-WEB"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blocked",
+          "s3": "blocked",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "JA-01",
+      "nombre": "M.C.A. Jorge Arturo Hernández Almazan",
+      "competencias": [
+        "ESTRUCTURA-DE-DATOS",
+        "BASES-DE-DATOS",
+        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MH-01",
+      "nombre": "M.S.I. Mario H. Rodriguez Chávez",
+      "competencias": [
+        "APLICACIONES-WEB",
+        "PROYECTO-INTEGRADOR-I",
+        "APLICACIONES-WEB-ORIENTADAS-A-SERVICIOS",
+        "SEGURIDAD-INFORMÁTICA"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "JO-01",
+      "nombre": "M.C. Jorge O. Jasso Luna",
+      "competencias": [
+        "DESARROLLO-DE-APLICACIONES-MÓVILES",
+        "ESTRUCTURA-DE-DATOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "tue": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "wed": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "thu": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "fri": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        }
+      }
+    },
+    {
+      "id": "HH-02",
+      "nombre": "M.A.T. Hiram Herrera Rivas",
+      "competencias": [
+        "FUNDAMENTOS-DE-REDES",
+        "SEGURIDAD-INFORMÁTICA"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "AD-01",
+      "nombre": "M.S.I. Alma Delia Amaya Vázquez",
+      "competencias": [
+        "SEGURIDAD-INFORMÁTICA",
+        "COMUNICACIÓN-Y-HABILIDADES-DIGITALES"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "blocked",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "JF-01",
+      "nombre": "M.S.I. José Fidencio López Luna",
+      "competencias": [
+        "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+        "TÓPICOS-DE-CALIDAD-PARA-EL-DISEÑO-DE-SOFTWARE"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MR-01",
+      "nombre": "M.I. Manuel Ruiz Méndez",
+      "competencias": [
+        "PROYECTO-INTEGRADOR-I",
+        "APLICACIONES-WEB"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "IP-01",
+      "nombre": "M.T.I. Israel Pulido Picazo",
+      "competencias": [
+        "FUNDAMENTOS-DE-REDES",
+        "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MC-01",
+      "nombre": "M.S.I. Marina Cristal Flores Flores",
+      "competencias": [
+        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+        "BASES-DE-DATOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "HE-01",
+      "nombre": "Ing. Hugo E. Treviño",
+      "competencias": [
+        "DESARROLLO-HUMANO-Y-VALORES",
+        "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "AL-01",
+      "nombre": "M.I. Adriana Lizeth Trujillo",
+      "competencias": [
+        "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES",
+        "HABILIDADES-GERENCIALES"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        }
+      }
+    },
+    {
+      "id": "LR-01",
+      "nombre": "M.I. Luis R. De la Fuente",
+      "competencias": [
+        "ÉTICA-PROFESIONAL",
+        "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "EG-01",
+      "nombre": "M.I. Erendira Guitierrez Meza",
+      "competencias": [
+        "HABILIDADES-GERENCIALES",
+        "DESARROLLO-HUMANO-Y-VALORES",
+        "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "blocked",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MM-01",
+      "nombre": "M.C. Maribel Marin Castro",
+      "competencias": [
+        "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+        "PROYECTO-INTEGRADOR-I"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        }
+      }
+    },
+    {
+      "id": "CO-01",
+      "nombre": "M.C. Carlos Orozco Garcia",
+      "competencias": [
+        "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+        "BASES-DE-DATOS",
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        }
+      }
+    },
+    {
+      "id": "JM-02",
+      "nombre": "Ing. Juan Manuel Ornelas Llerena",
+      "competencias": [
+        "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+        "HABILIDADES-GERENCIALES",
+        "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "EP-01",
+      "nombre": "Eduardo Patricio González Nuño",
+      "competencias": [
+        "INGLES-3",
+        "INGLES-4"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "tue": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "wed": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "thu": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "fri": {
+          "s1": "blocked",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        }
+      }
+    },
+    {
+      "id": "MO-01",
+      "nombre": "Lic. Myriam Ornelas Llerena",
+      "competencias": [
+        "INGLES-6",
+        "INGLES-4"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "available",
+          "s3": "blocked",
+          "s4": "blocked",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        }
+      }
+    },
+    {
+      "id": "LF-01",
+      "nombre": "Luis F. Castillo Cortés",
+      "competencias": [
+        "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+        "SEGURIDAD-INFORMÁTICA"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blocked",
+          "s6": "blocked",
+          "s7": "blocked",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        }
+      }
+    },
+    {
+      "id": "CC-01",
+      "nombre": "Lic. Carlos Castillo",
+      "competencias": [
+        "INGLES-1",
+        "INGLES-6",
+        "INGLES-3"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "FR-01",
+      "nombre": "Fernando Requena",
+      "competencias": [
+        "FUNDAMENTOS-MATEMÁTICOS",
+        "FÍSICA",
+        "CÁLCULO-DE-VARIAS-VARIABLES"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "AL-02",
+      "nombre": "Alma Leticia Valdéz García",
+      "competencias": [
+        "INGLES-3",
+        "INGLES-8"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "blocked"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "blocked",
+          "s9": "blocked"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "blank",
+          "s9": "blank"
+        }
+      }
+    },
+    {
+      "id": "OR-01",
+      "nombre": "Oscar Romero de la Cruz",
+      "competencias": [
+        "INGLES-4",
+        "INGLES-1"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MAGMC",
+      "nombre": "M.I. Arturo G. Mascorro Cienfuegos",
+      "competencias": [
+        "FÍSICA",
+        "SEGURIDAD-INFORMÁTICA",
+        "CÁLCULO-DE-VARIAS-VARIABLES",
+        "CÁLCULO-INTEGRAL"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "available",
+          "s2": "available",
+          "s3": "blank",
+          "s4": "blank",
+          "receso": "blocked",
+          "s5": "blank",
+          "s6": "blank",
+          "s7": "blank",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    },
+    {
+      "id": "MR-02",
+      "nombre": "M.I  María Raquel Ortíz Álvarez",
+      "competencias": [
+        "SEGURIDAD-INFORMÁTICA",
+        "DESARROLLO-DELPENSAMIENT-O-Y-TOMA-DE-DECISIONES",
+        "CÁLCULO-INTEGRAL",
+        "PROGRAMACIÓN-ORIENTADA-A-OBJETOS",
+        "TÓPICOS-DE-CALIDAD-PARA-EL-DISEÑO-DE-SOFTWARE",
+        "PROYECTO-INTEGRADOR-I",
+        "BASES-DE-DATOS"
+      ],
+      "maxHoras": 15,
+      "disponibilidad": {
+        "mon": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "tue": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "wed": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "thu": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        },
+        "fri": {
+          "s1": "blank",
+          "s2": "blank",
+          "s3": "available",
+          "s4": "available",
+          "receso": "blocked",
+          "s5": "available",
+          "s6": "available",
+          "s7": "available",
+          "s8": "available",
+          "s9": "available"
+        }
+      }
+    }
+  ],
+  "status": "ok",
+  "horarios": [
+    {
+      "bloques": [
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-INGLES-1-0",
+          "materiaId": "INGLES-1",
+          "profesorId": "OR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-INGLES-1-1",
+          "materiaId": "INGLES-1",
+          "profesorId": "OR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-INGLES-1-2",
+          "materiaId": "INGLES-1",
+          "profesorId": "OR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-INGLES-1-3",
+          "materiaId": "INGLES-1",
+          "profesorId": "OR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-INGLES-1-4",
+          "materiaId": "INGLES-1",
+          "profesorId": "OR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-DESARROLLO-HUMANO-Y-VALORES-0",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-DESARROLLO-HUMANO-Y-VALORES-1",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-DESARROLLO-HUMANO-Y-VALORES-2",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-DESARROLLO-HUMANO-Y-VALORES-3",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-0",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-1",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-2",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-3",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-4",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-5",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-MATEMÁTICOS-6",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "JM-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-REDES-0",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-REDES-1",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-REDES-2",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-REDES-3",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FÍSICA-0",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FÍSICA-1",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FÍSICA-2",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FÍSICA-3",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FÍSICA-4",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FÍSICA-5",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-PROGRAMACIÓN-0",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-PROGRAMACIÓN-1",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-PROGRAMACIÓN-2",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-FUNDAMENTOS-DE-PROGRAMACIÓN-3",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-0",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-1",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-2",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-3",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-1",
+          "huecoPrevio": false,
+          "id": "ITIID-1-1-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-4",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s7"
+        }
+      ],
+      "grupoId": "ITIID-1-1",
+      "metricas": {
+        "huecos": 0,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    },
+    {
+      "bloques": [
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-INGLES-1-0",
+          "materiaId": "INGLES-1",
+          "profesorId": "CC-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-INGLES-1-1",
+          "materiaId": "INGLES-1",
+          "profesorId": "CC-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-INGLES-1-2",
+          "materiaId": "INGLES-1",
+          "profesorId": "CC-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-INGLES-1-3",
+          "materiaId": "INGLES-1",
+          "profesorId": "CC-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-INGLES-1-4",
+          "materiaId": "INGLES-1",
+          "profesorId": "CC-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-DESARROLLO-HUMANO-Y-VALORES-0",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-DESARROLLO-HUMANO-Y-VALORES-1",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-DESARROLLO-HUMANO-Y-VALORES-2",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-DESARROLLO-HUMANO-Y-VALORES-3",
+          "materiaId": "DESARROLLO-HUMANO-Y-VALORES",
+          "profesorId": "HE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-0",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-1",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-2",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-3",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-4",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-5",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-MATEMÁTICOS-6",
+          "materiaId": "FUNDAMENTOS-MATEMÁTICOS",
+          "profesorId": "KE-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-REDES-0",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-REDES-1",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-REDES-2",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-REDES-3",
+          "materiaId": "FUNDAMENTOS-DE-REDES",
+          "profesorId": "IP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FÍSICA-0",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FÍSICA-1",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FÍSICA-2",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FÍSICA-3",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FÍSICA-4",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FÍSICA-5",
+          "materiaId": "FÍSICA",
+          "profesorId": "FR-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-PROGRAMACIÓN-0",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-PROGRAMACIÓN-1",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-PROGRAMACIÓN-2",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-FUNDAMENTOS-DE-PROGRAMACIÓN-3",
+          "materiaId": "FUNDAMENTOS-DE-PROGRAMACIÓN",
+          "profesorId": "HH-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-0",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-1",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-2",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-3",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-1-2",
+          "huecoPrevio": false,
+          "id": "ITIID-1-2-COMUNICACIÓN-Y-HABILIDADES-DIGITALES-4",
+          "materiaId": "COMUNICACIÓN-Y-HABILIDADES-DIGITALES",
+          "profesorId": "AD-01",
+          "slotId": "s7"
+        }
+      ],
+      "grupoId": "ITIID-1-2",
+      "metricas": {
+        "huecos": 2,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    },
+    {
+      "bloques": [
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-INGLES-4-0",
+          "materiaId": "INGLES-4",
+          "profesorId": "OR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-INGLES-4-1",
+          "materiaId": "INGLES-4",
+          "profesorId": "OR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-INGLES-4-2",
+          "materiaId": "INGLES-4",
+          "profesorId": "OR-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-INGLES-4-3",
+          "materiaId": "INGLES-4",
+          "profesorId": "OR-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-INGLES-4-4",
+          "materiaId": "INGLES-4",
+          "profesorId": "OR-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ÉTICA-PROFESIONAL-0",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ÉTICA-PROFESIONAL-1",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ÉTICA-PROFESIONAL-2",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ÉTICA-PROFESIONAL-3",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-CÁLCULO-DE-VARIAS-VARIABLES-0",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-CÁLCULO-DE-VARIAS-VARIABLES-1",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-CÁLCULO-DE-VARIAS-VARIABLES-2",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-CÁLCULO-DE-VARIAS-VARIABLES-3",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-CÁLCULO-DE-VARIAS-VARIABLES-4",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-APLICACIONES-WEB-0",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-APLICACIONES-WEB-1",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-APLICACIONES-WEB-2",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-APLICACIONES-WEB-3",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-APLICACIONES-WEB-4",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MR-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ESTRUCTURA-DE-DATOS-0",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "JO-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ESTRUCTURA-DE-DATOS-1",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "JO-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ESTRUCTURA-DE-DATOS-2",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "JO-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ESTRUCTURA-DE-DATOS-3",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "JO-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ESTRUCTURA-DE-DATOS-4",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "JO-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-DESARROLLO-DE-APLICACIONES-MÓVILES-0",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "MA-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-DESARROLLO-DE-APLICACIONES-MÓVILES-1",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "MA-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-DESARROLLO-DE-APLICACIONES-MÓVILES-2",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "MA-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-DESARROLLO-DE-APLICACIONES-MÓVILES-3",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "MA-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-DESARROLLO-DE-APLICACIONES-MÓVILES-4",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "MA-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-DESARROLLO-DE-APLICACIONES-MÓVILES-5",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "MA-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-0",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-1",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-2",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-3",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-1",
+          "huecoPrevio": false,
+          "id": "ITIID-4-1-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-4",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s4"
+        }
+      ],
+      "grupoId": "ITIID-4-1",
+      "metricas": {
+        "huecos": 1,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    },
+    {
+      "bloques": [
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-INGLES-4-0",
+          "materiaId": "INGLES-4",
+          "profesorId": "MO-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-INGLES-4-1",
+          "materiaId": "INGLES-4",
+          "profesorId": "MO-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-INGLES-4-2",
+          "materiaId": "INGLES-4",
+          "profesorId": "MO-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-INGLES-4-3",
+          "materiaId": "INGLES-4",
+          "profesorId": "MO-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-INGLES-4-4",
+          "materiaId": "INGLES-4",
+          "profesorId": "MO-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ÉTICA-PROFESIONAL-0",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ÉTICA-PROFESIONAL-1",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ÉTICA-PROFESIONAL-2",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ÉTICA-PROFESIONAL-3",
+          "materiaId": "ÉTICA-PROFESIONAL",
+          "profesorId": "LR-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-CÁLCULO-DE-VARIAS-VARIABLES-0",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-CÁLCULO-DE-VARIAS-VARIABLES-1",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-CÁLCULO-DE-VARIAS-VARIABLES-2",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-CÁLCULO-DE-VARIAS-VARIABLES-3",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-CÁLCULO-DE-VARIAS-VARIABLES-4",
+          "materiaId": "CÁLCULO-DE-VARIAS-VARIABLES",
+          "profesorId": "AG-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-APLICACIONES-WEB-0",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MH-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-APLICACIONES-WEB-1",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MH-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-APLICACIONES-WEB-2",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MH-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-APLICACIONES-WEB-3",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MH-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-APLICACIONES-WEB-4",
+          "materiaId": "APLICACIONES-WEB",
+          "profesorId": "MH-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ESTRUCTURA-DE-DATOS-0",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "HH-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ESTRUCTURA-DE-DATOS-1",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "HH-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ESTRUCTURA-DE-DATOS-2",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "HH-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ESTRUCTURA-DE-DATOS-3",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "HH-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ESTRUCTURA-DE-DATOS-4",
+          "materiaId": "ESTRUCTURA-DE-DATOS",
+          "profesorId": "HH-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-DESARROLLO-DE-APLICACIONES-MÓVILES-0",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "JO-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-DESARROLLO-DE-APLICACIONES-MÓVILES-1",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "JO-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-DESARROLLO-DE-APLICACIONES-MÓVILES-2",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "JO-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-DESARROLLO-DE-APLICACIONES-MÓVILES-3",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "JO-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-DESARROLLO-DE-APLICACIONES-MÓVILES-4",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "JO-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-DESARROLLO-DE-APLICACIONES-MÓVILES-5",
+          "materiaId": "DESARROLLO-DE-APLICACIONES-MÓVILES",
+          "profesorId": "JO-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-0",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-1",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-2",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s9"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-3",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-4-2",
+          "huecoPrevio": false,
+          "id": "ITIID-4-2-ANÁLISIS-Y-DISEÑO-DE-SOFTWARE-4",
+          "materiaId": "ANÁLISIS-Y-DISEÑO-DE-SOFTWARE",
+          "profesorId": "JF-01",
+          "slotId": "s9"
+        }
+      ],
+      "grupoId": "ITIID-4-2",
+      "metricas": {
+        "huecos": 4,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    },
+    {
+      "bloques": [
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-INGLES-6-0",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-INGLES-6-1",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-INGLES-6-2",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-INGLES-6-3",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-INGLES-6-4",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-HABILIDADES-GERENCIALES-0",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s1"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-HABILIDADES-GERENCIALES-1",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s2"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-HABILIDADES-GERENCIALES-2",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-HABILIDADES-GERENCIALES-3",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s1"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-0",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-1",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-2",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-3",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-0",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-1",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-2",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-3",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-4",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-5",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-0",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "LR-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-1",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "LR-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-2",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "LR-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-3",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "LR-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-0",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-1",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-2",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-3",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-4",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-5",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-SEGURIDAD-INFORMÁTICA-0",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s6"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-SEGURIDAD-INFORMÁTICA-1",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s7"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-SEGURIDAD-INFORMÁTICA-2",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s6"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-SEGURIDAD-INFORMÁTICA-3",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s7"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-SEGURIDAD-INFORMÁTICA-4",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s6"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-1",
+          "huecoPrevio": false,
+          "id": "ITIID-7-1-SEGURIDAD-INFORMÁTICA-5",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s7"
+        }
+      ],
+      "grupoId": "ITIID-7-1",
+      "metricas": {
+        "huecos": 0,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    },
+    {
+      "bloques": [
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-INGLES-6-0",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-INGLES-6-1",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-INGLES-6-2",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-INGLES-6-3",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-INGLES-6-4",
+          "materiaId": "INGLES-6",
+          "profesorId": "CC-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-HABILIDADES-GERENCIALES-0",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s3"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-HABILIDADES-GERENCIALES-1",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s4"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-HABILIDADES-GERENCIALES-2",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s1"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-HABILIDADES-GERENCIALES-3",
+          "materiaId": "HABILIDADES-GERENCIALES",
+          "profesorId": "JM-02",
+          "slotId": "s2"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-0",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-1",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-2",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA-3",
+          "materiaId": "FORMULACIÓN-DE-PROYECTOS-DE-TECNOLOGÍA",
+          "profesorId": "MM-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-0",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-1",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-2",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-3",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s2"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-4",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL-5",
+          "materiaId": "FUNDAMENTOS-DE-INTELIGENCIA-ARTIFICIAL",
+          "profesorId": "SP-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-0",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "EG-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-1",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "EG-01",
+          "slotId": "s5"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-2",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "EG-01",
+          "slotId": "s8"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN-3",
+          "materiaId": "ÉTICA-Y-LEGISLACIÓN-EN-TECNOLOGÍAS-DE-LA-INFORMACIÓN",
+          "profesorId": "EG-01",
+          "slotId": "s9"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-0",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s4"
+        },
+        {
+          "dia": "wed",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-1",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-2",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s6"
+        },
+        {
+          "dia": "thu",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-3",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s7"
+        },
+        {
+          "dia": "fri",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-4",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s1"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE-5",
+          "materiaId": "OPTATIVA-I-MODELACIÓN-DE-DATOS-EN-LA-NUBE",
+          "profesorId": "MC-01",
+          "slotId": "s3"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-SEGURIDAD-INFORMÁTICA-0",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s4"
+        },
+        {
+          "dia": "mon",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-SEGURIDAD-INFORMÁTICA-1",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s5"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-SEGURIDAD-INFORMÁTICA-2",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s6"
+        },
+        {
+          "dia": "tue",
+          "duracion": 1,
+          "esContinuo": true,
+          "grupoId": "ITIID-7-2",
+          "huecoPrevio": false,
+          "id": "ITIID-7-2-SEGURIDAD-INFORMÁTICA-3",
+          "materiaId": "SEGURIDAD-INFORMÁTICA",
+          "profesorId": "MR-02",
+          "slotId": "s7"
+        }
+      ],
+      "grupoId": "ITIID-7-2",
+      "metricas": {
+        "huecos": 2,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    },
+    {
+      "bloques": [],
+      "grupoId": "ITIID-3-1",
+      "metricas": {
+        "huecos": 0,
+        "softScore": 10,
+        "violacionesDuras": 1
+      }
+    }
+  ],
+  "resumen": {
+    "mensaje": "Exportado manualmente desde UI",
+    "tiempoMs": 0,
+    "violacionesDuras": 0,
+    "huecosPromedio": 0,
+    "grupos": 7
+  }
+}
