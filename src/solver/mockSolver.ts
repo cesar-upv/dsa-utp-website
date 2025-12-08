@@ -119,12 +119,12 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
               (b) => b.materiaId === materia.id && b.dia === day.id
             )
             const disponible =
-              profesorElegible.disponibilidad[day.id as DayId]?.[slot.id] ===
+              profesorElegible.disponibilidad[day.id]?.[slot.id] ===
               'available' &&
-              !busyProfesor[profesorElegible.id][day.id as DayId][slot.id] &&
-              !busyGrupo[grupo.id][day.id as DayId][slot.id] &&
+              !busyProfesor[profesorElegible.id][day.id][slot.id] &&
+              !busyGrupo[grupo.id][day.id][slot.id] &&
               load[profesorElegible.id] < profesorElegible.maxHoras &&
-              (materiaDayCount[grupo.id][materia.id]?.[day.id as DayId] ?? 0) < 2 &&
+              (materiaDayCount[grupo.id][materia.id]?.[day.id] ?? 0) < 2 &&
               (slotsMismaMateria.length === 0 ||
                 (slotsMismaMateria.length === 1 &&
                   Math.abs(
@@ -139,15 +139,15 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
                 grupoId: grupo.id,
                 materiaId: materia.id,
                 profesorId: profesorElegible.id,
-                dia: day.id as DayId,
+                dia: day.id,
                 slotId: slot.id,
                 duracion: 1,
                 huecoPrevio: false,
                 esContinuo: true,
               }
               bloques.push(bloque)
-              busyProfesor[profesorElegible.id][day.id as DayId][slot.id] = true
-              busyGrupo[grupo.id][day.id as DayId][slot.id] = true
+              busyProfesor[profesorElegible.id][day.id][slot.id] = true
+              busyGrupo[grupo.id][day.id][slot.id] = true
               if (!materiaDayCount[grupo.id][materia.id]) {
                 materiaDayCount[grupo.id][materia.id] = {
                   mon: 0,
@@ -157,7 +157,7 @@ export async function mockSolve(input: SolverInput): Promise<SolverOutput> {
                   fri: 0,
                 }
               }
-              materiaDayCount[grupo.id][materia.id][day.id as DayId] += 1
+              materiaDayCount[grupo.id][materia.id][day.id] += 1
               load[profesorElegible.id] += 1
               horasPendientes -= 1
               asignado += 1

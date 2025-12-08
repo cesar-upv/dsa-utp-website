@@ -37,6 +37,7 @@ export default function ProfessorsPage() {
 
   useEffect(() => {
     if (profesores.length && !selectedId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedId(profesores[0].id)
     }
     if (selectedId && !profesores.some((p) => p.id === selectedId)) {

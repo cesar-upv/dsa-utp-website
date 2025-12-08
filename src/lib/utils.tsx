@@ -45,7 +45,7 @@ export function colorForMateria(materia: Materia, index: number) {
 
 export function generateDisponibilidad(): Disponibilidad {
   return DAYS.reduce<Disponibilidad>((acc, day) => {
-    acc[day.id as DayId] = TIME_SLOTS.reduce<Record<string, AvailabilityState>>(
+    acc[day.id] = TIME_SLOTS.reduce<Record<string, AvailabilityState>>(
       (slots, slot) => {
         slots[slot.id] = slot.isReceso ? 'blocked' : 'blank'
         return slots

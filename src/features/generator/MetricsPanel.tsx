@@ -15,7 +15,7 @@ import { useTimetableStore } from '@/store/useTimetableStore'
 export function MetricsPanel() {
   const horarios = useTimetableStore((state) => state.horarios)
   const profesores = useTimetableStore((state) => state.profesores)
-  const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
+
 
   const huecosPromedio =
     horarios.reduce((acc, h) => acc + h.metricas.huecos, 0) /

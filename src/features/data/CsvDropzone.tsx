@@ -49,7 +49,7 @@ export function CsvDropzone() {
       toast.error('No se encontraron filas válidas en el CSV')
       return
     }
-    importMaterias(materias as Materia[])
+    importMaterias(materias)
     setFileName(file.name)
     toast.success(`Importadas ${materias.length} materias desde CSV`)
   }

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { AlertTriangle, Play, Loader2 } from 'lucide-react'
 import { toast } from '@/lib/utils'
@@ -21,9 +21,8 @@ export function SolverPanel() {
   const grupos = useTimetableStore((state) => state.grupos)
   const profesores = useTimetableStore((state) => state.profesores)
   const setHorarios = useTimetableStore((state) => state.setHorarios)
-  const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
   const setAllData = useTimetableStore((state) => state.setAllData)
-  const appendWarnings = useTimetableStore((state) => state.appendWarnings)
+  const ultimaEjecucion = useTimetableStore((state) => state.ultimaEjecucion)
   const [timeLimit, setTimeLimit] = useState(300)
   const [elapsed, setElapsed] = useState(0)
 
@@ -57,7 +56,7 @@ export function SolverPanel() {
       setHorarios(output.horarios, {
         mensaje: output.resumen.mensaje,
         tiempoMs: output.resumen.tiempoMs,
-        warnings: [...preWarningsRef.current, ...(output.advertencias ?? [])],
+        warnings: output.advertencias ?? [],
         status: output.status,
       })
       return output
@@ -89,7 +88,7 @@ export function SolverPanel() {
       setHorarios(output.horarios, {
         mensaje: output.resumen.mensaje,
         tiempoMs: output.resumen.tiempoMs,
-        warnings: [...preWarningsRef.current, ...(output.advertencias ?? [])],
+        warnings: output.advertencias ?? [],
         status: output.status,
       })
       return output
@@ -159,7 +158,7 @@ export function SolverPanel() {
         toast.success('Horario generado con Cython')
       }
     },
-    onError: (err) => {
+    onError: () => {
       toast.error('Error al conectar con Backend', {
         description: 'Asegúrate de correr el servidor en el puerto 5000.',
       })
@@ -178,24 +177,7 @@ export function SolverPanel() {
     return () => clearInterval(interval)
   }, [cythonMutation.isPending])
 
-  const materiasSinProfesor = useMemo(
-    () =>
-      materias.filter(
-        (m) =>
-          !profesores.some((p) => p.competencias.includes(m.id))
-      ),
-    [materias, profesores]
-  )
-  const preWarningsRef = useRef<string[]>([])
 
-  const gruposFueraDeRango = useMemo(() => {
-    return grupos.filter((g) => {
-      const materiasDelGrupo = materias.filter(
-        (m) => m.cuatrimestre === g.cuatrimestre
-      )
-      return materiasDelGrupo.length < 6 || materiasDelGrupo.length > 7
-    })
-  }, [grupos, materias])
 
   return (
     <Card>

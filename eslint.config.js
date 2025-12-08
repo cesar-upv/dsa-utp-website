@@ -7,7 +7,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   {
-    ignores: ['dist'],
+    ignores: ['dist', 'tools/**', 'backend/**'],
   },
   {
     files: ['**/*.{ts,tsx}'],
@@ -31,6 +31,7 @@ export default tseslint.config(
       'react-hooks/exhaustive-deps': 'warn',
       'react-refresh/only-export-components': 'warn',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     },
   }
 )

@@ -210,14 +210,14 @@ export async function solveBacktracking(input: SolverInput): Promise<SolverOutpu
             for (const slot of SCHED_SLOTS) {
 
                 for (const prof of eligibleProfessors) {
-                    if (isValid(unit, day.id as DayId, slot.id, prof)) {
+                    if (isValid(unit, day.id, slot.id, prof)) {
                         // Apply
                         const bloque: BloqueMateria = {
                             id: unit.id,
                             grupoId: unit.grupoId,
                             materiaId: unit.materia.id,
                             profesorId: prof.id,
-                            dia: day.id as DayId,
+                            dia: day.id,
                             slotId: slot.id,
                             duracion: 1,
                             huecoPrevio: false,
@@ -225,14 +225,14 @@ export async function solveBacktracking(input: SolverInput): Promise<SolverOutpu
                         }
 
                         assignments.push(bloque)
-                        busyProfesor[prof.id][day.id as DayId][slot.id] = true
-                        busyGrupo[unit.grupoId][day.id as DayId][slot.id] = true
+                        busyProfesor[prof.id][day.id][slot.id] = true
+                        busyGrupo[unit.grupoId][day.id][slot.id] = true
                         load[prof.id] = (load[prof.id] ?? 0) + 1
 
                         if (!materiaDayCount[unit.grupoId][unit.materia.id]) {
                             materiaDayCount[unit.grupoId][unit.materia.id] = { mon: 0, tue: 0, wed: 0, thu: 0, fri: 0 }
                         }
-                        materiaDayCount[unit.grupoId][unit.materia.id][day.id as DayId]++
+                        materiaDayCount[unit.grupoId][unit.materia.id][day.id]++
 
                         const isFirstAssignment = !profesorPorMateria[unit.grupoId][unit.materia.id]
                         if (isFirstAssignment) {
@@ -244,10 +244,10 @@ export async function solveBacktracking(input: SolverInput): Promise<SolverOutpu
 
                         // Backtrack (Undo)
                         assignments.pop()
-                        busyProfesor[prof.id][day.id as DayId][slot.id] = false
-                        busyGrupo[unit.grupoId][day.id as DayId][slot.id] = false
+                        busyProfesor[prof.id][day.id][slot.id] = false
+                        busyGrupo[unit.grupoId][day.id][slot.id] = false
                         load[prof.id]--
-                        materiaDayCount[unit.grupoId][unit.materia.id][day.id as DayId]--
+                        materiaDayCount[unit.grupoId][unit.materia.id][day.id]--
                         if (isFirstAssignment) {
                             delete profesorPorMateria[unit.grupoId][unit.materia.id]
                         }

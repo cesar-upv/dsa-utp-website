@@ -69,7 +69,7 @@ const palette = ['#2563eb', '#0ea5e9', '#22c55e', '#f59e0b', '#a855f7']
 
 export const useTimetableStore = create<TimetableStore>()(
   persist(
-    (set, _get) => ({
+    (set) => ({
       materias: sampleMaterias,
       grupos: sampleGrupos,
       profesores: sampleProfesores,
@@ -90,20 +90,20 @@ export const useTimetableStore = create<TimetableStore>()(
             nextId === id
               ? state.profesores
               : state.profesores.map((prof) => ({
-                  ...prof,
-                  competencias: prof.competencias.map((c) =>
-                    c === id ? nextId : c
-                  ),
-                }))
+                ...prof,
+                competencias: prof.competencias.map((c) =>
+                  c === id ? nextId : c
+                ),
+              }))
           const horarios =
             nextId === id
               ? state.horarios
               : state.horarios.map((h) => ({
-                  ...h,
-                  bloques: h.bloques.map((b) =>
-                    b.materiaId === id ? { ...b, materiaId: nextId } : b
-                  ),
-                }))
+                ...h,
+                bloques: h.bloques.map((b) =>
+                  b.materiaId === id ? { ...b, materiaId: nextId } : b
+                ),
+              }))
           return { materias, profesores, horarios }
         }),
       removeMateria: (id) =>
@@ -128,15 +128,15 @@ export const useTimetableStore = create<TimetableStore>()(
             nextId === id
               ? state.horarios
               : state.horarios.map((h) => {
-                  const sameGroup = h.grupoId === id
-                  return {
-                    ...h,
-                    grupoId: sameGroup ? nextId : h.grupoId,
-                    bloques: h.bloques.map((b) =>
-                      b.grupoId === id ? { ...b, grupoId: nextId } : b
-                    ),
-                  }
-                })
+                const sameGroup = h.grupoId === id
+                return {
+                  ...h,
+                  grupoId: sameGroup ? nextId : h.grupoId,
+                  bloques: h.bloques.map((b) =>
+                    b.grupoId === id ? { ...b, grupoId: nextId } : b
+                  ),
+                }
+              })
           return { grupos, horarios }
         }),
       removeGrupo: (id) =>
@@ -156,13 +156,13 @@ export const useTimetableStore = create<TimetableStore>()(
           profesores: state.profesores.map((p) =>
             p.id === id
               ? {
-                  ...p,
-                  ...data,
-                  maxHoras:
-                    data.maxHoras !== undefined
-                      ? Math.min(data.maxHoras, 15)
-                      : p.maxHoras,
-                }
+                ...p,
+                ...data,
+                maxHoras:
+                  data.maxHoras !== undefined
+                    ? Math.min(data.maxHoras, 15)
+                    : p.maxHoras,
+              }
               : p
           ),
         })),
@@ -179,15 +179,15 @@ export const useTimetableStore = create<TimetableStore>()(
           profesores: state.profesores.map((p) =>
             p.id === id
               ? {
-                  ...p,
-                  disponibilidad: {
-                    ...p.disponibilidad,
-                    [day]: {
-                      ...p.disponibilidad[day],
-                      [slotId]: nextState(p.disponibilidad[day][slotId]),
-                    },
+                ...p,
+                disponibilidad: {
+                  ...p.disponibilidad,
+                  [day]: {
+                    ...p.disponibilidad[day],
+                    [slotId]: nextState(p.disponibilidad[day][slotId]),
                   },
-                }
+                },
+              }
               : p
           ),
         })),
@@ -196,15 +196,15 @@ export const useTimetableStore = create<TimetableStore>()(
           profesores: state.profesores.map((p) =>
             p.id === id
               ? {
-                  ...p,
-                  disponibilidad: {
-                    ...p.disponibilidad,
-                    [day]: {
-                      ...p.disponibilidad[day],
-                      [slotId]: value,
-                    },
+                ...p,
+                disponibilidad: {
+                  ...p.disponibilidad,
+                  [day]: {
+                    ...p.disponibilidad[day],
+                    [slotId]: value,
                   },
-                }
+                },
+              }
               : p
           ),
         })),
