@@ -7,7 +7,7 @@
     "start": "npm-run-all -p dev sync backend",
     "sync": "browser-sync start --proxy http://localhost:5173 --files \"src/**/*\" \"index.html\" \"public/**/*\" --port 3000 --no-open --reload-delay 200",
     "dev": "vite",
-    "backend": "./start_backend.sh",
+    "backend": "bash ./scripts/start_backend.sh",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "typecheck": "tsc -b",
@@ -16,8 +16,8 @@
     "test": "vitest run",
     "test:ui": "vitest",
     "preview": "vite preview",
-    "postinstall": "./setup_backend.sh",
-    "visualize-graph": "./setup_visualizer.sh && tools/graph_visualizer/venv/bin/python tools/graph_visualizer/main.py"
+    "postinstall": "bash ./scripts/setup_backend.sh",
+    "visualize-graph": "bash ./scripts/setup_visualizer.sh && tools/graph_visualizer/venv/bin/python tools/graph_visualizer/main.py"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

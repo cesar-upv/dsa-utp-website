@@ -1,7 +1,7 @@
 #!/bin/bash
 # setup_visualizer.sh
 
-TOOLS_DIR="tools/graph_visualizer"
+TOOLS_DIR="$(dirname "$0")/../tools/graph_visualizer"
 VENV_DIR="$TOOLS_DIR/venv"
 
 echo "Setting up Graph Visualizer..."

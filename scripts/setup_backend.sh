@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define backend directory
-BACKEND_DIR="backend"
+BACKEND_DIR="$(dirname "$0")/../backend"
 VENV_DIR="$BACKEND_DIR/venv"
 
 echo "Setting up backend environment..."
